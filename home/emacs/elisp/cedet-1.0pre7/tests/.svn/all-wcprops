@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests
+END
+cit-uml.cgr
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-uml.cgr
+END
+cit-texi.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-texi.el
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/ChangeLog
+END
+cit-extra-cpp.srt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-extra-cpp.srt
+END
+cit-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-load.el
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/README
+END
+cit-cpp.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-cpp.el
+END
+cit-gnustep.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-gnustep.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/Project.ede
+END
+cedet-integ-test.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cedet-integ-test.el
+END
+cit-test.sh
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-test.sh
+END
+cit-srec.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-srec.el
+END
+cit-uml.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-uml.el
+END
+cit-el.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-el.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/Makefile
+END
+cit-dist.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/tests/cit-dist.el
+END

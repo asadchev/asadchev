@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: fusion::
+# key: fusion
+# --
+fusion::${1:$$(yas/choose-value '(""
+"result_of"
+"for_each"
+"cons"
+"nil"))}

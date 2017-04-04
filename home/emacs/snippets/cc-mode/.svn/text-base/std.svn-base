@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: std::
+# key: std
+# --
+std::${1:$$(yas/choose-value '(""
+"swap"
+"auto_ptr"
+"runtime_error"
+"range_error"
+"exception"))}

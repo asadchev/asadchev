@@ -1,0 +1,244 @@
+MENU "boost.dvc" {
+STATE "" {
+
+LIST "alnum" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "digits" {
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+COMMAND "include boost" {
+    SCRIPT {
+        SendKeys "#include <boost/>" + "{Left}"
+    }
+}
+
+
+LIST "headers" {
+    "mpl"
+    "fusion"
+    "type_traits"
+    "preprocessornumeric"
+}
+
+COMMAND "include boost <headers>" {
+    SCRIPT {
+        SendKeys "#include <boost/" + _arg1 + "/>" + "{Left}"
+    }
+}
+
+
+LIST "mpl-query" {
+    "find"
+    "find if"
+    "contains"
+    "count"
+    "count if"
+    "lower bound"
+    "upper bound"
+    "min element"
+    "max element"
+    "equal"
+}
+
+COMMAND "M. P. L. <mpl-query>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "<>" + "{Left}"
+    }
+}
+
+
+LIST "mpl-classes" {
+    "vector"
+    "list"
+    "deque"
+    "set"
+    "map"
+    "range c"
+    "vector c"
+    "list c"
+    "set c"
+    "string"
+}
+
+COMMAND "M. P. L. <mpl-classes>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "<>" + "{Left}"
+    }
+}
+
+
+LIST "mpl-intrinsic" {
+    "at"
+    "at c"
+    "back"
+    "begin"
+    "clear"
+    "empty"
+    "end"
+    "erase"
+    "erase key"
+    "front"
+    "has key"
+    "insert"
+    "insert range"
+    "is sequence"
+    "key type"
+    "order"
+    "pop back"
+    "pop front"
+    "push back"
+    "push front"
+    "sequence tag"
+    "size"
+    "value type"
+}
+
+COMMAND "M. P. L. <mpl-intrinsic>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "<>" + "{Left}"
+    }
+}
+
+
+LIST "mpl-transform" {
+    "copy"
+    "copy if"
+    "transform"
+    "replace"
+    "replace if"
+    "remove"
+    "remove if"
+    "unique"
+    "partition"
+    "stable partition"
+    "sort"
+    "reverse"
+    "reverse copy"
+    "reverse copy if"
+    "reverse transform"
+    "reverse replace"
+    "reverse replace if"
+    "reverse remove"
+    "reverse remove if"
+    "reverse unique"
+    "reverse partition"
+    "reverse stable partition"
+}
+
+COMMAND "M. P. L. <mpl-transform>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "<>" + "{Left}"
+    }
+}
+
+
+LIST "mpl-bool" {
+    "true"
+    "false"
+}
+
+COMMAND "M. P. L. <mpl-bool>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "_"
+    }
+}
+
+
+LIST "mpl-keyword" {
+    "and"
+    "or"
+    "int"
+    "bool"
+    "if"
+    "not"
+    "void"
+}
+
+COMMAND "M. P. L. <mpl-keyword>" {
+    SCRIPT {
+        SendKeys "mpl::" + _arg1 + "_<>" + "{Left}"
+    }
+}
+
+
+LIST "fusion" {
+    "at"
+    "map"
+    "size"
+    "for_each"
+    "result_of"
+    "transform"
+}
+
+COMMAND "fusion <fusion>" {
+    SCRIPT {
+        SendKeys "fusion::" + _arg1 + "<>" + "{Left}"
+    }
+}
+
+
+LIST "ublas" {
+    "matrix"
+    "vector"
+    "trans"
+    "range"
+    "projectmatrix_expressionvector_expression"
+}
+
+COMMAND "ublas <ublas>" {
+    SCRIPT {
+        SendKeys "ublas::" + _arg1
+    }
+}
+
+
+}
+}
+

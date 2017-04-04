@@ -1,0 +1,200 @@
+; -*- Lisp -*-
+
+(defun my-emacs-command-save-compile ()
+  "save and compile."
+  (interactive)
+  (save-buffer)
+  (recompile))
+
+(global-set-key (kbd "<f9>") 'my-emacs-command-save-compile)
+
+;; (defun my-emacs-command-build-and-debug ()
+;;   "Compile the current project."
+;;   (interactive)
+;;   (save-buffer)
+;;   (recompile)
+;;   (set compilation-finish-function 
+;;   (let ((gdb-cmd (car gud-gdb-history)))
+;;     (message gdb-cmd)
+;;     (gdb gdb-cmd)
+;;     (gdb-many-windows)
+;;     )
+;; )
+
+
+(defun my-emacs-command-next-tab (&optional arg)
+  (interactive "p")
+  (while (> arg 0) (tabbar-forward) (setq arg (- arg 1)))
+  (while (< arg 0) (tabbar-backward) (setq arg (+ arg 1))))
+
+(defun my-emacs-command-previous-tab (&optional arg)
+  (interactive "p")
+  (my-emacs-command-next-tab (- arg)))
+
+(defun my-emacs-command-kill-tab (&optional arg)
+  (interactive "p")
+  (while (> arg 0) (kill-this-buffer) (setq arg (- arg 1))))
+
+(defun tabbar-buffer-groups ()
+  "Return the list of group names the current buffer belongs to.
+ This function is a custom function for tabbar-mode's tabbar-buffer-groups.
+ This function group all buffers into 3 groups:
+ Those Dired, those user buffer, and those emacs buffer.
+ Emacs buffer are those starting with .*.."
+  (list
+   (cond
+    ((eq major-mode 'term-mode) "Terminal Buffer")
+    ((string-equal "*" (substring (buffer-name) 0 1)) "Emacs Buffer")
+    (t "User Buffer"))))
+
+(setq tabbar-buffer-groups-function 'tabbar-buffer-groups)
+(setq tabbar-separator (quote (" | ")))
+
+
+
+;; (require 'executable)
+
+;; (let ((w3mmee (executable-find "w3mmee"))
+;;       (mbconv (executable-find "mbconv")))
+;;   (when (and w3mmee mbconv)
+;;     (setq w3m-command w3mmee)))
+
+;; (require 'w3m)
+
+;; (defun my-emacs-command-open-browser()
+;;   (interactive)
+;;   (w3m)
+;;   (w3m-link-numbering-mode t)
+;; )
+
+;; (defun my-emacs-command-switch-to-browser()
+;;   (interactive)
+;;   (my-emacs-command-open-browser))
+
+;; (defalias 'my-emacs-command-quit-browser 'w3m-quit)
+;; (defalias 'my-emacs-command-google 'w3m-search)
+;; (defalias 'my-emacs-command-next-form 'w3m-next-form)
+;; (defalias 'my-emacs-command-previous-form 'w3m-prev-form)
+;; (defalias 'my-emacs-command-reload 'w3m-reload-this-page)
+;; (defalias 'my-emacs-command-go-forward 'w3m-view-next-page)
+;; (defalias 'my-emacs-command-go-back 'w3m-view-previous-page)
+;; (defalias 'my-emacs-command-go-to-url 'w3m-goto-url)
+;; (defalias 'my-emacs-command-bookmark-this-page 'w3m-bookmark-add-current-url)
+;; (defalias 'my-emacs-command-go-to-bookmarks 'w3m-bookmark-view)
+
+;; (defun my-emacs-command-go-to-link(&optional n)
+;;   "Turn on link numbers and ask for one to go to."
+;;   (interactive "Ngo to link: ")
+;;   (w3m-link-numbering-mode t)
+;;   ;; (if (and current-prefix-arg (not (consp current-prefix-arg)))
+;;       ;; (list (prefix-numeric-value current-prefix-arg))
+;;     ;; (list (read-number "Go to link: ")))
+;;   (w3m-move-numbered-anchor n)
+;;   (w3m-view-this-url))
+
+; terminal commands
+(require 'multi-term)
+
+(defalias 'my-emacs-command-open-terminal 'multi-term)
+(defalias 'my-emacs-command-next-terminal 'multi-term-next)
+(defalias 'my-emacs-command-previous-terminal 'multi-term-prev)
+
+(defalias 'my-emacs-command-go-to-directories 'ecb-goto-window-directories)
+(defalias 'my-emacs-command-go-to-methods 'ecb-goto-window-methods)
+(defalias 'my-emacs-command-go-to-symbols 'ecb-goto-window-symboldef)
+(defalias 'my-emacs-command-go-to-edit 'ecb-goto-window-edit-last)
+(defalias 'my-emacs-command-go-to-analyze 'ecb-goto-window-analyse)
+(defalias 'my-emacs-command-go-to-compile 'ecb-goto-window-compilation)
+(defalias 'my-emacs-command-update-methods 'ecb-rebuild-methods-buffer)
+(defalias 'my-emacs-command-update-directories 'ecb-update-directories-buffer)
+
+(defalias 'my-emacs-command-max-methods 'ecb-maximize-window-directories)
+(defalias 'my-emacs-command-max-symbols 'ecb-maximize-window-symboldef)
+(defalias 'my-emacs-command-max-analyze 'ecb-maximize-window-analyse)
+(defalias 'my-emacs-command-restore-windows 'ecb-restore-default-window-sizes)
+(defalias 'my-emacs-command-max-edit 'ecb-hide-ecb-windows)
+(defalias 'my-emacs-command-max-compile 'ecb-toggle-enlarged-compilation-window)
+
+
+(defun my-emacs-command-scroll-up-compile()
+(interactive)
+(setq ecb-scroll-other-window-scrolls-compile-window t)
+(scroll-other-window)
+(setq ecb-scroll-other-window-scrolls-compile-window nil))
+
+(defun my-emacs-command-scroll-down-compile()
+(interactive)
+(setq ecb-scroll-other-window-scrolls-compile-window t)
+(scroll-other-window-down)
+(setq ecb-scroll-other-window-scrolls-compile-window nil))
+
+(defun my-emacs-command-toggle-ecb()
+  (interactive)
+  (if ecb-minor-mode (ecb-deactivate) (ecb-activate)))
+
+
+
+(defalias 'my-emacs-command-complete 'semantic-complete-analyze-inline)
+(defalias 'my-emacs-command-show-doc 'semantic-ia-show-doc)
+(defalias 'my-emacs-command-show-summary 'semantic-ia-show-summary)
+(defalias 'my-emacs-command-describe-class 'semantic-ia-describe-class)
+(defalias 'my-emacs-command-jump-include 'semantic-decoration-include-visit)
+(defalias 'my-emacs-command-jump-to-definition 'semantic-decoration-include-visit)
+(defalias 'my-emacs-command-jump-to-implementation 'semantic-analyze-proto-impl-toggle)
+(defalias 'my-emacs-command-jump-to-prototype 'semantic-decoration-include-visit)
+(defalias 'my-emacs-command-jump-to-tag 'semantic-complete-jump)
+(defalias 'my-emacs-command-fast-jump 'semantic-ia-fast-jump)
+
+(defalias 'my-emacs-command-expand 'hippie-expand)
+
+
+(defun my-emacs-command-compile-project (&optional cmd)
+  "Compile the current project."
+  (interactive)
+  ;; @TODO - This just wants the root.  There should be a better way.
+  (let ((cp (ede-current-project)))
+    (while (ede-parent-project cp)
+      (setq cp (ede-parent-project cp)))
+    (let ((ede-object cp))
+      (ede-invoke-method 'project-compile-project cmd))))
+
+(defun my-emacs-command-build ()
+  "Compile the current project."
+  (interactive)
+  (save-buffer)
+  (my-emacs-command-compile-project "make install "))
+
+
+(defun my-emacs-command-build-and-run ()
+  "Compile the current project."
+  (interactive)
+  (save-buffer)
+  (let ((cmd '("make install" "cd ~/gamess" "make" "./gamess.py ~/gamess/test.inp")))
+    (my-emacs-command-compile-project (mapconcat 'identity cmd " && "))))
+
+(defun my-emacs-command-build-and-debug ()
+  "Compile the current project."
+  (interactive)
+  (save-buffer)
+  (let ((cmd '("make install" "make -C ~/gamess"))
+	(gdb-cmd "~/gamess/gamess.py -g ~/gamess/test.inp -- --annotate=3"))
+    (my-emacs-command-compile-project (mapconcat 'identity cmd " && "))
+    (gdb gdb-cmd)))
+
+(setq gnus-agent nil) 
+
+
+(defun my-emacs-command-go-to-inbox()
+(interactive)
+(gnus)
+(gnus-group-jump-to-group "INBOX"))
+
+(load-file "~/emacs/elisp/gamess.el")
+(defalias 'my-emacs-command-run-gamess 'gamess)
+(defalias 'my-emacs-command-debug-gamess 'debug-gamess)
+
+(defalias 'my-emacs-command-save 'save-buffer)
+;; semantic-documentation-for-tag (&optional tag nosnarf)
+;;   "Find documentation from TAG
+
+(load-file "~/emacs/elisp/arduino-mode.el")

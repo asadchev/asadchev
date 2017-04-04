@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: #pragma
+# key: #pragma
+# --
+#pragma ${1:$$(yas/choose-value '(""
+"omp parallel"
+"omp barrier"
+"omp single"
+"omp master"
+"omp parallel for"))} 

@@ -1,0 +1,3 @@
+# -*- mode: snippet -*-
+# --
+std::tuple<$1>$0

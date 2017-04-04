@@ -1,0 +1,30 @@
+# -*- mode: snippet -*-
+# name: include <>
+# key: inc
+# --
+#include <${1:$$(yas/choose-value '(""
+"algorithm"
+"bitset"
+"deque"
+"list"
+"map"
+"multimap"
+"multiset"
+"priority_queue"
+"queue"
+"set"
+"stack"
+"vector"
+"complex"
+"exception"
+"functional"
+"iterator"
+"limits"
+"locale"
+"memory"
+"new"
+"numeric"
+"stdexcept"
+"typeinfo"
+"utility"
+"valarray"))}>

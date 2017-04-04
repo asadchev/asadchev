@@ -1,0 +1,68 @@
+;Constants
+HIGH
+LOW
+INPUT
+OUTPUT
+true
+false 
+
+;Digital I/O
+pinMode
+digitalWrite
+digitalRead
+
+;Analog I/O
+analogReference
+analogRead
+analogWrite
+
+;Advanced I/O
+tone
+noTone
+shiftOut
+shiftIn
+pulseIn
+
+;Time
+millis
+micros
+delay
+delayMicroseconds
+
+;Math
+min
+max
+abs
+constrain
+map
+pow
+sqrt
+
+;Trigonometry
+sin
+cos
+tan
+
+;Random Numbers
+randomSeed
+random
+
+;Bits and Bytes
+lowByte
+highByte
+bitRead
+bitWrite
+bitSet
+bitClear
+bit
+
+;External Interrupts
+attachInterrupt
+detachInterrupt
+
+;Interrupts
+interrupts
+noInterrupts
+
+;Communication
+Serial

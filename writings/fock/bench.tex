@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+
+%% \usepackage{amsmath}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{graphicx}
+
+\begin{document}
+
+\begin{table}
+  \label{results2}
+  \caption {Taxol/CCD GPU performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c |}
+      \hline
+      quartet size & CPU \% by time  &  speed-up \\
+      \hline
+      1 & 14.2 & 35.2 \\
+      3 & 22.8 & 23.0 \\
+      6 & 6.6 & 18.5 \\
+      9 & 19.3 & 17.4 \\
+      18 & 9.6 & 14.5 \\
+      27 & 7.0 & 9.6 \\
+      36 & 1.6 & 11.4 \\
+      54 & 8.7 & 12.6 \\
+      81 & 1.9 & 12.8 \\
+      108 & 3.3 & 17.2 \\
+      162 & 2.5 & 16.0 \\
+      216 & 0.4 & 14.3 \\
+      324 & 1.6 & 16.7 \\
+      648 & 0.4 & 17.9 \\
+      1296 & 0.1 & 15.0 \\
+      \hline
+      overall & 5068.66 s &  17.5 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+\begin{table}
+  \label{results2}
+  \caption {Taxol/6-31G(d) GPU performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c |}
+      \hline
+      quartet size & CPU \% by time  &  speed-up \\
+      \hline
+      1 & 1.7 & 28.5 \\
+      4 & 6.5 & 20.9 \\
+      6 & 1.9 & 18.8 \\
+      16 & 12.3 & 13.1 \\
+      24 & 6.6 & 10.6 \\
+      36 & 1.1 & 11.7 \\
+      64 & 13.9 & 13.7 \\
+      96 & 16.8 & 15.8 \\
+      144 & 5.9 & 19.5 \\
+      216 & 0.6 & 15.4 \\
+      256 & 12.4 & 23.5 \\
+      384 & 11.5 & 20.9 \\
+      576 & 7.0 & 20.2 \\
+      864 & 1.7 & 21.3 \\
+      1296 & 0.2 & 16.6 \\
+      \hline
+      overall & 1031.94 s &  16.6 
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+\begin{table}
+  \label{results2}
+  \caption {Taxol/CCT GPU performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c |}
+      \hline
+      quartet size & CPU \% by time  &  speed-up \\
+      \hline
+      1 & 4.3 & 25.9 \\
+      3 & 8.5 & 17.5 \\
+      6 & 4.6 & 15.1 \\
+      9 & 8.4 & 13.8 \\
+      10 & 1.7 & 14.6 \\
+      18 & 8.0 & 11.6 \\
+      27 & 3.7 & 8.2 \\
+      30 & 3.7 & 9.3 \\
+      36 & 2.5 & 10.4 \\
+      54 & 8.3 & 11.4 \\
+      60 & 2.5 & 13.3 \\
+      81 & 1.1 & 11.4 \\
+      90 & 4.1 & 15.1 \\
+      100 & 0.8 & 15.5 \\
+      108 & 5.8 & 15.9 \\
+      162 & 2.9 & 15.0 \\
+      180 & 5.2 & 14.0 \\
+      216 & 1.2 & 14.1 \\
+      270 & 1.7 & 17.3 \\
+      300 & 1.4 & 15.8 \\
+      324 & 3.5 & 17.3 \\
+      360 & 1.7 & 15.4 \\
+      540 & 3.6 & 18.9 \\
+      600 & 1.1 & 15.7 \\
+      648 & 1.6 & 17.9 \\
+      900 & 1.1 & 18.7 \\
+      1000 & 0.2 & 15.0 \\
+      1080 & 2.9 & 15.3 \\
+      1296 & 0.4 & 15.8 \\
+      1800 & 1.6 & 19.4 \\
+      2160 & 0.7 & 20.1 \\
+      3000 & 0.3 & n/a \\
+      3600 & 0.7 & n/a \\
+      6000 & 0.3 & n/a \\
+      10000 & 0.0 & n/a \\
+      \hline
+      overall & 35110.4 s &  12.0 
+    \end{tabular}
+  \end{center}
+\end{table}
+  
+\end{document}
+
+
+
+% LocalWords:  Fock un def Multithreaded mutex ERI Submatrix bst

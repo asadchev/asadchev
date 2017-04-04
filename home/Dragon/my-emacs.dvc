@@ -1,0 +1,515 @@
+MENU "emacs~.dvc" {
+STATE "" {
+
+COMMAND "kill whole line" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "kill whole line"
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "kill this line" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "kill whole line"
+        SendKeys "{Enter}"
+    }
+}
+
+
+}
+}
+
+MENU "my-emacs.dvc" {
+STATE "" {
+
+LIST "emacs-backward" {
+    "backward"
+    "go back"
+    "move back"
+    "previous"
+    "go to previous"
+}
+
+LIST "emacs-forward" {
+    "forward"
+    "go forward"
+    "move forward"
+    "next"
+    "go to next"
+}
+
+LIST "emacs-delete" {
+    "delete"
+    "delete next"
+    "kill"
+    "kill next"
+}
+
+LIST "emacs-delete-last" {
+    "backward delete"
+    "backward kill"
+    "delete last"
+    "delete previous"
+    "kill last"
+    "kill previous"
+}
+
+LIST "emacs-capitalize" {
+    "cap"
+    "cap next"
+    "capitalize"
+    "capitalize next"
+}
+
+LIST "emacs-capitalize-last" {
+    "backward capitalize"
+    "cap last"
+    "cap previous"
+    "capitalize last"
+    "capitalize previous"
+}
+
+LIST "emacs-upcase" {
+    "all caps"
+    "all caps next"
+    "up case"
+    "up case next"
+}
+
+LIST "emacs-upcase-last" {
+    "all caps last"
+    "all caps previous"
+    "backward up case"
+    "up case last"
+    "up case previous"
+}
+
+LIST "emacs-downcase" {
+    "down case"
+    "down case next"
+    "no caps"
+    "no caps next"
+}
+
+LIST "emacs-downcase-last" {
+    "backward down case"
+    "down case last"
+    "down case previous"
+    "no caps last"
+    "no caps previous"
+}
+
+LIST "emacs-beginning-of" {
+    "backward"
+    "beginning of"
+    "go back 1"
+    "go to beginning of"
+    "move back 1"
+    "move to beginning of"
+}
+
+LIST "emacs-end-of" {
+    "end of"
+    "forward"
+    "go forward 1"
+    "go to end of"
+    "move forward 1"
+    "move to end of"
+}
+
+LIST "emacs-defun" {
+    "defun"
+    "function"
+}
+
+LIST "emacs-defuns" {
+    "defuns"
+    "functions"
+}
+
+LIST "emacs-reverse" {
+    "backward"
+    "reverse"
+}
+
+LIST "emacs-mark" {
+    "mark"
+    "mark next"
+    "select"
+    "select next"
+}
+
+LIST "emacs-mark-last" {
+    "backward mark"
+    "backward select"
+    "mark last"
+    "mark previous"
+    "select last"
+    "select previous"
+}
+
+LIST "emacs-region" {
+    "region"
+    "selection"
+    "that"
+}
+
+LIST "emacs-expression" {
+    "expression"
+    "sexp"
+}
+
+LIST "emacs-expressions" {
+    "expressions"
+    "sexps"
+}
+
+LIST "emacs-spell" {
+    "ispell"
+    "spell"
+}
+
+LIST "emacs-delete-flag" {
+    "delete"
+    "flag"
+}
+
+LIST "emacs-evaluate" {
+    "eval"
+    "evaluate"
+}
+
+LIST "emacs-describe" {
+    "describe"
+    "help"
+}
+
+LIST "alnum" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "digit" {
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "1-10" {
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "10"
+}
+
+LIST "character" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "/"
+}
+
+COMMAND "kill tab" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "my-emacs-command-kill-tab"
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "kill <1-10> tabs" {
+    SCRIPT {
+        SendKeys "{Ctrl+u}" + _arg1
+        SendKeys "{Alt+x}" + "my-emacs-command-kill-tab"
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<emacs-forward> <1-10> tabs" {
+    SCRIPT {
+        SendKeys "{Ctrl+u}" + _arg2
+        SendKeys "{Alt+x}" + "my-emacs-command-next-tab"
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<emacs-backward> <1-10> tabs" {
+    SCRIPT {
+        SendKeys "{Ctrl+u}" + _arg2
+        SendKeys "{Alt+x}" + "my-emacs-command-previous-tab"
+        SendKeys "{Enter}"
+    }
+}
+
+
+LIST "syntax" {
+    "blank"
+    "point"
+    "symbol"
+    "close"
+    "open"
+}
+
+LIST "syntax-plural" {
+    "blanks"
+    "points"
+    "symbols"
+    "close"
+    "open"
+}
+
+COMMAND "<emacs-forward> <syntax>" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "my-emacs-command-forward-" + _arg2
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<emacs-forward> <1-10> <syntax-plural>" {
+    SCRIPT {
+        tmp = _arg3
+        if tmp = "symbols" then tmp = "symbol"
+        if tmp = "points" then tmp = "point"
+        if tmp = "blanks" then tmp = "blank"
+        SendKeys "{Ctrl+u}" + _arg2
+        SendKeys "{Alt+x}" + "my-emacs-command-forward-" + tmp
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<emacs-backward> <syntax>" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "my-emacs-command-backward-" + _arg2
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<emacs-backward> <1-10> <syntax-plural>" {
+    SCRIPT {
+        tmp = _arg3
+        if tmp = "symbols" then tmp = "symbol"
+        if tmp = "points" then tmp = "point"
+        if tmp = "blanks" then tmp = "blank"
+        SendKeys "{Ctrl+u}" + _arg2
+        SendKeys "{Alt+x}" + "my-emacs-command-backward-" + tmp
+        SendKeys "{Enter}"
+    }
+}
+
+
+LIST "my-emacs-region" {
+    "buffer"
+    "function"
+    "word"
+    "expression"
+    "paragraph"
+    "line"
+    "sentence"
+    "region"
+}
+
+LIST "my-emacs-region-cmd" {
+    "kill"
+    "beautify"
+    "indent"
+    "comment"
+    "uncomment"
+    "copy"
+    "dupe"
+    "replace"
+    "regex"
+    "mark"
+    "downcase"
+    "upcase"
+}
+
+COMMAND "<my-emacs-region-cmd> <my-emacs-region>" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "my-emacs-command-" + _arg1 + "-" + _arg2
+        SendKeys "{Enter}"
+    }
+}
+
+
+COMMAND "<my-emacs-region-cmd> <1-10> <my-emacs-region>" {
+    SCRIPT {
+        SendKeys "{Ctrl+u}" + _arg2
+        SendKeys "{Alt+x}" + "my-emacs-command-" + _arg1 + "-" + _arg3
+        SendKeys "{Enter}"
+    }
+}
+
+
+LIST "my-emacs-buffer" {
+    "compilation"
+    "shell"
+    "scratch"
+}
+
+COMMAND "switch to <my-emacs-buffer>" {
+    SCRIPT {
+        SendKeys "{Ctrl+x}" + "b" + "*" + _arg1 + "*" + "{Enter}"
+    }
+}
+
+
+LIST "my-emacs-command" {
+    "next tab"
+    "previous tab"
+    "next tab group"
+    "previous tab group"
+    "expand"
+    "check syntax"
+    "next syntax error"
+    "previous syntax error"
+    "open browser"
+    "switch to browser"
+    "quit browser"
+    "open google"
+    "next form"
+    "previous form"
+    "reload page"
+    "go forward"
+    "go back"
+    "go to url"
+    "bookmark this page"
+    "go to bookmarks"
+    "go to link"
+    "open terminal"
+    "next terminal"
+    "previous terminal"
+    "go to directories"
+    "go to methods"
+    "go to symbols"
+    "go to edit"
+    "go to analyze"
+    "go to compile"
+    "update methods"
+    "update directories"
+    "max methods"
+    "max symbols"
+    "max analyze"
+    "restore windows"
+    "max edit"
+    "toggle compile"
+    "toggle ecb"
+    "scroll down compile"
+    "scroll up compile"
+    "complete"
+    "show doc"
+    "show summary"
+    "describe class"
+    "fast jump"
+    "jump include"
+    "jump definition"
+    "jump implementation"
+    "jump prototype"
+    "jump tag"
+    "go to inbox"
+    "save"
+    "run gamess"
+    "debug gamess"
+    "save compile"
+    "save and quit"
+    "build"
+    "build and run"
+    "build and debug"
+}
+
+COMMAND "<my-emacs-command>" {
+    SCRIPT {
+        SendKeys "{Alt+x}" + "my-emacs-command-" + _arg1
+        SendKeys "{Enter}"
+    }
+}
+
+
+}
+}
+

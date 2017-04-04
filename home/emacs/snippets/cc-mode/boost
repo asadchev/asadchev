@@ -1,0 +1,11 @@
+#name : boost::
+#key: boost
+# --
+boost::${1:$$(yas/choose-value '(
+	 "numeric::ublas"
+	 "mpl"
+	 "ref" "reference_wrapper"
+	 "array"
+	 "multi_array" "extents"
+	 "phoenix"
+	 "fusion"))}

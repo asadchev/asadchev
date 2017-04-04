@@ -1,0 +1,4 @@
+cudaGetErrorString
+cudaGetLastError
+cudaChooseDevice
+cuda_gfoo

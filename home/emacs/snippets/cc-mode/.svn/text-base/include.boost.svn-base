@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: <boost/
+# key: <boost/
+# --
+<boost/${1:$$(yas/choose-value '(""
+"array.hpp"
+"type_traits.hpp"
+"utility/enable_if.hpp"
+"typeof/typeof.hpp"
+"numeric/"
+"preprocessor/"
+"mpl/"
+"fusion/"))}

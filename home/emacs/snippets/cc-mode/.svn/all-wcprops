@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode
+END
+std
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/std
+END
+include.boost.preprocessor
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include.boost.preprocessor
+END
+static const
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/static%20const
+END
+static_cast
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/static_cast
+END
+fusion
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/fusion
+END
+boost.pp
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/boost.pp
+END
+fusion.result_of
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/fusion.result_of
+END
+pragma
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/pragma
+END
+include.boost
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include.boost
+END
+include.boost.numeric
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include.boost.numeric
+END
+include.mpl
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include.mpl
+END
+preprocessor.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/preprocessor.hpp
+END
+vec
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/vec
+END
+std.iterator
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/std.iterator
+END
+include
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include
+END
+arr
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/arr
+END
+include.fusion
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/include.fusion
+END
+preprocessor
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/preprocessor
+END
+mpl
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/snippets/text-mode/cc-mode/mpl
+END

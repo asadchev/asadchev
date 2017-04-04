@@ -1,0 +1,817 @@
+\documentclass[12pt]{article} \usepackage[margin=1in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{amsmath}
+
+%% \usepackage{amsmath}
+%% \usepackage{listings}
+
+%% \lstloadlanguages{C++} \lstset{ language=C++, breaklines=true,
+%%   keywordstyle=\color{blue}, commentstyle=\color{red} }
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+\newenvironment{listing}%
+               {\begin{table}
+                   \begin{tabular}{ p{6in} }
+                     \hline}%
+               {\end{tabular}%
+               \end{table}}
+
+
+\begin{document}
+
+\title{Another CCSD(T) Implementation}
+\author{Andrey Asadchev \and Mark S. Gordon}
+\date{}
+
+\maketitle
+
+
+\abstract{ A new coupled cluster singles and doubles with triples
+correction, CCSD(T), algorithm is presented. The new
+algorithm is implemented in C++, has low memory footprint, fast
+execution time, low I/O overhead, and flexible storage backend with
+the ability to use either distributed memory or filesystem for
+ storage.  The algorithm is demonstrated to work well on
+single workstation, small cluster, and a high-end Cray computer.\ With
+the new implementation, a CCSD(T) calculation with several hundred
+basis functions and a few dozen occupied orbitals can run in under a
+day on a single workstation.}
+
+
+\section{Introduction}
+As a rule of thumb, the electronic energy obtained through
+Hartree-Fock method accounts for the 99 \% of the energy.  However,
+the chemical properties of interest are dependent on the remaining 1
+\%.  The difference between the reference Hartree-Fock energy and the
+true energy is defined as correlation energy,
+$$E_{corr} = E_{hf} - E$$
+
+Of the many electron correlation methods \cite{pople1977variational,
+pople1987quadratic,pople1992kohn}, the coupled cluster method with
+perturbative triples correction \cite{raghavachari1989fifth}, CCSD(T),
+is the most successful, often referred to as the gold standard of the
+computational chemistry.  The coupled cluster method was first
+developed by nuclear physicists \cite{coester1960short}, adopted to
+quantum chemistry by Cizek \cite{vcivzek1966correlation,paldus1972correlation,mukherjee1977applications,lindgren1978coupled,scuseria1988efficient,piecuch1999coupled}, and
+popularized by Bartlett \cite{purvis1982full}.
+
+The coupled cluster method usually introduced in the exponential
+{\it ansatz} form \cite{szabo1996modern, janowski2007parallel},
+$$\Psi = e^{T} \Psi_0 = e^{(T_1 + T_2 + ... T_n)} \Psi_0$$ 
+where $T_1 ... T_n$ are the n-particle cluster operator and $\Psi_0$
+is the reference wavefunction, typically the Hartree-Fock reference
+$\Psi_{hf}$.
+
+The excitation operator applied to a reference wavefunction is written
+in terms of cluster excitation amplitudes $t$ from hole states $i,j,k,...$
+(occupied orbitals in chemistry parlance) to particle states 
+(or virtual orbitals), $a,b,c,...$
+$$T_n \Psi_0 = \sum_{ijk...} \sum_{abc...} t_{ijk...} ^ {abc...}
+\Psi_{ijk...} ^ {abc...}$$
+
+Truncating the expansion at doubles, leads to coupled cluster singles
+and double method, CCSD,
+$$T \approx T _1 + T_2$$
+The $t^a_i$ and $t^{ab}_{ij}$ are found by solving a system of nonlinear
+equations,
+$$\bra{\Phi^a_i} (H_N e^{T_1 + T_2}) \ket{\Phi} = 0$$
+$$\bra{\Phi^{ab}_{ij}} (H_N e^{T_1 + T_2}) \ket{\Phi} = 0$$
+where $H_N = H - \bra{\Phi} H \ket{\Phi}$ is the normal order
+Hamiltonian \cite{yarkony1995modern}
+
+The final algebraic CC equations, derived using diagramatic
+approach, result in a number of integral terms $V$ contracted with
+$T$ amplitudes, e.g. $VT_1^2$ signifies integral terms contracted with
+$t_i^a t_j^b$.  The complete derivation can be found in the number of
+sources \cite{shavitt2009many}.
+For the purposes of this work, the spin-free equations by
+Piecuch \cite{Piecuch2002efficient} are used.
+
+As is customary, the algebraic CC equations are presented in Eistein
+summation, where repeated co- and contra-variant index implies
+summation.
+In terms of one-electron integrals $f^p_q = \bra{p} f \ket{q}$ and
+two-electron molecular integrals $v$, the CCSD non-linear equations are,
+
+\input{equations.tex}
+
+where $D$ are the many-body denominators
+$$D^{p...}_{q...} = f^q_q - f^p_p + ...$$
+and $P$ is the permutation operator,
+$$P(ia/jb)u^{ij}_{ab} = u^{ij}_{ab} + u^{ji}_{ba}$$
+Note that the permutation operator, akin to $A + A^{'}$, has the effect
+of symmetrizing the operand such that
+$$P(ia/jb)u^{ij}_{ab} = P(ia/jb)u^{ji}_{ba}$$
+
+The molecular integrals are obtained from atomic orbital (AO) basis
+via 4-index transformation,
+$$v^{ab}_{cd} = C^a_p C^b_r C_c^q C_d^s \bra{pq} \frac{1}{r}
+\ket{rs}$$
+The transformed integrals have the following general symmetries,
+$$v_{ar}^{bs} = v_{br}^{as}$$
+$$v_{ab}^{qs} = v_{ba}^{sq}$$
+
+The (T) correction is given as:
+\begin{align}
+  E^{[T]} &= \bar{t}^{ijk}_{abc} t^{abc}_{ijk} D^{abc}_{ijk} \\
+  E^{(T)} &= E^{[T]} + t^{abc}_{ijk} D^{abc}_{ijk} \bar{z}^{ijk}_{abc}
+  \label{(t)}
+\end{align}
+where
+$$\bar{x}^{ijk}_{abc} = \frac{4}{3} x^{ijk}_{abc} - 2x^{ijk}_{acb} +
+\frac{2}{3} x^{ijk}_{bca}$$
+$$z^{ijk}_{abc} = (t^i_a v^{jk}_{bc} + t^j_b v^{ik}_{ac} + t^k_c v^{ij}_ab)/D^{abc}_{ijk}$$
+and the $T_3$ amplitudes are,
+\begin{align}
+  \begin{split}
+    D^{abc}_{ijk} t^{abc}_{ijk} &=
+    P(ia/jb/kc) [ t^{ae}_{ij} v^{bc}_{ek} - t^{ab}_{im} v^{mc}_{jk}] 
+  \end{split}
+  \label{t3}
+\end{align}
+where,
+$$P(ia/jb/kc)u^{ijk}_{abc} =
+u^{ijk}_{abc} + u^{ikj}_{acb} +
+u^{jik}_{bac} + u^{jki}_{bca} +
+u^{kji}_{cba} + u^{kij}_{cab}$$
+
+\subsection{Computational details}
+
+CCSD equations are non-linear and must be solved to self-consistenct
+via iterative procedure, usually with a help of acceleration method
+\cite{scuseria1986accelerating}.  The CCSD method is dominated by its
+most expensive term, $v^{ab}_{ef} c^{ef}_{ij}$, which scales as
+$v^4o^2$.  The algorithm is expensive in terms of memory and storage
+as well, with amplitude storage on the order of $v^2o^2$ and integrals
+storage on the order of $v^4, v^3o, ...$ and so on.  The amount of the
+in-core memory depends on the algorithm; most of algorithms require
+$v^2o^2$ storage per node.  This amount of memory is non scalable,
+e.g. 100 occupied and 1000 virtual orbitals require 80GB of memory per
+node which is very uncommon.
+
+The (T) is non-iterative correction requires $v^3o$ storage and scales
+as $v^4o^3$.  A naive (T) algorithm is trivial to implement but an
+algorithm with a small memory and scalable I/O requires thought.
+
+There is a CCSD(T) method in nearly every quantum chemistry package.
+The state-of-the-art is ACES \cite{lotrich2008parallel}; its
+implementation can handle very large systems on a large cluster.
+NWChem \cite{nwchem} implementation is slower but is similarly
+scalable.  The MOLPRO \cite{molpro} algorithm has $o^2v^2$ memory
+requirement, which limits its utility, but it is perhaps the fastest
+there is for smaller calculations.  The GAMESS \cite{gamess}
+implementation runs in parallel but is similarly limited by $o^2 v^2$
+memory requirement.
+
+Only two implementations, the NWChem and ACES, are able to
+handle computations of the order of thousand basis functions, but both
+require access to fairly large machines to do so.  See for example
+ACES Parallel Coupled Cluster benchmarks \cite{pcc}.
+
+\section{Design of a Scalable and Efficient Algorithm}
+Previously, we reported an MP2 energy algorithm, which has small
+memory footprint, good performance, flexible storage implementation,
+and is able to run on workstations and clusters equally well.  In the
+same spirit, a coupled cluster algorithm can be designed, such that it
+is efficient, has small memory footprint, is able to utilize filesystem
+and memory for storage, and as a result can run on machines with very
+different capabilities.
+
+As far as the coupled cluster algorithms (and other many-body methods)
+are concerned, it is the memory that is most likely to limit the
+application of the algorithm.  Memory is a limited resource, unlike
+the time.  Furthermore, calculations can be sped up by throwing more
+computational hardware at a problem, whereas the amount of physical
+memory per node can not be increased by adding another node.
+
+Some very large arrays can be (and need to be) distributed across the nodes
+(distributed memory) or stored on the filesystem.  The disks are cheap
+and offer terabytes of storage, but filesystem I/O can be very slow if
+not done right.  Nevertheless, a considerable amount of memory must be
+present to carry out local calculations.
+
+What are the memory limitations of the current hardware?  On a
+{\it typical} workstation or a cluster node, there is anywhere between
+1GB and 8GB per core, with 2GB of RAM (or less) {\it much} more common
+than, say, 4GB per {\it core}.  Per entire {\it node}, the amount of
+memory can vary from 2GB up to 64GB and more, with 8-16GB fairly
+common.  That number will increase in the future, but at much slower
+rate than the increase in computational power.
+
+To draw a connection between memory and the dimensions present in the CC
+calculations, several arrays, corresponding to 100 occupied
+orbitals and 1000 and 2000 basis functions, are listed in Table
+\ref{limits}.  It should be kept in mind that the sizes listed are not
+for the entire calculation, but for one of the several arrays needed.
+Some of the arrays can be shared, but some must be allocated per
+thread/core.
+
+it should be clear that storing $o^2n^2$ quantity per node (let alone
+per core) is too expensive: a node with 80GB of RAM is rare and one
+with  320GB even more so.  The same goes for the quartic arrays other
+than $o^4$ and arrays involving $n^2$ factor: storing for example
+several 3GB arrays would preclude most systems from being able to
+handle more than a thousand basis functions. In the end we are left
+with restricting memory requirements to $o^2n$ (or smaller) arrays,
+which size only increases linearly with basis set.
+Trying to limit memory further than $o^2n$, to say $on$, will come at
+the very high cost of increased I/O.
+
+\begin{table}
+  \label{limits}
+  \caption {Array Sizes for o=100}
+  \begin{center}
+    \begin{tabular}{| l | c | c |}
+      \hline
+      Array     & Size (GB), n=1000 & Size (GB), n=2000 \\
+      \hline
+      $o^4$     & 0.8               & 0.8               \\ 
+      $o^2n$    & 0.8               & 1.6               \\
+      \hline
+      $on^2$    & 0.8               & 3.2              \\
+      $o^3n$    & 8.0               & 16.0              \\
+      $n^3$     & 8.0               & 64.0              \\
+      $o^2n^2$  & 80.0              & 320.0             \\
+      \hline
+      $on^3$    & 800.0             & 6400.0             \\
+      $n^4$     & 8000.0            & 128000.0             \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+Some arrays, notably $n^4$, are too great to store even in the
+secondary storage.  The terms involving that array need to be
+evaluated directly, i.e.on the fly,  at the modest cost of recomputing
+atomic integrals, cf. \cite{olson2007novel}.
+However, to push the ability of the algorithm beyond a
+thousand basis function, $on^3$ storage also needs to be eliminated in
+the CCSD algorithm.
+To ensure that I/O overhead is low even on filesystems, transfers to
+and from secondary storage must be contigous and in large chunks.
+There are three basic remote operations: {\tt put, get, accumulate}.
+The last one cannot be implemented efficiently via
+the filesystem I/O and the algorithm must not rely on it.
+
+Finally, to achieve computational efficiency, all the expensive tensor
+contractions need to be carried out using {\tt dgemm} and tensor
+permutations must not exceed two adjecent indices, e.g.
+ $A(j,i,k) = A(i,j,k)$ is ok, but $A(k,j,i) = A(i,j,k)$ is not.
+The work distribution between the nodes must be over the virtual index
+rather than much smaller occupied index, to ensure that the algorithm
+can scale into hundreds of nodes.  The work within the node can be
+parallelized using threads.  This multi-level parallelization
+guarantees that the algorithm will scale into thousands of cores.
+
+The order in which algorithm points are listed are in the order in
+which the algorithm was thought of.  Essentially, the primary focus is
+on memory, then secondary storage and I/O, and only then on the
+computational aspect.  It should be noted that despite that way of
+thinking the performance does not suffer, as will be illustrated with
+benchmarks.
+
+\section{Implementation}
+This section is broken down into three: the direct CCSD terms,
+the non-direct CCSD terms, and triples correction.  The CCSD is by far
+the most complex due to number of terms.
+
+Before proceeding to the respective sections, a word must be said
+about optimizing I/O via loop blocking.  Consider the Algorithm
+ \ref{blocking}, where $B$ is a blocking factor. If $B = 1$, then
+it is just a regular loop: the innermost (most expensive) load
+operation is executed $N^3$ times, the total I/O overhead is $M^2N^3$,
+and the local buffer size is $M^2$.  If $B$ is greater than 1, the
+innermost load operation is called $(N/B)^3$ times, the I/O overhead
+is $M^2B(N/B)^3 = M^2 N^3 /B^2$, and the local buffer size is $M^2B$.
+So, at the cost of increasing local buffer, the I/O overhead can be
+reduced by a factor of $B^2$.  In general, loop blocking decreases I/O
+by $B^{(L-1)}$  where $L$ is the loop depth.
+
+The loop blocking will be used where I/O might pose a problem.  Since
+blocking also requires increase in memory overhead, the blocking
+factor can be determined by setting runtime memory limit.
+
+%\begin{lstlisting}[label=naive, caption=Naive approach, numbers=left]
+\begin {listing}
+\begin {verbatim}
+for i = 0:N,B { // iterate to N in steps of B
+  for j = 0:N,B {
+    for k = 0:N,B {
+      // the innermost load operation
+      buffer(M,M,B) = load A(M,M,k:k+B)
+      ...
+    }
+  }
+}
+\end{verbatim} \\
+\hline
+\caption{Loop Blocking}
+\label{blocking}
+\end{listing}
+
+
+\subsection{Direct Terms}
+As mentioned already, the $v^{ab}_{cd}$ has to be evaluated directly
+due to storage constraints.  The same approach can be extended to
+evaluate terms with $v^{ia}_{bc}$ directly as well at little
+additional cost.
+
+The $v^{ab}_{cd}$ is contracted with 
+${T_1^2}^{cd}_{ij} = t^c_i t^d_j$ and
+${T_2}^{cd}_{ij} = t^{cd}_{ij}$ amplitudes,
+
+$${VT_2}^{ab}_{ij} = t_{ij}^{cd} C^s_d C^q_c V^{pr}_{qs} C^b_r C^a_p$$
+$${VT_1^2}^{ab}_{ij} = t^c_i t^d_j C^s_d C^q_c V^{pr}_{qs} C^b_r C^a_p$$
+
+Half-transforming the amplitudes to AO basis and factoring out
+half-contracted terms yields expressions in terms of half-transformed
+intermediates $U$,
+$${U_2}^{qs}_{ij} = (t_{ij}^{cd} C^s_d C^q_c) V^{pr}_{qs}$$
+$${U_1^2}^{qs}_{ij} = (t_{i}^{c} C^q_c) (t_j^d C^s_d) V^{pr}_{qs}$$
+$${VT_2}^{ab}_{ij} = {U_2}^{qs}_{ij} C^b_s C^a_q$$
+$${VT_1^2}^{ab}_{ij} = {U_1^2}^{qs}_{ij} C^b_s C^a_q$$
+
+All similar $VT$ terms can be obtained from $U$ at virtually no cost by
+having the last two AO indices transformed to occupied and virtual index.
+For example, the $v^{ia}_{bc}$ terms in Eq. \ref{t1} is just
+$$v^{ma}_{ef}(2 t^{ef}_{mi} - t^{ef}_{im}) =
+2 U_{mi}^{qs} C_q^m C_s^a - U_{im}^{qs} C_q^m C_s^a$$
+
+The $v^{ia}_{bc}$ also enters $VT_1$ diagrams,
+$${VT_1}^{ij}_{ab} = t^c_i C^s_j C^q_c V^{pr}_{qs} C^b_r C^a_p$$
+$${VT_1}^{ia}_{jb} = t^c_i C^s_d C^q_j V^{pr}_{qs} C^b_r C^a_p$$
+and two more intermediates are needed,
+$${U_1}^{ij}_{qs} = (t^i_a C^a_p) C^j_r V^{pr}_{qs}$$
+$${U_1}^{ir}_{js} = (t^i_a C^a_p) C^q_j V^{pr}_{qs}$$
+which can then be transformed into appropriate $VT_1$ diagrams.
+
+Now, if all four $U$ intermediates are available, neither
+$v^{ab}_{cd}$ nor $v^{ia}_{bc}$ need be stored for the CCSD
+iterations, replaced with much smaller $4o^2n^2$ storage.
+
+Half-transformed $T_2$ amplitudes also give a way to devise a direct
+contraction algorithm with very little memory requirement.  Recall
+that the contraction is in AO basis, and thus atomic indices can be
+contracted without having to construct $V^{ab}_{qs}$ which would
+require all $p,r$ indices and thus $N^2M^2$ memory, where $M$ is the
+size of the largest shell.  The algorithm in Listing \ref{direct} only
+needs $NM^3$ memory.
+
+%\begin{lstlisting}[label=naive, caption=Naive approach, numbers=left]
+\begin {listing}
+\begin {verbatim}
+for S in Shells {
+  for Q <= S {
+    for R in Shells {
+      for P in Shells {
+        // skip insignificant ints
+        if (!screen(P,Q,R,S)) continue;
+        G(P,R,Q,S) = eri(P,Q,R,S);
+      }
+      for r in R {
+        U1(i,j,q,s) = ...
+        U12(i,j,q,s) = ...
+        load t(o,o,n,r)
+        U2(i,j,q,s) += t(i,j,p,r)*G(p,r,q,s)
+      }
+    }
+    store U1(i,j,Q,S), U1(j,i,S,Q)
+    store U12(i,j,Q,S), U12(j,i,S,Q)
+    store U2(i,j,Q,S), U2(j,i,S,Q)
+  }
+}
+\end{verbatim} \\
+\hline
+\caption{Direct CCSD intermediates}
+\label{direct}
+\end{listing}
+
+The important points of the algorithm \ref{direct} are:
+\begin{itemize}
+\item{The integral symmetry is exploited to halve integral calculation
+     {\it and} transformations.}
+\item{The loop over $Q,S$ can be distributed over nodes.}
+\item{The loop over $R$ can be parallelized over threads.  In this
+    case, the $U$ storage can be shared, provided the updates  to
+    shared memory are synchronized.}
+\item{The  innermost $t2$ loads can be reduced by bloking $Q,S$ loops.}
+\item{Per thread storage is $NM^3$, which is 16MB for a basis set of
+    size 2000 with $f$ shells ($M = 10$). The local $U$ storage is
+    likewise small, only for 8MB $o=100$.  This tiny memory footprint
+    allows for a very large $Q,S$ blocking factor and consequently the
+    I/O can be drastically reduced.}
+\end{itemize}
+
+A careful reader may have noticed that both $UT_1$ terms can not be
+evaluated simultaneously using the above algorithm, as they
+corresponds to two different integrals, $\braket{pq}{rs}$ and
+$\braket{pr}{qs}$.  However, one of them can be easily evaluated by
+applying the algorithm a second time to compute a single $UT_1$ term
+at a very modest $on^4$ cost.
+
+\subsection{CCSD}
+Because the singles amplitudes storage is negligible, $on$, the
+singles is easy to implement and parallelize.  By making a virtual
+index outermost, the local memory is guaranteed not to exceed $o^2n$
+since all the diagrams with  three and four virtual indices have
+already been evaluated above.
+
+The doubles amplitudes calculation requires the most effort to
+implement, primarily due to the number of contractions and the terms
+which require significant I/O.  
+Keep in mind that all $v^{ab}_{cd}$ and $v^{ia}_{bc}$ terms have been
+evaluated, but so have been many similar $VT$ terms.
+
+The first step towards deriving a scalable
+algorithm for $Dt^{ij}_{ab}$ is to fix the outermost loop at $b$
+index, which can be evaluated across nodes independently.
+For each $b$ iteration a $o^2n$ $Dt$ block is evaluated and stored.
+
+The quantities with $b$ index are loaded once,
+guaranteed not to exceed $o^2n$ size.  The tensors without $b$
+index imply that the tensor is needed in its entirety for each
+index.  To ensure that no $v$ or $t$ memory exceeds $o^2n$, those
+ tensors must be loaded into memory $o^2n$ tile at a time
+for each $b$ index inside a loop over a dummy virtual index, lets call
+it $u$.  This increases the I/O cost to $o^2n^3$, which is still below
+the $o^3n^3$ computational cost.
+
+There are three tensors which must be contracted fully for a given $b$
+index: $v_{ia}^{jb}, v_{ij}^{ab}, t_{ij}^{ab}$.
+The loop corresponding to $v_{ia}^{jb}$ can be elimiated
+right away, it is only needed in its entirity to evaluate
+$I_{ie}^{ma} t_{mj}^{eb}$ in Eq. \ref{t2}.  Since, this term appears
+inside the symmetrizer $P$,
+$$P(v_{je}^{mb} t_{mi}^{ea}) = P(v_{ie}^{ma} t_{mj}^{eb})$$
+$I_{ie}^{ma}$ can be replaced by an equivalent $I_{je}^{mb}$.
+This leads to Algorithm \ref{ccsd}.
+
+%\itemize{lstlisting}[label=naive, caption=Naive approach, numbers=left]
+\begin {listing}
+\begin {verbatim}
+for b in v {
+  Dt(i,j,a) = 0
+
+  load t(o,o,v,b)
+  load V(o,o,v,b)
+  load V(o,v,o,b)
+  load V(o,o,o,b)
+
+  Dt += Vt
+
+  // terms with t
+  for u in v {
+    load t'(o,o,v,u)
+    // evaluate terms with t'
+    Dt += Vt'
+  }
+
+  // terms with v
+  for u in v {
+    load v'(o,o,v,u)
+    // evaluate terms with v'
+    Dt += V't
+  }
+
+  store Dt(o,o,v,b)
+}
+\end{verbatim} \\
+\hline
+\caption{CCSD Algorithm}
+\label{ccsd}
+\end{listing}
+
+The important points about the Algorithm \ref{ccsd} are:
+\begin{itemize}
+\item The loop over $b$ index is easy to make parallel.
+\item The local memory is on the order $4o^2n$ plus $o^2n$ per
+  innermost $v'/t'$ memory.
+\item The $b$ loop can be easily blocked to reduce the I/O by a
+  blocking factor $B$ at the expense of increasing
+  memory by a factor of $B$.
+\item Since than memory footprint is low, B can be
+  fairly large.   E.g. for O=100, V=2000, B=4 and B=8, the required memory is
+  2.6G and 5.2G per {\it node} respectively.
+\item  The operations outside the $u$ loop can be  parallelized inside
+  the node by using threaded math library.
+\item  The operations inside the $u$ loop can be explicitly
+  parallelized inside the node via threads,
+ with the added benefit of overlapping I/O and computations.
+\end{itemize}
+
+
+\subsection{(T)}
+The $(T)$ correction, Eq. \ref{(t)}, only involves $t^{ij}_{ab}$,
+$v^{ij}_{ka}$, $v^{ij}_{ab}$, and $v^{ia}_{bc}$.  The unused CCSD
+arrays previously allocated can be freed to make space for
+$v^{ia}_{bc}$.  Since $v^{ia}_{bc}$ was never constructed, another
+integral transformation needs to be carried out at a small $on^4$
+cost.
+
+The original (T) correction equations were given in a way that
+requires keeping occupied index fixed and permuting the virtual index,
+in other words the local memory for $t^{ijk}_{abc}$ would have been $v^3$.
+ Since triple amplitude are symmetric with respect to exchange of
+ index ``columns'',
+$$t^{ijk}_{abc} = t^{jik}_{bac} = t^{ikj}_{acb} = ...$$
+all terms with $t^{jik}_{bac}$ can be written with virtual index
+fixed, e.g.
+$t^{ijk}_{bac} = t^{jik}_{abc}$,
+$t^{ijk}_{cab} = t^{jki}_{abc}$, etc.
+
+Now the $T_3$ amplitudes can be implemented as a series of 12 {\tt dgemms}
+and 6 index permutations, Listing \ref{(t)}.
+The important points about the algorithm are:
+\begin{itemize}
+\item The symmetry in $a,b,c$ indices is utilized.
+\item The loop over $a,b,c$ indices is easily parallelizable.
+\item Only the loads with $a$ index are innermost
+\item The loops can be easily blocked to reduce the I/O by a factor of
+  $B^2$ where B is the blocking factor.
+\item The local storage required is $3o^2vB + 3o^3B + 6ovB^2 +
+  o^3B^3$
+\item If $B > 1$, the actual {\tt dgemms} are carried out inside
+  another $B^3$ loop, which can be parallelized {\it within} a node by
+  the means of   threads.
+\item Since the memory footprint is low, blocking factor can be
+  large.  E.g. for O=100, V=1000, B=4 and B=8, the required memory is
+  1.6G and 6.4G per {\it node} respectively.
+\end{itemize}
+
+%\itemize{lstlisting}[label=naive, caption=Naive approach, numbers=left]
+\begin {listing}
+\begin {verbatim}
+for c in V {
+  for b in c {
+    for a in b {
+
+      load t(o,o,a,b)
+      load t(o,o,a,c)
+      load t(o,o,b,c)
+
+      load v(o,o,o,a)
+      load v(o,o,o,b)
+      load v(o,o,o,c)
+
+      load v(o,o,v,a)
+      load v(o,o,v,b)
+      load v(o,o,v,c)
+
+      load v(o,v,b,c)
+      load v(o,v,c,b)
+      load v(o,v,a,c)
+      load v(o,v,c,a)
+      load v(o,v,a,b)
+      load v(o,v,b,a)
+
+      // t(i,j,e,a)*V(e,k,b,c) corresponds to dgemm(t(ij,e), V(e,k)), etc
+      t(i,j,k) = t(i,j,e,a) V(e,k,b,c) - t(i,m,a,b) V(j,k,m,c)
+      t(i,k,j) = t(i,k,e,a) V(e,j,c,b) - t(i,m,a,c) V(k,j,m,b)
+      t(k,i,j) = t(k,i,e,c) V(e,j,a,b) - t(k,m,c,a) V(i,j,m,b)
+      t(k,j,i) = t(k,j,e,c) V(e,i,b,a) - t(k,m,c,b) V(j,i,m,a)
+      t(j,k,i) = t(j,k,e,b) V(e,i,a,c) - t(j,m,b,c) V(k,i,m,a)
+      t(j,i,k) = t(j,i,e,b) V(e,k,c,a) - t(j,m,b,a) V(i,k,m,c)
+      ...
+    }
+  }
+}
+\end{verbatim} \\
+\hline
+\caption{(T) Algorithm}
+\label{(t)}
+\end{listing}
+
+\subsection{The overall picture.}
+The algorithm is implemented entirely in C++, as a part of stand-alone
+library which includes previous ERI, Fock, and MP2 methods
+\cite{asadchev2010uncontracted,asadchev}.
+The library requires only minimal input from the host program and can
+be connected to a variety of packages.
+
+The storage is implemented using Global Arrays (GA) \cite{ga} for
+distributed memory and HDF5 \cite{hdf5} for file storage.  GAMESS's
+own distributed memory interface (DDI) \cite{ddi} currently has no
+support for arrays of more than 2 dimensions.  But with a small
+addition, the DDI calls can be translated directly into GA
+equivalents, so that the GAMESS can run via GA without modifications
+while at the same time providing 3-d and 4-d array functionality via
+direct calls to GA.
+
+ The arrays are first allocated in faster GA memory until the limit is reached,
+and then on the filesystem.  The arrays responsible for the most I/O
+need to be allocated first to ensure they reside in distributed
+memory.  The implementation is a separate library, linked to
+
+Put together, the algorithm looks like this:
+\begin{itemize}
+\item{The CCSD arrays are allocated, with $t$ and $v_{ij}^{ab}$ first
+  to ensure they are in the fast storage.  Overall, $t$,
+  $v_{ij}^{ab}$, $v_{ij}^{ka}$, $v_{ia}^{jb}$, $v_{ij}^{kl}$, $Dt$,
+  storage is needed.}
+\item{The allocated arrays are evaluated using the regular 4-index
+    transformation.}
+\item{The initial $T2$ amplitudes are taken to be the MP2 amplitudes,
+ $v_{ij}^{ab}/D_{ij}^{ab}$ and the $T1$ amplitudes are set to zero.}
+\item{The intermediate $U$ storage is allocated.}
+\item{The CCSD  equations are repeated until an acceptable threshold
+    is reached, either the energy difference or the amplitude
+    difference.}
+\item{The CCSD step is optionally accelerated using DIIS
+    \cite{scuseria1986accelerating}.}
+\item{Once converged, all but the first three arrays are freed and
+    $v_{ia}^{bc}$ array is allocated and and evaluated.}
+\item{The non-iterative (T) method runs.}
+\end{itemize}
+
+\section{Performance}
+
+To assess performance and applicability of the algorithm, the three
+case scenarios are presented: single node performance,  departmental cluster
+performance, and high-end cluster performance.  The inputs are
+selected to reflect a range of basis functions and occupied orbitals.
+
+The departamental cluster, Exalted, is composed of nodes connected by
+InfiniBand Ethernet.  Each node has one Intel X5550 2.66GHz
+6-core processor, 24GB of RAM, two local disk drives, and an NVIDIA
+Fermi C2050 GPU card.
+
+First, the capability of the algorithm to run on a single node and to
+use filesystem in case not enough memory is available to store all
+data.  The results four different inputs are in table \ref{node}.  As
+can be seen, even on a single node fairly large jobs can still run in
+a reasonable timeframe.  Despite falling back to disk in all the
+cases, across the board the I/O time as a fraction of total time is
+very small, below 5\%.
+
+\begin{table}
+  \label{node}
+  \caption{Single Node Performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c | c | c |}
+      \hline
+      Input                & \#AO/Occ & CCSD & (T) & (T) Mem/Disk &
+      (T) I/O \\ 
+      \hline
+      C4N3H5/aug-ccPVTZ    & 565/21  & 42m   & 8h  & 2.1/19.5 GB & 13m \\
+      C8H10N4O2/aug-ccPVDZ & 440/37  & 50m   & 17h & 5.5/17.0 GB & 13m \\
+      SiH4B2H6/aug-ccPVQZ  & 875/16  & 141m  & 18h & 3.4/53.4 GB & 49m \\
+      C8H10N4O2/ccPVTZ     & 640/37  & 180m  & 64h & 12.2/49.0 GB & 42m \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+The cluster performance is assessed on the basis of the time larger 
+jobs take to run,  Table \ref{cluster}, and the scalability of a
+medium-size job, Table \ref{scaling}.
+First, all of the inputs used for single node benchmarking can run in
+ under a day.  Secondly, a large CCSD Tamoxifen calculation, C26H29NO,
+ can run on this relatively small Exalted cluster, three hours per
+ iteration.
+
+As can be expected, the (T) algorithm scales well, Table
+\ref{scaling}, since it is very easy to parallelize to a large number
+of nodes. However, the scalability of the CCSD algorithm is not
+perfect.  This is especially noticable when running on a large Cray
+system,  Table \ref{cray}.  Nevertheless, the longer Tamoxfine calculation
+scales reasonably well to 1024 cores.
+
+ Each XE6 has to chips, 16 cores each.  The benchmarks in Table
+ \ref{cray} were obtained running 32 threads over the entire node
+ spawned from a single  MPI process.  the better option, especially in
+ the case of (T)  is to run one MPI process per {\it core} rather than
+ per {\it node}.  In the former case, the threads do not need to
+ communicate over the slower bridge connecting two chips, Table
+ \ref{cray2}.  Generally, there is a large penalty for sharing data
+ across the {\it chips}, which  must be avoided by having flexible
+ approach to launch jobs.
+
+\begin{table}
+  \label{cluster}
+  \caption {Cluster Performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c | c |}
+      \hline
+      Input                & \#AO/Occ & \# cores & CCSD & (T) \\ 
+      \hline
+      C4N3H5/aug-ccPVTZ    & 565/21  & 4         & 12   & 117 \\
+      SiH4B2H6/aug-ccPVQZ  & 875/16  & 8         & 20   & 133 \\
+      C8H10N4O2/ccPVTZ     & 640/37  & 8         & 26   & 482 \\
+      C26H29NO/aug-ccPVQZ  & 961/71  & 16        & 211  & N/A \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}
+  \label{scaling}
+  \caption{Cluster Scaling, C8H10N4O2/ccPVTZ}
+  \begin{center}
+    \begin{tabular}{| l | c | c |}
+      \hline
+      Cores/Nodes & CCSD & (T) \\ 
+      \hline
+      24/4  & 28 & 971 \\
+      48/8  & 15 & 482 \\
+      96/16 & 11 & 240 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{table}
+  \label{cray}
+  \caption {Cray XE6 Performance}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c |}
+      \hline
+      \# cores                     & 256 & 512 & 1024 \\ 
+      \hline
+      SiH4B2H6 (T)/aug-ccPVQZ   & 130 & 76  & 42   \\
+      C8H10N4O2 CCSD/ccPVTZ     & 15  & 9   & 6.5  \\
+      C26H29NO CCSD/aug-ccPVQZ  & 253 & 134 & 76   \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+\begin{table}
+  \label{cray}
+  \caption {Cray XE6 Intra-Node Configuration, SiH4B2H6 (T)/aug-ccPVQZ}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c | c |}
+      \hline
+      \# cores & 32x1 Threads/MPI & 16x2 Threads/MPI \\ 
+      \hline
+      256      & 130 & 83 \\
+      512      & 76 & 49  \\
+      1024     & 42 & 27  \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsection{GPU}
+As can be expected, the direct terms account for the most time in CCSD
+iterations.  The favorable fact about implementation is that most of
+that work is concentrated in continuous application of just one
+ {\it dgemm} operation.  Adding a graphical processor (GPU) {\it dgemm} to
+handle matrix multiplication, while keeping integral evaluation on the
+host, is fairly easy.  However, in multithreaded environment, several
+threads must be assigned to a GPU device to avoid work imbalance.
+
+Augmented with GPU BLAS, via CUBLAS \cite{nath2011accelerating}, the
+CCSD calculations get a noticeable speed up, Table \ref{gpu}, if the
+direct term dominates the entire iteration (this is the case if number
+of occupied orbitals is very small relative to basis set).  If the
+number of occupied orbitals is a relatively high, the direct term
+accounts for a smaller fraction of the total iteration time, and
+consequently GPU benefit is less noticeable overall.
+
+\begin{table}
+  \label{gpu}
+  \caption {Gpu CCSD performance, all times are in minutes per iteration}
+  \begin{center}
+    \begin{tabular}{| l | c | c | c|}
+      \hline
+      Input      & C8H10N4O2/ccPVTZ & SiH4B2H6/aug-ccPVQZ & C4N3H5/aug-ccPVTZ \\
+      \hline
+      Direct     & 124  & 131 & 36 \\
+      Direct+GPU & 53   & 65  & 26 \\
+      CCSD       & 163  & 142 & 42 \\
+      CCSD+GPU   & 115  & 75  & 33 \\
+      Speed-up   & 1.4x & 1.9X & 1.3X \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\section{Conclusions}
+The algorithm  presented in this paper is able to handle fairly large
+jobs on a single node, a small cluster, and high-end Cray  system.
+The algorithm has reduced memory footprint and is able to optionally
+use the filesystem if the data exceeds distributed memory storage.
+The algorithm can also optionally use GPUs to speed up certain CCSD
+computations.  When running on the multi-core node with multiple
+processor packages (chips), algorithm benefits from limiting thread
+communication to within a chip.
+
+The algorithm is implemented entirely in C++, as a part of stand-alone
+library which includes previous ERI, Fock, and MP2 methods.
+\cite{asadchev}.  
+
+\bibliographystyle{unsrt}% (uses file ``plain.bst'')
+\bibliography{references}
+\input{document.bbl}
+
+\end{document}
+
+
+
+% LocalWords:  

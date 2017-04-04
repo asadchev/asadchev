@@ -1,0 +1,293 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede
+END
+ede-linux.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-linux.el
+END
+ede-source.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-source.el
+END
+ede-files.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-files.el
+END
+ede-proj-info.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-info.el
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/README
+END
+autoconf-compat.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/autoconf-compat.el
+END
+ede-pconf.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-pconf.el
+END
+ede-proj-aux.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-aux.el
+END
+ede-compilers.texi
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-compilers.texi
+END
+autoconf-edit.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/autoconf-edit.el
+END
+ede-proj-skel.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-skel.el
+END
+ede-proj-comp.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-comp.el
+END
+project-am.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/project-am.el
+END
+ede-locate.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-locate.el
+END
+ede-custom.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-custom.el
+END
+ede-base.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-base.el
+END
+ede-proj-scheme.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-scheme.el
+END
+ede-make.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-make.el
+END
+ede-proj-prog.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-prog.el
+END
+ede-loaddefs.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-loaddefs.el
+END
+ede-targets.texi
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-targets.texi
+END
+ede-system.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-system.el
+END
+ede-speedbar.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-speedbar.el
+END
+ede-dired.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-dired.el
+END
+ede-pmake.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-pmake.el
+END
+ede-projects.texi
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-projects.texi
+END
+ede.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede.el
+END
+ede-proj-misc.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-misc.el
+END
+ede-cpp-root.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-cpp-root.el
+END
+ede-sourcecode.texi
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-sourcecode.texi
+END
+makefile-edit.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/makefile-edit.el
+END
+ede-shell.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-shell.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/Project.ede
+END
+ede-auto.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-auto.el
+END
+ede-proj.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj.el
+END
+ede.texi
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede.texi
+END
+ede-util.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-util.el
+END
+ede-proj-shared.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-shared.el
+END
+ede-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-load.el
+END
+ede-proj-obj.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-obj.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/Makefile
+END
+ede-srecode.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-srecode.el
+END
+ede-proj-elisp.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-elisp.el
+END
+ede-emacs.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-emacs.el
+END
+ede-proj-archive.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-proj-archive.el
+END
+ede-simple.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede-simple.el
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ChangeLog
+END
+ede.info
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/ede/ede.info
+END

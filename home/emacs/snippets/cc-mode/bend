@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+#name begin/end
+# key: bend
+# --
+${1:v}.begin(), $1.end()

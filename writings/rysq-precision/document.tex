@@ -1,0 +1,231 @@
+\documentclass[12pt]{article}
+%% \usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Mixed-precision Rys quadrature}
+\date{}
+
+\begin{document}
+\maketitle 
+
+\section{Introduction}
+
+Traditionally, integral computations are performed using 64-bit floating point precision to achieve necessary accuracy.
+Some limited calculations in higher precision may also be done, but those are typically limited to small parts, usually to evaluate
+a particular function, such as an error function or Rys quadrature roots. 
+Previously, some work has been done on implementing integrals using  higher precision entirely \cite{mike}, but due to the high-cost of using
+higher precision, typically implemented in software, such implementations are not commonly used.
+
+Recently, due to the growing popularity of architectures such as GPU and CELL, there has been significant interest in performing calculations using 32-bit precision
+\cite{ufimtsev2008quantum,yasuda2008two}.
+On regular CPUs, such as Intel, 32-bit operations are, in principle, faster by a factor of two, due to memory bandwidth and higher SIMD count.
+However, on recent GPU and CELL processors,  64-bit precision performance is either unavailable or significantly inferior to 32-bit precision.
+Some work has been done on implementing integral calculations in 32-bit precision entirely, but the inherent error rate of these calculations is generally high,
+though some schemes to enhance 32-bit precision had been reported \cite{yasuda2008two}.
+
+
+\section{Source of numerical error}
+Due to the  limited number of bits available to represent number on a digital computer, a real number stored as a floating-point representation is generally an approximation
+to its true value, $F = R + \epsilon $.  The epsilon is usually taken to mean floating-point accuracy, with 32-bit number being accurate to 7 decimal places,
+and 64-bit number accurate to 14 decimal places.
+Using this formula, simple analysis of numerical error can be derived.  For example, numerical error term due to squaring a number is
+$F^2 = (R + \epsilon)^2 \to 2F\epsilon + \epsilon^2$.
+
+However, addition and subtraction require special consideration, since these operations may result in a catastrophic cancellation of significant digits.
+If two numbers have close magnitudes but different signs, their addition will eliminate most of the leading significant digits, resulting in significant loss of precision.
+The same is true, to lesser extent, when adding two numbers with significantly different magnitudes, with significant digits of smaller number been eliminated when added
+to larger number.  To combat this sort of error, numbers may be added in order of increasing magnitude.
+
+The numerical error tends to propagate across computations, this is especially noticeable in recursive calculations, where the error of the previous result
+ affects the results of the next one.  The numerical error propagation is also visible in long summations, however short summations have generally little
+numerical error due to propagation.
+
+ For these reasons, common mathematical operations such as matrix multiplication  and diagonalization, as well as various recursive formulas, generally require
+to be done in 64-bit precision.  However, certain classes of problems, especially those involving short summations of like-signed numbers
+arranged in increasing order, may be amenable to 32-bit precision.
+
+
+\section{Rys quadrature}
+Rys quadrature \cite{rys_computation_1983} is one of the oldest integral scheme, applicable to an arbitrary shell quartet.
+Several variations of the original Rys quadrature have been proposed over the years.
+In the Rys quadrature, six-dimensional electron integral is  computed as Gauss quadrature over  Rys roots, $I = \sum_N I_x I_y I_z $,
+where number of roots $N$ is related to total quartet angular momentum by $N = L/2 + 1 $,
+and factors $I_q$ are two-dimensional integrals in each Cartesian dimension.
+
+The roots of the Rys quadrature are found using  polynomial approximation over finite regions or general Stieltjes routine \cite{sagar1992calculation}, \cite{davidson_basis_1986, plato_concise_2003, press_numerical_2002, gmplib}.
+Either approach requires 64-bit or higher precision since it involves long polynomial summation in former and matrix  diagonalization in later.
+In terms of computational cost, roots accounts for a small fraction of total computer time, except where number of roots is small, 1 or 2.
+
+The two-dimensional integrals are found using two step recursive process.
+The first step, reported as recurrence relationships in the original work,  recursively generates 2D integral, $(A+B, 0| C+D, 0)$, where $A, B, C, D$ are angular momentums
+ of each shell, which is an intermediate 
+with angular momentum of bra shifted to a single center and the angular momentum of ket likewise.  
+In terms of computations, recurrence relationships scale as $(A+B)(C+D)$ per root, which is also the number of recursive operations to generate highest element. 
+
+The second step, called transfer relationships, recursively generate full 2D integrals from recurrence relationships by first shifting angular momentum of bra from first to second center
+and then repeating the same for the ket side.  The number of operations,
+ and the number of recursive operations, is on the order of $A*B*C*D$.  
+
+The last step of the quadrature involves assembling 2D integrals into a final
+six-dimensional integral.
+ The total number of operations to assemble an entire quartet block integral
+is $N \times T(A) T(B) T(C) T(D)$, where $T $ is a triangular number
+ $T(A) = (A+1)(A+2)/2$.
+However, to compute a single integral, only a short summation over roots is required. 
+An interesting property of the summation is that all elements are guaranteed to have the same sign, since roots are positive, eliminating precision loss due to subtraction. 
+
+The two recursive steps are rather unstable numerically due to the recursive nature and the mixing of signs and magnitudes.  However, relative amount of computations performed
+by them is significantly smaller than the last step of assembling 2D integrals into final integrals.  Due to this nature, Rys quadrature is numerically stable overall
+even for high angular momentum integrals.  The same is not true, however, 
+for other schemes \cite{lindh1991reduced} which assemble final integrals via recursive methods,
+including recursive Rys quadrature variations.
+However, even the Rys quadrature may suffer numerically if recursion depth due to high angular momentum becomes too great. 
+
+
+\section{Mixed precision implementation}
+For the reasons stated above, it may be favorable from the perspective of accuracy or computing time to perform the four steps of the quadrature using different precisions. 
+For example, if error accumulation in recursive steps is too great for 32 bit floating point numbers, but 32-bit performance is greater overall on a given architecture, it may be
+worth-while to perform the first three steps in 64-bit precision, but assemble the final integral using 32-bit precision, therefore performing the majority of computations using faster,
+less accurate data types. 
+
+On the other hand, if numerical accuracy is important enough to require floating point representation higher than 64 bits, it may be necessary to compute the first three steps using higher precision to mitigate numerical errors and assemble the final integral using 64-bit precision.
+
+The Rys quadrature was implemented in C++ with floating point data types parameterized via templates to allow for easy multi-precision code generation from the same base code. 
+Parameters also included various padding techniques to ensure 16 byte memory alignment for arbitrary floating point types and efficient vector code generation. 
+Conversion between different data types is done upon storing values into memory between the four steps, so that computations per given step are performed using identical data types. 
+
+
+\section{Results}
+The calculations were performed on an  Intel Core2 64-bit processor,
+C++ code was compiled using G++ 4.3 compiler. 
+Intel architecture lacks the hardware support for 128-bit floating point numbers,  but it does have 80-bit type.
+The 3 types tested are float, double, and long double corresponding to  32-bit, 64-bit, 80-bit precision. 
+Typically, higher precision types are implemented using software, for example GNU multi-precision library.  The overhead of software implementation is, of course, higher.  
+
+Integral quartets with fewer than 160  elements, for example full P quartet,
+but not SP quartet, were done using full 64-bit precision. The efficacy of using mixed precision for smaller integrals is unlikely, since 
+recursion depth is too small to warrant higher precision and number operations in the final assembly is comparable to roots and recursive computations.  The roots were found
+using Stieltjes routine.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.50\textwidth]{figure-1.pdf}
+  \end{center}
+  \caption{Carbomethoxy hexamethyldisilylamino sulfide}
+\label{figure:1}
+\end{figure}
+
+The numerical results of HF computations on sample molecule,
+Carbomethoxy hexamethyldisilylamino sulfide, Figure \ref{figure:1},
+ are presented in the table below. 
+The test was chosen as to include variety of basis function exponents and coefficients, including elements in  rows 1 through 3.
+The two basis sets, 6-31(d,p), 264 basis functions, and 6-311(2df,2p), 703 basis functions, were chosen to highlight differences between compact basis and highly diffuse basis with f functions.
+
+\begin {table}
+\label{table-1}
+\caption {Carbomethoxy hexamethyldisilylamino sulfide precision results,
+  R/Q signify precision of first three and last steps}
+\begin{center}
+  \begin{tabular}{| l | c | c |}
+    \hline
+    precision & $E_h$ 6-31(dp) & $E_h$ RHF/6-311(2df,2p) \\ \hline
+    32/32 & -1494.7861300709 & -1495.0326983644 \\ \hline
+    64/32 & -1494.7861305216 & -1495.0326999330 \\ \hline
+    64/64 & -1494.7861305292 & -1495.0326998803 \\ \hline
+    80/64 & -1494.7861305292 & -1495.0326998969 \\ \hline
+    80/80 & -1494.7861305292 & -1495.0326998964 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \end{table}
+
+As can be seen from data for compact basis, full 32-bit computations disagree with full 64-bit computation in six decimal places, whereas mixed 64/32-bit implementations
+Is correct to 8 decimal places, an improvement of two orders of magnitude.
+ Mixed 64/80 precision and 64/64 precision agree in reported numbers, suggesting
+numerical errors are not significant for this basis when using 64-bit precision only.
+
+Larger basis with f functions show discrepancy in 8-9 decimal place between 64/80
+ and 64/64 precision, suggesting numerical error does tend to accumulate using 64-bit
+two-dimensional integral computations.
+For even larger basis, the error can be expected to be higher.
+The numerical error due to mixed 64/32 implementation is one order of magnitude worse than 64/64 precision, but two orders better than full 32-bit calculations,
+consistent with relative accuracy of smaller basis.
+
+The difference between full 80-bit and mixed 80/64 is negligible, even in large basis, suggesting that roots and recursive parts are primarily responsible
+for numerical error.  this means that higher accuracy can be achieved with relatively small penalty by utilizing higher precision in relatively small portion
+of computations time-wise.
+
+\begin{figure}
+  \begin{center}
+    \includegraphics[width=0.50\textwidth]{figure-2.pdf}
+  \end{center}
+  \caption{Benzoylmethylecgonine}
+\label{figure:2}
+\end{figure}
+
+\begin {table}
+\caption {Benzoylmethylecgonine precision results,
+  R/Q signify precision of first three and last steps}
+\label{table:2}
+\begin{center}
+  \begin{tabular}{| l | c |}
+    \hline
+    precision & $E_h$ RHF/6-311(2df,2p) \\ \hline
+    32/32 & -936.4156697684 \\ \hline
+    64/32 & -936.4156751881 \\ \hline
+    64/64 & -936.4156750279 \\ \hline
+    80/64 & -936.4156750323 \\ \hline
+    80/80 & -936.4156750333 \\
+    \hline
+  \end{tabular}
+\end{center}
+  \end{table}
+
+
+Results for the second sample molecule,
+benzoylmethylecgonine (cocaine) Figure \ref{figure:2},
+evaluated using 6-311(2df,2p) basis set (942 basis functions)
+follow the same trend, Table \ref{table:2}.  
+Even though benzoylmethylecgonine has no third row elements, low precision accuracy is worse, suggesting  that exponents and coefficients of third row elements alone do not contribute significantly to degradation of accuracy.  Most likely, increase in number of basis functions is the main factor.
+
+Finally, to highlight performance differences, times for the first iteration of
+RHF/6-311(2df,2p) of Carbomethoxy hexamethyldisilylamino sulfide are provided
+for each precision, Table \ref{table:3}.
+Although there is no performance gain using 32-bit over 64-bit precision, this is mainly attributable to implementation details, which focused on 
+64-bit precision vector code.  However, cost of increasing precision is rather small.
+
+\begin {table}
+\caption {Precision performance results,
+carbomethoxy hexamethyldisilylamino sulfide, RHF/6-311(2df,2p)}
+\label {table:3}
+\begin{center}
+  \begin{tabular}{ | c | c | }
+    \hline
+    precision & time (s)\\ \hline
+    32/32 & 852.0 \\ \hline
+    64/32 & 846.0 \\ \hline
+    64/64 & 830.8 \\ \hline
+    80/64 & 960.7 \\ \hline
+    80/80 & 1195.0 \\
+    \hline
+  \end{tabular}
+\end{center}
+\end{table}
+
+ 
+\section{Conclusions}
+Although the computational time-saving due to using 32-bit and 64-bit precision
+ is nil in the given implementation on Intel architecture,
+the accuracy of mixed 64/32-bit precision is clearly higher than that of 32-bit precision alone, in the order of two decimal places improvement.
+  However, on GPU and CELL architectures, if properly implemented, the potential for saving time 
+may be significant, since those architectures have much higher 32-bit peak performance.
+
+On the other hand, the penalty due to using 80-bit precision is rather small, suggesting that time loss for doing integrals in higher precision,
+ if necessary, may be small enough to be usable on a wide scale.
+
+\bibliographystyle{plain}% (uses file ``plain.bst'')
+\bibliography{references}
+  
+\end{document}
+
+

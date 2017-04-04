@@ -1,0 +1,9 @@
+#name : ublas
+#key: ublas
+# --
+ublas::${1:$$(yas/choose-value '(
+	 "vector<>"
+	 "matrix_range<>"
+	 "vector_range<>"
+	 "trans()"
+	 "range()"))}

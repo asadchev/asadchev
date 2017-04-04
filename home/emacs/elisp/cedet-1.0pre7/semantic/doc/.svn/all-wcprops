@@ -1,0 +1,161 @@
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc
+END
+semanticheader.texi
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semanticheader.texi
+END
+bovine.texi
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/bovine.texi
+END
+grammar-fw.info
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/grammar-fw.info
+END
+semantic.info
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semantic.info
+END
+lang-support-guide.texi
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/lang-support-guide.texi
+END
+app-dev-guide.texi
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/app-dev-guide.texi
+END
+grammar-fw-ov.txt
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/grammar-fw-ov.txt
+END
+minor-modes.texi
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/minor-modes.texi
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/Project.ede
+END
+wisent.info
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/wisent.info
+END
+grammar-fw-ov.png
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/grammar-fw-ov.png
+END
+tags.texi
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/tags.texi
+END
+internals.texi
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/internals.texi
+END
+grammar-fw.texi
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/grammar-fw.texi
+END
+semantic-user.info
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semantic-user.info
+END
+installation.texi
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/installation.texi
+END
+semantic-appdev.info
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semantic-appdev.info
+END
+semantic-langdev.info
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semantic-langdev.info
+END
+semantic.texi
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/semantic.texi
+END
+glossary.texi
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/glossary.texi
+END
+bovine.info
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/bovine.info
+END
+fdl.texi
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/fdl.texi
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/Makefile
+END
+overview.texi
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/overview.texi
+END
+wisent.texi
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/wisent.texi
+END
+user-guide.texi
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/doc/user-guide.texi
+END

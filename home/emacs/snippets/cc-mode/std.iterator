@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: std (<iterator>)
+# key: std
+# --
+std::${1:$$(yas/choose-value '(
+	 "iterator_traits"
+	 "distance"
+	 "advance"))}

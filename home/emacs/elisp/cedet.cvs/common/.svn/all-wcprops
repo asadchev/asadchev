@@ -1,0 +1,149 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/Project.ede
+END
+cedet-compat.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-compat.el
+END
+fame.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/fame.el
+END
+cedet-utests.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-utests.el
+END
+inversion.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/inversion.el
+END
+mode-local.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/mode-local.el
+END
+pprint.el
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/pprint.el
+END
+cedet-graphviz.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-graphviz.el
+END
+cedet-edebug.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-edebug.el
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/.cvsignore
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/Makefile
+END
+working.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/working.el
+END
+ezimage.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/ezimage.el
+END
+cedet-global.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-global.el
+END
+cedet.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet.el
+END
+cedet-files.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-files.el
+END
+cedet-autogen.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-autogen.el
+END
+pulse.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/pulse.el
+END
+data-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/data-debug.el
+END
+cedet.texi
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet.texi
+END
+cedet-cscope.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-cscope.el
+END
+cedet-idutils.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-idutils.el
+END
+cedet-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-load.el
+END
+cedet-m3.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/common/cedet-m3.el
+END

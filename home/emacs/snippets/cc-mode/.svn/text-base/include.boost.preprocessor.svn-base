@@ -1,0 +1,18 @@
+# -*- mode: snippet -*-
+# name: <boost/preprocessor/
+# key: <boost/preprocessor/
+# group: flexSURVEY
+# contributor: Sven Hartenstein <sven@flexsurvey.d>
+# --
+<boost/preprocessor/${1:$$(yas/choose-value '(
+	 ""
+	 "seq/"
+	 "seq/enum.hpp"
+	 "seq/transform.hpp"
+	 "seq/for_each.hpp"
+	 "seq/first_n.hpp"
+	 "repetition/enum_params.hpp"
+	 "repetition/enum_binary_params.hpp"
+	 "arithmetic/"
+	 "arithmetic/inc.hpp"
+	 "tuple/elem.hpp"))}

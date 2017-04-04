@@ -1,0 +1,186 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+\usetheme{Warsaw}
+\title[Many Body Algorithms]{Many Body Algorithms}
+\author{ Andrey Asadchev}
+\institute{Iowa State University}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \begin{itemize}
+  \item Last Presentation
+  \item Coupled Cluster
+  \item Programming
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Last Presentation}
+  \begin{itemize}
+  \item Many Body methods are memory and CPU hogs
+  \item It is possible to implement algorithms to use $O(N^3)$
+    without sacrificing efficiency.
+  \item Faster runtime can be achieved using accelerators/clusters.
+  \item Large arrays can be stored in distributed memory or disk.
+  \end{itemize}
+  Einstein notation is a compact way to manipulate tensors:\\
+  inner product: $a = x^i y_i$ \\
+  outer product: $t^i_j = x^i y_j$ \\
+  matrix product: $t^i_j = a^i_k b^k_j$ \\
+  transpose: $t^i_j = a^j_i$ \\
+  integral transformation: $v^{ij}_{kl} = C^i_p C^j_r C^q_k C^s_l G^{pr}_{qs}$ \\
+\end{frame}
+
+
+\begin{frame}{Integrals and Amplitudes}
+  Let $i,j,k,l,...$ refer to O indices\\
+  Let $a,b,c,d,...$ refer to V indices\\
+  Let $ p,q,r,s,...$ be atomic indices A
+  $V >> 0$
+  \begin{itemize}
+  \item $V^{ij}_{ab} = V^{ji}_{ba}$
+  \item $V^{ia}_{jb} = V^{ja}_{ib} = V^{ib}_{ja}$
+  \item $t^{ij}_{ab} = t^{ji}_{ba}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{VVVV term}
+  VVVV term is too large to store, evaluated on the fly. \\
+  Many ways to do so, but one is more interesting:\\
+
+  $V^{ab}_{cd} t^{cd}_{ij} = $ 
+  $(V^{ab}_{qs} C^q_c C^s_d) t^{cd}_{ij} = $
+  $V^{ab}_{qs} (C^q_c C^s_d t^{cd}_{ij}) = $ \\
+  $V^{ab}_{qs} t^{qs}_{ij} = $ 
+  $(C^p_a C^r_b) V^{pr}_{qs} t^{qs}_{ij} =$  \\
+  $(C^p_a C^r_b) U^{pr}_{ij}$ \\
+
+  Why?
+
+  \begin{itemize}
+  \item $U^{pr}_{ij}$ symmetry: \\
+    $U^{pr}_{ij} == U^{rp}_{ji}$ for any quartets $p,r$.
+    2x fewer computations.
+  \item Other VT terms:\\
+     Most of work is in first two transformations.
+    Third and fourth transformations are cheap.  Since last indices are in
+    AO basis, any $VT2_{ij}$ can be formed for free.
+  \item Small memory footprint
+  \end{itemize}
+
+\end{frame}
+
+
+\begin{frame}{$U^{pr}_{ij}$}
+\begin{itemize}
+  \item To transform in MO index, entire  AO index is needed
+  \item To transform in AO basis, only corresponding AO index is
+    needed
+\item Therefore, working storage can be as small as the
+  shell quartet, converted as deemed necessary to $U^{pr}_{ij}$ $pr$ segment
+\item Small $U^{pr}_{ij}$ $pr$ segment allows to increase $pr$ tile,
+   which has a direct effect on how many times $t^{qs}_{ij}$ must be loaded
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Direct CC}
+
+\begin{lstlisting}[caption=Direct CC, numbers=left]
+for QS in (S, Q <= S) {
+  for R in Basis {
+    for (Q,S) in QS {
+      for P in Basis {
+        V(p,q,s,r) = eri(P,Q,R,S)
+        for r in R {
+          load t(O,O,P,r)
+          U(i,j,qs) += t(i,j,p)*V(p,qs,r) 
+        }
+      }
+    }
+  }
+}
+store U(i,j,qs)
+store U(j,i,sq)
+\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}{Other Diagrams}
+  At this point, OVVV array can be nearly dropped.
+  Two more diagrams are needed:
+  \begin{itemize}
+    \item $V^{ij}_{qs} t^{q}_a t^{s}_b$ - no problem
+  \item $V^{ie}_{qs} t_{e}^j$ - no problem
+  \item $V^{ie}_{sq} t_{e}^j$ - Houston ... \\
+    we have exchange integral.  The simplest solution and the best is
+    to reevaluate integrals
+  \item VT1 terms are tricky - to still use symmetry, need to compute
+    $U(i,j,qs) += C(i,p)*t(j,r)*V(p,q,s,r)$ and $U(j,i,qs) += t(i,p)*C(j,r)*V(p,q,s,r)$
+  \end{itemize}
+Now CC can be implemented much simpler with the cost of secondary
+storage $O(N^2O^2)$ and per process memory $O(NO^2)$\\
+MP2 gradient expressions have similar OVVV terms
+\end{frame}
+
+\begin{frame}{Array implementation}
+  \begin{itemize}
+  \item Interface that provides put/get operation
+  \item Interfaces can be implemented for various storage backends:
+    disk, distributed memory
+  \item Disk-based storage is the fallback if not enough distributed
+    memory is available
+  \item Implementations can be switched at the runtime
+  \item Provides transparent disk/memory algorithms
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{CUDA implementation}
+  \begin{itemize}
+  \item In CPU version, matrix transformations accounts for 60 percent
+    of runtime, integrals take up around 15 percent
+  \item CUBLAS added, CUBLAS is driven in streams, meaning the GPU does work
+    without CPU involved
+  \item Now integrals take more time than they should?
+    E.g. instead of 17 minutes, 45 minutes ...\\
+     But only if running with other threads. Bus contention?
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Performance}
+  C12H10 cc-PVTz:  \\
+  TOTAL NUMBER OF MOS          =   494\\
+  NUMBER OF OCCUPIED MOS       =    41\\
+  NUMBER OF FROZEN CORE MOS    =    12\\
+  NUMBER OF FROZEN VIRTUAL MOS =     0\\
+  CC/DDI: needs *two* 24GB nodes to run:  70 mins per it, 12 cores
+  \begin{itemize}
+  \item secondary storage: 16GB, *one* node
+  \item 1 cores:  who knows ...
+  \item 2 cores+GPU: 120 mins
+  \item 6 cores: 80 mins
+  \item 6 cores+GPU: 60 mins, should be around 25 mins,  integrals
+    suddenly take more time
+  \item Parallel version as soon as I figure out ARMCI:  ARMCI\_MAX\_THREADS
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Programming}
+  Some programming samples?
+\end{frame}
+
+ 
+\begin{frame}{Aknowledgements}
+  \begin{itemize}
+  \item Dr. M.S.Gordon
+  \item Dr. R.Olson 
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

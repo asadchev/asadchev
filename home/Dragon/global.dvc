@@ -1,0 +1,474 @@
+MENU "global.dvc" {
+STATE "" {
+
+LIST "alnum" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "digit" {
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "1-50" {
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "10"
+    "11"
+    "12"
+    "13"
+    "14"
+    "15"
+    "16"
+    "17"
+    "18"
+    "19"
+    "20"
+    "21"
+    "22"
+    "23"
+    "24"
+    "25"
+    "26"
+    "27"
+    "28"
+    "29"
+    "30"
+    "31"
+    "32"
+    "33"
+    "34"
+    "35"
+    "36"
+    "37"
+    "38"
+    "39"
+    "40"
+    "41"
+    "42"
+    "43"
+    "44"
+    "45"
+    "46"
+    "47"
+    "48"
+    "49"
+    "50"
+}
+
+LIST "character" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+    "/"
+}
+
+COMMAND "open words" {
+    SCRIPT {
+        HeardWord "open", "vocabulary", "editor"
+    }
+}
+
+
+COMMAND "firefox" {
+    SCRIPT {
+        HeardWord "switch", "to", "Firefox"
+    }
+}
+
+
+COMMAND "open commands" {
+    SCRIPT {
+        HeardWord "open", "command", "browser"
+    }
+}
+
+
+LIST "special-symbol" {
+    "backslash"
+    "underscore"
+    "caret"
+    "pound"
+    "percent"
+    "dollar"
+    "ampersand"
+    "star"
+    "hyphen"
+    "comma"
+    "slash"
+    "point"
+    "tilde"
+}
+
+COMMAND "<special-symbol>" {
+    SCRIPT {
+        cmd = _arg1
+        if cmd = "backslash" then cmd = "\"
+        if cmd = "underscore" then cmd = "_"
+        if cmd = "caret" then cmd = "^"
+        if cmd = "pound" then cmd = "#"
+        if cmd = "percent" then cmd = "%"
+        if cmd = "dollar" then cmd = "$"
+        if cmd = "ampersand" then cmd = "&"
+        if cmd = "star" then cmd = "*"
+        if cmd = "hyphen" then cmd = "-"
+        if cmd = "comma" then cmd = ","
+        if cmd = "slash" then cmd = "/"
+        if cmd = "point" then cmd = "."
+        if cmd = "tilde" then cmd = "~"
+        SendKeys cmd
+    }
+}
+
+
+COMMAND "<special-symbol> <alnum>" {
+    SCRIPT {
+        cmd = _arg1
+        if cmd = "backslash" then cmd = "\"
+        if cmd = "underscore" then cmd = "_"
+        if cmd = "caret" then cmd = "^"
+        if cmd = "pound" then cmd = "#"
+        if cmd = "percent" then cmd = "%"
+        if cmd = "dollar" then cmd = "$"
+        if cmd = "ampersand" then cmd = "&"
+        if cmd = "star" then cmd = "*"
+        if cmd = "hyphen" then cmd = "-"
+        if cmd = "comma" then cmd = ","
+        if cmd = "slash" then cmd = "/"
+        if cmd = "point" then cmd = "."
+        if cmd = "tilde" then cmd = "~"
+        SendKeys cmd + _arg2
+    }
+}
+
+
+COMMAND "<alnum> <special-symbol>" {
+    SCRIPT {
+        cmd = _arg2
+        if cmd = "backslash" then cmd = "\"
+        if cmd = "underscore" then cmd = "_"
+        if cmd = "caret" then cmd = "^"
+        if cmd = "pound" then cmd = "#"
+        if cmd = "percent" then cmd = "%"
+        if cmd = "dollar" then cmd = "$"
+        if cmd = "ampersand" then cmd = "&"
+        if cmd = "star" then cmd = "*"
+        if cmd = "hyphen" then cmd = "-"
+        if cmd = "comma" then cmd = ","
+        if cmd = "slash" then cmd = "/"
+        if cmd = "point" then cmd = "."
+        if cmd = "tilde" then cmd = "~"
+        SendKeys _arg1 + cmd
+    }
+}
+
+
+COMMAND "<special-symbol> <special-symbol>" {
+    SCRIPT {
+        s1 = _arg1
+        s2 = _arg2
+        if s1 = "backslash" then s1 = "\"
+        if s1 = "underscore" then s1 = "_"
+        if s1 = "caret" then s1 = "^"
+        if s1 = "pound" then s1 = "#"
+        if s1 = "percent" then s1 = "%"
+        if s1 = "dollar" then s1 = "$"
+        if s1 = "ampersand" then s1 = "&"
+        if s1 = "star" then s1 = "*"
+        if s1 = "hyphen" then s1 = "-"
+        if s1 = "comma" then s1 = ","
+        if s1 = "slash" then s1 = "/"
+        if s1 = "point" then s1 = "."
+        if s1 = "tilde" then s1 = "~"
+        if s2 = "backslash" then s2 = "\"
+        if s2 = "underscore" then s2 = "_"
+        if s2 = "caret" then s2 = "^"
+        if s2 = "pound" then s2 = "#"
+        if s2 = "percent" then s2 = "%"
+        if s2 = "dollar" then s2 = "$"
+        if s2 = "ampersand" then s2 = "&"
+        if s2 = "star" then s2 = "*"
+        if s2 = "hyphen" then s2 = "-"
+        if s2 = "comma" then s2 = ","
+        if s2 = "slash" then s2 = "/"
+        if s2 = "point" then s2 = "."
+        if s2 = "tilde" then s2 = "~"
+        SendKeys s1 + s2
+    }
+}
+
+
+COMMAND "brakets <alnum>" {
+    SCRIPT {
+        SendKeys "[" + _arg1 + "]"
+    }
+}
+
+
+COMMAND "braces <alnum>" {
+    SCRIPT {
+        SendKeys "{{" + _arg1 + "}}"
+    }
+}
+
+
+COMMAND "parens <alnum>" {
+    SCRIPT {
+        SendKeys "(" + _arg1 + ")"
+    }
+}
+
+
+COMMAND "quotes <alnum>" {
+    SCRIPT {
+        SendKeys "'" + _arg1 + "'"
+    }
+}
+
+
+LIST "number" {
+    "number"
+    "num"
+    "choose"
+}
+
+COMMAND "<number> <digit>" {
+    SCRIPT {
+        SendKeys _arg2
+    }
+}
+
+
+COMMAND "<number> <digit> <digit>" {
+    SCRIPT {
+        SendKeys _arg2 + _arg3
+    }
+}
+
+
+COMMAND "<number> <digit> <digit> <digit>" {
+    SCRIPT {
+        SendKeys _arg2 + _arg3 + _arg4
+    }
+}
+
+
+COMMAND "<alnum> <alnum>" {
+    SCRIPT {
+        SendKeys _arg1 + _arg2
+    }
+}
+
+
+COMMAND "<alnum> <alnum> <alnum>" {
+    SCRIPT {
+        SendKeys _arg1 + _arg2 + _arg3
+    }
+}
+
+
+LIST "alt" {
+    "alt"
+    "meta"
+}
+
+COMMAND "<alt> tab" {
+    SCRIPT {
+        SendKeys "{Alt+Tab}"
+    }
+}
+
+
+COMMAND "<alt> <character>" {
+    SCRIPT {
+        SendKeys "{Alt+" + _arg2 + "}"
+    }
+}
+
+
+COMMAND "control <character>" {
+    SCRIPT {
+        SendKeys "{Ctrl+" + _arg1 + "}"
+        HeardWord "\No-Caps"
+    }
+}
+
+
+LIST "key" {
+    "up"
+    "left"
+    "backspace"
+    "enter"
+    "delete"
+    "right"
+    "escape"
+    "space"
+    "tab"
+    "down"
+}
+
+COMMAND "<key> <1-50>" {
+    SCRIPT {
+        I = 0
+        DO UNTIL I = _arg2
+        SendKeys "{" + _arg1 + "}"
+        I = I+1
+        LOOP
+    }
+}
+
+
+COMMAND "<1-50> <key>" {
+    SCRIPT {
+        I = 0
+        DO UNTIL I = _arg1
+        SendKeys "{" + _arg2 + "}"
+        I = I+1
+        LOOP
+    }
+}
+
+
+LIST "global-cmd" {
+    "tab"
+    "escape"
+    "backspace"
+    "comma space"
+    "enter"
+}
+
+COMMAND "<global-cmd>" {
+    SCRIPT {
+        cmd = _arg1
+        if cmd = "tab" then cmd = "{tab}"
+        if cmd = "escape" then cmd = "{escape}"
+        if cmd = "backspace" then cmd = "{backspace}"
+        if cmd = "comma space" then cmd = ", "
+        if cmd = "enter" then cmd = "{enter}"
+        SendKeys cmd
+    }
+}
+
+
+LIST "lowercase" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+}
+
+COMMAND "cap <lowercase>" {
+    SCRIPT {
+        SendKeys UCase$(_arg1)
+    }
+}
+
+
+}
+}
+

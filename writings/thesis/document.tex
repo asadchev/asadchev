@@ -1,0 +1,514 @@
+\documentclass[12pt]{book} \usepackage[margin=1in]{geometry}
+
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{setspace}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+
+%% \usepackage{amsmath}
+%% \usepackage{listings}
+
+%% \lstloadlanguages{C++} \lstset{ language=C++, breaklines=true,
+%%   keywordstyle=\color{blue}, commentstyle=\color{red} }
+
+
+
+
+\newenvironment{listing}%
+               {\begin{table}
+                   \begin{tabular}{ p{6in} }
+                     \hline}%
+               {\end{tabular}%
+               \end{table}}
+
+
+\begin{document}
+\doublespacing
+
+\title{Thesis: implementations of core computational chemistry
+algorithms} \author{Andrey Asadchev} \date{}
+
+\maketitle
+
+\tableofcontents
+
+
+\chapter{Introduction} The primary goal of computational chemistry is
+of course to predict chemical properties: energy, gradients, Hessians
+(vibrational frequencies), and other properties for a given chemical
+system.  For example, to find the excitation energy or rotation
+barriers one would perform a series of single point energy
+calculations.  To find local extrema on the potential energy
+surface a series of energy gradient calculations are needed, and so
+on.
+
+The computational science aspect of computational chemistry is often
+treated as a necessary evil.  Over the years, it so happened that most
+of the designers and authors of quantum chemistry algorithms and their
+implementations were chemists and physicists first, and computational
+scientists second.
+
+The foundations for the quantum chemistry were developed before the
+World War II. For example the Hartree-Fock \cite{hartree,fock} method
+was developed in the late 20's, and the foundation of perturbation
+theory \cite{moller1934note} dates back to the mid-30's.  However,
+practical application of the theoretical methods did not come until
+the emergence of sufficient computing resources to crunch the numbers.
+
+20th century scientific computing was dominated by Fortran, short for
+Formula Translator, one of the earliest programming languages, first
+developed in the 50's \cite {fortran}.  The computers and operating
+systems at the inception of Fortran were expensive proprietary
+products, batch machines running stacks of manually prepared inputs.
+Compared to today's powerful computers, computing in the 50's and the
+60's may as well have been done on clay tablets.
+
+In the 70's another language, C \cite{c}, and a new operating system,
+UNIX, came out of Bell Labs.  With the rise of UNIX, the C programming
+language gained strong footing among computer science and computer
+engineering practitioners.  In the same decade Cray produced its first
+groundbreaking supercomputer, Cray I, which gave researchers for the
+first ability to crack tough numerical problems, such as weather
+prediction, in a timely manner.  In the field of computational
+chemistry many of the core programs (some still in use today) were
+developed and incorporated into computational chemistry packages,
+notably HONDO \cite{hondo} and GAUSSIAN \cite{gaussian}.  A majority
+of this work was spearheaded by John Pople, who won the 1998 Nobel
+Prize for his contribution to the field.
+
+The 80's saw the growth of UNIX and standardization of system
+interfaces with POSIX and SystemV \cite{isaak1990standards}
+standards.  C++ \cite{c++}, a multi-paradigm language based on C, was
+being developed by Bjarne Stroustrup at Bell Labs.  To avoid
+limitations placed on software by patents and restrictive licensing,
+Richard Stallman began the GNU foundation, which sought to liberate
+software development.  The GNU Compilers Collection (GCC) and GNU
+public licenses are perhaps the most visible of the many contributions
+GNU made to computing and scientific fields.  The decade also
+witnessed the birth of massively parallel supercomputers, such as the
+Thinking Machines.  To take advantage of the emerging trends in
+scientific computing, a number of parallel computational chemistry
+algorithms were developed, including parallel Hartree-Fock
+\cite{dupuis1987parallel} and MP2 \cite{watts1988parallel}.  In the
+early 80's Purvis and Bartlett first implemented a coupled cluster
+singles and doubles algorithm \cite{purvis1982full}, or CCSD for
+short.  Subsequently, CCSD with perturbative triples correction method
+\cite{raghavachari1989fifth}, CCSD(T), was developed which today is
+the gold standard of computational chemistry.  In the same decade,
+GAMESS \cite{gamess} began to be developed, with HONDO as much of its
+initial codebase.
+
+In the 90's, the exotic supercomputers of the previous decades slowly
+disappeared, starved from generous military budgets of the Cold War
+which was now over \cite{nyt92,nyt94}.  The burgeoning personal computer market funneled
+billions of dollars into research and development of commodity Intel
+and AMD processors.  The fragmented UNIX market was slowly eroded by
+the ever maturing Microsoft Windows and a new operating system, Linux.
+Started as a hobby in the early 90's by Linus Torvalds, Linux,
+released under GNU Public License, quickly caught the interest of
+programmers worldwide and within a few years became one the major
+operating systems of the Internet age.  The C++ programming language
+became the preferred choice for writing complex applications, albeit
+not just yet in the scientific fields.  However, more and more
+scientific codes of the 90's were run and developed for clusters of
+commodity computers running Linux and connected by relatively
+inexpensive networks.  One of the more interesting developments in
+computational chemistry was NWChem \cite{nwchem}, a set of codes
+designed specifically with parallel distributed memory systems in
+mind.  NWChem was perhaps the last major computational chemistry
+package whose development started primarily in Fortran.
+
+The Internet bubble burst at the turn of the 21st century, spelling
+financial problems and consequent death to the many flagship companies
+of the last century, including SUN and SGI.  With the release of
+X86-64 extensions by AMD in 2003, commodity processors became a
+full-fledged 64-bit architecture, suitable for any computational
+challenge.  By the 2010's the processor market became dominated almost
+exclusively by multicore AMD and Intel chips, with IBM still retaining
+some presence in the high-end computing market with its Power
+processors.  The latest development in the commodity computing is the
+reemergence of accelerators, such as using graphics cards to solve
+general programs, so-called General Processing on GPU (GPGPU).  The
+leader in the field has been NVIDIA with its CUDA
+\cite{heinecke2012gpgpu} technology, but recently Intel joined the
+market with its Many Integrated Cores (MIC) technology
+\cite{heinecke2012gpgpu}. The efforts to unify development
+across regular microprocessors and various accelerators led to OpenCL
+\cite{heinecke2012gpgpu}, a set open standards for developing
+applications that run across heterogeneous platforms.
+
+The software development in scientific communities has steadily shifted
+towards C/C++.  While there is still a lot of legacy code written in
+Fortran (and hence continuing development), much of the new
+development happens in C++ and Python \cite{python}. Examples are
+Q-Chem \cite{qchem}, with most of its new development happening in
+C++, and Psi4 \cite{psi4}, almost entirely implemented in C++ with
+Python used as a scripting engine.  The C++ language and compilers
+continue to evolve and improve at a faster pace than Fortran, mostly due
+to influence of much larger commercial application development market.
+In terms of raw speed, the C++ programs are as fast as Fortran
+counterparts but C++ has the advantage of modern programming
+techniques and many libraries and frameworks, e.g. Boost \cite{boost}.
+
+So, what does the contemporary scientific computing platform look like
+now?  It is almost always a distributed memory cluster of very fast
+multicore computers, with between 2 and 64 GB of memory per
+node.  Some clusters might have GPU accelerators to augment the
+computational power. The number of cores in the cluster varies
+greatly, from just a few to tens of thousands.  The interconnect can
+be 1Gb Ethernet, an InfiniBand, of proprietary network, such as
+SeaStar on Cray supercomputers.  The file system can be a local disk or
+a parallel file system capable of storing terabytes of data.
+
+Ultimately, it is the hardware (or rather the hardware limitations)
+that dictates how the algorithm is to be designed.  Until we have
+infinite memory and bandwidth, the algorithms will always have to be
+designed with these limitations in mind.  Furthermore, the algorithms
+have to be designed so as to account for a great variety of
+system configurations.  Few general rules of thumb can be used as
+general guidelines for designing scalable and efficient algorithms:
+minimize communication, keep memory footprint low and introduce
+adjustable parameters for memory use, use external libraries, e.g.
+Linear Algebra Package \cite{lapack} (LAPACK), and make software easy
+to modify, extend, and even rewrite, perhaps by using certain
+programming language over another.  Furthermore, how will the
+scientific computing landscape look in the future?  Who knows!  But we
+better design the software so that changes dictated by the hardware
+can be accommodated efficiently.
+
+In the following chapters are attempts
+to develop a modern, but simple and flexible, C++ foundation for
+computational chemistry algorithms and several algorithm
+implementations built upon that foundation with the above rules of
+thumb in mind.
+
+But before one can get into the intertwined details of science,
+algorithms, and hardware some theoretical background is necessary to
+explain to the reader in broad detail the basis sets, two-electron
+integrals, and transformations which will form the bulk of the
+subsequent pages.
+
+\section{Hartree-Fock}
+At the center of computational chemistry is the evaluation of the
+time-independent Schrödinger equation eigenvalue problem,
+$$ H\Psi = E\Psi $$
+where $H$ is the Hamiltonian operator, $\Psi$ is the wavefunction
+containing all the relevant information about the chemical system, $E$
+is the energy of the system and eigenvalue of the Hamiltonian.  To be
+a proper wavefunction, $\Psi$ must be square integrable and
+normalized, $\braket{\Psi}{\Psi} = 1$, and antisymmetric to satisfy
+the Pauli exclusion requirement for fermions.  The expectation value
+$E$ then can be computed as:
+$$\bra{\Psi} H \ket{\Psi} = E$$
+
+In terms of individual contributions, the Schrodinger equation can be
+written in terms of the kinetic and potential energies of the electrons and nuclei:
+$$(T_{e} + T_{n} + V_{ee} + V_{en} + V_{nn})\Psi = E\Psi$$
+
+$T_{e}$ and $T_{n}$ are the kinetic energy terms for electrons
+and nuclei respectively
+$$T_{e} = -\sum_e^{N_e} \frac{\nabla^2_e}{2} $$
+$$T_{n} = -\sum_n^{N_n} \frac{\nabla^2_n}{2m_n} $$
+
+$\nabla^2$ is the Laplacian operator,
+$$\nabla^2 = \frac{\partial^2}{\partial x^2}  +
+\frac{\partial^2}{\partial y^2} +
+\frac{\partial^2}{\partial z^2}$$
+
+$V_{ee}$ is the electron-electron repulsion term,
+$$V_{ee} = \sum_{e < f}^{N_e} \frac{1}{r_{ef}}$$
+
+$V_{en}$ is the electron-nucleus attraction term,
+$$V_{ee} = -\sum_{e}^{N_e} \sum_n^{N_n} \frac{Z_n}{r_{en}}$$
+
+$V_{nn}$ is the nucleus-nucleus repulsion term,
+$$V_{nn} = \sum_{n < l}^{N_n} \frac{Z_n Z_l}{r_{nl}}$$
+
+
+
+The closed form analytic solution for the Schrodinger equation
+exists only for the simplest systems, such as those with one or two
+particles.  To evaluate a quantum system of interest, a number of
+approximations has to be made.  In the Born-Oppenheimer approximation
+\cite{born1927quantentheorie} the much slower nuclei are treated as
+stationary point charges and the Schrodinger equation then reduces to
+the electronic Schrodinger equation:
+$$H_e = T_e + V_{ee} + V_{en}$$
+$$ H_e\Psi = E_e\Psi$$
+
+The general problem of the type $\bra{\Psi} \frac{1}{r_{ij}} \ket{\Psi}$
+has no analytic solution and further approximations must be made.  The
+crudest solution is to assume that electrons do not interact with each
+other. This leads to the independent particle model in which,
+$$\Psi_{IPM} = \phi_1(\mathbf{r}_1)\phi_2(\mathbf{r}_2)...$$
+is separable with respect to each electron coordinate vector.
+
+The independent particle wavefunction does not satisfy the anti-
+symmetry requirement, but properties of the determinant do (since
+exchanging any two rows or columns changes the sign).
+Taking the determinant of $\Psi_{IPM}$ leads to Slater
+determinant $\Psi_{HF}$ which in turn leads to the Hartree-Fock method
+
+$ \Psi_{HF}(\mathbf{x}_1, \mathbf{x}_2, \ldots, \mathbf{x}_N) =
+\frac{1}{\sqrt{N!}} \left|
+\begin{matrix}
+    \psi_1(\mathbf{x}_1) & \psi_2(\mathbf{x}_1) & \cdots &
+    \psi_N(\mathbf{x}_1) \\
+    \psi_1(\mathbf{x}_2) & \psi_2(\mathbf{x}_2) & \cdots &
+    \psi_N(\mathbf{x}_2) \\
+    \vdots               & \vdots               &        & \vdots
+    \\
+    \psi_1(\mathbf{x}_N) & \psi_2(\mathbf{x}_N) & \cdots &
+    \psi_N(\mathbf{x}_N)
+\end{matrix} \right| $
+
+After performing a series of algebraic manipulations, the closed-shell
+Hartree-Fock energy can be written as
+
+$$E_{HF} =
+\bra{\Psi_{HF}} H_e \ket{\Psi_{HF}} =
+2 \sum_i h_{ii} + \sum_{ij} (2 J_{ij} - K_{ij})$$
+
+where $h_{ii}$ is the one-electron integral
+$$h_{ij} =
+( \psi_i | h_1 | \psi_j ) = \int { \psi_i
+( -\frac{\nabla^2}{2} - \sum_n^{N_n} \frac{Z_n}{r_{n}} )
+ \psi_j dr_1 } $$
+
+and $J$ and $K$ terms, called Coulomb and exchange, respectively, are
+two-electron integrals
+$$J = (ij|ij)$$
+$$K = (ij|ji)$$
+$$(ij|kl) = \int \int \psi_i(r_1) \psi_j(r_1
+) \frac{1}{r_{12}}
+\psi_k(r_2) \psi_l(r_2) dr_1 dr_2 $$
+ 
+
+From now on, the $HF$ label will be dropped and $\Psi$ will be
+understood to refer to $\Psi_{HF}$ and $H$ to refer $H_e$.
+
+
+The only constraint on the one particle orbitals is that they remain
+orthonormal,
+$$\braket{\psi_i} {\psi_j} = \delta_{ij}$$
+Therefore the orbitals can be manipulated to affect energy.
+According to the variational principle, the best orbitals are those that
+minimize the energy,
+$$\partial{E} = \frac{\partial \Psi}{\partial \psi} = 0$$
+The method of Lagrange multipliers solves minimization problem with
+constraints.  The resulting Lagrange equation
+$$ \partial [
+\bra{\Psi} H \ket{\Psi} -
+\sum_{i,j} ( \lambda_{ij} \braket{\psi_i}{\psi_j} - \delta_{ij} )
+] = 0$$
+can be reduced to
+$$F \psi_k = \lambda_{ij} \psi_k$$
+where $F$ is the Fock operator
+$$F = [h_1 + \sum_i (2 J_i - K_i)]$$
+Taking the Lagrangian multipliers to be of the form
+$$\lambda_{ij} = \delta_{ij} \epsilon_k$$
+the Hartree-Fock minization problem becomes an eigenvalue problem:
+$$F \psi_k = \epsilon_k \psi_k$$
+
+Optimizing general orbitals in the above problem is not generally
+feasible.  Instead Roothaan \cite{roothaan1951new} proposed to expand
+orbitals in terms of a known basis and restrict optimization to
+coefficients:
+$$\psi_i = \sum_b^{N} c_{ib} \chi_b$$
+
+The optimization of molecular orbitals $\psi_i$ in terms of a fixed
+basis leads to the Hartree-Fock-Roothaan equations
+$$FC = \epsilon SC$$
+where $C$ is the coefficient matrix and $S = (\chi_i|\chi_j)$ is the
+basis overlap matrix.  The above equation is almost a solvable
+eigenvalue equation, except for the $S$ term.  Although a general
+basis is not usually orthonormal, it can be orthonormalized in which
+case the overlap matrix becomes the identity matrix, $S = \delta_{ij}$
+and the Hartree-Fock-Roothaan equation takes the form of a regular
+eigenvalue problem
+$$FC = \epsilon C$$
+
+Now an expression for the Fock operator can be derived in terms of the
+coefficients and one- and two- electron integrals over basis functions
+$$F = (\chi_i|h_1|\chi_j) +
+      D [ (\chi_i \chi_j |h_2|\chi_k \chi_l) -
+          (\chi_j \chi_k |h_2|\chi_j \chi_l) ]$$
+where $D = 2 \sum_i c_{ib}*c_{ib}$ is known as density matrix.
+
+Since the orbital coefficients appear on both sides of the equation,
+the Hartree-Fock method needs to be repeated until the difference
+between the old and the new coefficients reaches a certain threshold.
+Because of that, the Hartree-Fock method is also called the self
+consistent field (SCF) method.
+
+The simple interpretation of the Hartree-Fock method is that an electron
+is moving in the mean field of the other electrons.  The interaction of
+individual electrons is not correlated, other than accounting for the
+Pauli exclusion principle.  Accounting for electronic interaction will
+be discussed below.
+
+\section {Basis Set}
+To understand the intricate details of the computational chemistry
+algorithms, especially when discussing two-electron integrals, a few
+words must be said about the basis set.
+
+Modern basis sets are based on the atomic orbitals, which are
+spatial orbitals reminiscent of the $s,p,...$ orbital shapes found in
+physical chemistry books.  Because of that the basis sets are
+often called atomic basis or atomic orbitals, as opposed to molecular
+orbitals, which are simply atomic orbitals transformed via the
+coefficient matrix $C$.
+
+The correct shape for an (Cartesian) atomic orbital is the Slater-type
+orbital (STO)
+$$A x^l y^m z^n e^{-\alpha r}$$
+where $A$ is the normalization coefficient and $l,m,n$ are related to
+ the angular momentum quantum number $L$,
+$$L = l + m + n$$
+
+Using a Gaussian function, a similar type of orbital, called
+Gaussian-type orbital (GTO), can be devised
+$$A x^l y^m z^n e^{-\alpha r^2}$$
+
+Unlike the Gaussian functions, the Slater functions cannot be
+separated into $x,y,z$ components, making the evaluation of integrals
+ over the Slater basis expensive.
+On the other hand, Gaussian function can be written as
+$$e^{-\alpha r^2} = e^{-\alpha x^2} e^{-\alpha y^2} e^{-\alpha z^2} $$
+and due to this property, the computation of integrals over the
+Gaussian functions is much simpler \cite{boys1950electronic}, with a
+number of different closed-form solutions for one- and two- electron
+integrals \cite{pople1978computation, rys_computation_1983,
+  obara1986efficient, head1988method}.  Most electronic structure
+programs use GTOs as basis sets.  An exception to this trend is
+Amsterdam Density Functional (ADF) program suite \cite
+{te2001chemistry} which uses STOs.
+
+To reproduce the approximate shape of an STO, a linear
+combination of several GTOs can be taken and fitted according to
+some criteria, a process known as contraction and the resulting
+orbital called contracted Gaussian-type orbital,
+$$\chi_{cgto} = A x^l y^m z^n \sum_k^K C_k e^{-\alpha_k r^2}$$
+where $K$ is the construction order and $C_k$ are the contraction
+coefficients.  In this context, the individual Gaussians are called
+primitives.
+
+
+The individual contracted orbitals which share the same primitives are
+grouped together into shells.  The primary reason for doing so is
+computational efficiency.  With a correct algorithm, only the angular
+term $x^l y^m z^n$ will be different between shell functions; the
+terms involving expensive exponent computations will be the same.
+
+The simplest contracted basis sets are of the STO-NG family
+\cite{pople1970molecular}, where N is the number of contracted GTOs
+fitted to an STO using a least-squares method.  The major difference
+between GTOs and STOs is the function shape near the origin, where GTOs
+are flat and STOs have a cusp.  This is especially important for the
+core electrons near the nucleus.  More advanced basis sets typically
+have more GTOs to represent contracted core orbitals (6-10 GTO) and
+fewer GTOs to represent non-core orbitals (1-3 GTOs).  This segmented
+approach strikes a delicate balance between accuracy and computational
+time.
+
+It should be obvious that a larger basis set will give better orbitals
+and lower energy, based on the Variational Principle.  However, larger
+basis set will also increase computational time, may lead to slower
+convergence, and may result in numerical instabilities.  A majority of
+time is spent evaluating two-electron integrals and building the Fock
+matrix.  Although, atomic integrals do not change from iteration to
+iteration, storing $N^4$ elements can be prohibitively expensive for any
+large system, and thus the integrals can be re-computed on-the-fly.
+Currently, Hartree-Fock computations with a few thousand basis
+functions are routinely performed in a matter of hours.  In the near
+future that number is likely to be the tens of thousands.
+
+\section {Electron Correlation}
+As a rule of thumb, the energy computed with the Hartree-Fock method
+accounts for \~99 \% of the total electronic energy. However, the physical
+properties associated with the last 1 \% of energy are what usually is
+sought.  Hartree-Fock computations can give very good geometries, but
+the energy differences can only be qualitative at best.
+
+Recall from the above discussion that Hartree-Fock model does not
+account for instantaneous electronic interaction, but instead treats
+each electron as interacting with an electronic mean field.
+The difference between the total energy and  the Hartree-Fock
+energy is called the correlation energy
+$$E_{corr} = E_{hf} - E$$
+
+To recover the correlation energy, Hartree-Fock computations must be
+followed by what are called correlation methods, which try to recover
+the correlation energy from the Hartree-Fock wavefunction.  In the
+context of electron correlation computations, Hartree-Fock is
+typically the zeroth order (also called the reference) wavefunction.
+Among the many correlation methods there are two that are central to
+the next chapters: the MP2 and coupled cluster.
+
+The formula for the MP2 energy is relatively simple,
+expressed only in terms of molecular integrals $(ia|jb)$
+and orbital energies $\epsilon$
+
+$$E_{MP2} = \sum_{ij} \sum_{ab} 
+\frac{ [2(ai|bj) - (bi|aj)] (ai|bj) }
+{\epsilon_i + \epsilon_j - \epsilon_a - \epsilon_b}$$
+
+As is customary in many-body methods, indices $i,j,...$ refer to
+occupied molecular orbitals $O$, $a,b,...$ to virtual orbitals $V$,
+and $p,q,r,s$ to atomic basis $N$. 
+
+The time consuming part of the MP2 energy computation is not the
+actual energy computation, which scales as $O^2N^2$, but the
+transformation from atomic to molecular integrals (also called 4-index
+transformation), which scale as $ON^4$.  Another bottleneck in
+many-body methods is the storage of molecular integrals.  For a large
+MP2 calculation the storage may well be on the order of terabytes.
+The details of MP2 energy computation will be covered in detail in
+the corresponding chapter.
+
+The coupled cluster theory was first proposed in nuclear physics
+\cite{coester1960short} and later adopted in quantum chemistry by
+Cizek \cite{vcivzek1966correlation} as the exponential ansatz
+$$\Psi = e^{T} \Psi_0 = e^{(T_1 + T_2 + ... T_n)} \Psi_0$$ 
+where $T_1 ... T_n$ are the n-particle excitation operator and $\Psi_0$
+is the reference wavefunction, typically $\Psi_{hf}$ in computational
+chemistry.
+The excitation operator applied to a reference wavefunction is written
+in terms of excitation amplitudes $t$ from hole states $i,j,k,...$
+(also referred to as occupied orbitals) to
+particle states $a,b,c,...$ (also referred to as virtual orbitals),
+$$T_n \Psi_0 = \sum_{ijk...} \sum_{abc...} t_{ijk...} ^ {abc...}
+\Psi_{ijk...} ^ {abc...}$$
+
+The CCSD algorithm is an iterative process that
+scales as $N^2V^2O^2$ and the triples correction $(T)$ scales as
+$N^2V^4O$.  To compute the CCSD(T) energy, every type of four-index
+molecular integral is needed.  The coupled cluster algorithm will be
+covered in detail in the last chapter.
+Both, MP2 and CC can be easily and systematically derived using
+Goldstone diagrams, a diagrammatic approach to nonrelativistic fermion
+interaction based on Feynman diagrams.  A very thorough treatment of
+the many-body theory can be found in the excellent book by Shavitt and
+Bartlet \cite{shavitt2009many}.
+
+%% \chapter{Two-Electron Integrals and Hartree-Fock}
+%% \chapter{Moller-Plesset Perturbation Theory}
+%% \chapter{Coupled Cluster Theory}
+
+%% \chapter{Conclusions}
+
+
+\bibliographystyle{unsrt}% (uses file ``plain.bst'')
+\bibliography{references}
+\input{document.bbl}
+
+\end{document}
+
+
+
+% LocalWords:  

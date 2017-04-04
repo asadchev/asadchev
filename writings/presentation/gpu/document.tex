@@ -1,0 +1,278 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[ Software Design In Computational Sciences]{Software Design In Chemistry}
+\author{ Andrey Asadchev}
+\institute{Iowa State University}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+\begin{itemize}
+\item Programming Languages
+\item Object Oriented Programming
+\item C++ and Python
+\item Symbolic Computation
+\item Current Computer Architectures
+\item Computational Chemistry
+\item Integral Evaluation
+\item Fock Matrix
+\item GPU Implementation
+\item Performance
+\item Conclusions
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Programming languages}
+\begin{itemize}
+\item Communicate To Computer And To Humans
+\item Binary Machine Language - instructions as sequence of zero and one
+\item Assembly - mnemonic shortcuts to machine language
+\item Fortran - early imperative programming language.\\
+  Numerical and matrix computations.
+\item LISP - functional programming language.\\
+   Stands for List Processor.\\
+   Functions (as in mathematics) are first-class citizens.\\
+   To Iterate Is Human, To Recurse Is Divine.\\
+   Lambda functions and predicates: $G = map(lambda\, x,y: x*y, F,reversed(G))$\\
+   Artificial Intelligence\\
+\item C - Portable Assembly Language.\\
+  developed together with UNIX operating system.\\
+  System Programming Language.\\
+  Access to the raw memory.
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{ Object-Oriented Programming}
+\begin{itemize}
+\item Abstract implementation problem 
+\item Keep Data and Methods together
+\item Hide Data, Puts Constraints on Data
+\item Polymorphism 
+\item Inheritance
+\item Matrix\\
+Represented As Some Object M\\
+M.transpose()\\
+const M.m\\
+Orthogonal Matrix Is a Matrix\\
+Orthogonal Matrix Has Transpose\\
+Orthogonal Matrix  has inverse\\
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{  C++}
+\begin{itemize}
+\item Superset of C
+\item Object Oriented
+\item Functional
+\item Widely Used, Many Compilers
+\item Efficient, games programming and digital signal processing
+\item Overload operators, + , *,...
+\item Program formulas almost like on the paper\\
+$Vector\, r = v-w $\\
+\item Template meta-programming\\
+ Generic Programs\\
+ Automatically Generated Programs\\
+ Specialized Programs\\
+ Boost\\
+Domain Specific Language And Template Expressions\\
+Readability: $Quartet \langle Shell \rangle$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{  Python}
+\begin{itemize}
+\item Interactive,compiled 
+\item Imperative
+\item Object Oriented
+\item Functional
+\item Easy interfacing with other languages
+\item Pythonic\\
+ L = sorted([(x,y) for x in X for y in Y if x is y])
+\item Widely Used in Science and Mathematics\\
+pyQuante
+\item  Template-preprocessor engines (PHP)\\
+  Cheetah\\
+Preprocessor directives directly embedded in program\\
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ Symbolic computations}
+\begin{itemize}
+\item Computed Expressions Without Explicitly Knowing Number
+\item Computer Algebra Systems
+\item Mathematica.\\
+  Polynomial Manipulation\\
+Matrix Manipulation\\
+Recursion\\
+Allows to Define Your Own Algebra\\
+\item  Sage.\\
+    Python Computer Algebra System\\
+    Interface to almost any other computer algebra system
+\item Sympy - symbolic python library.\\
+\item  Put Equations As They Are.\\
+Let Computer Algebra System Simplify Them\\
+Use Program Generator to produce code as you  wanted\\
+Optimize equations which otherwise would be prohibitive to
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ Computer Architecture}
+\begin{itemize}
+\item Pipeline
+\item Single Instruction Multiple Data
+\item Memory Locality
+\item Many cores
+\item Complex Scheduling
+\item Very Hard to Beat a Compiler for Low-Level Optimization\\
+however programs have to be written in such way as to be amenable to optimization\\
+Conditional statements, unpredictable memory access prohibit optimization.
+\item Processors Are Powerful and Cheap\\
+     Optimized for Games and Signal Processing, 4x4 matrix\\
+     Underutilized often, 15 percent efficiency is common
+\item  Efficient Implementations demand unrolling kernels
+\end{itemize}
+\end{frame}
+
+\begin{frame}{ Computer Architecture}
+\begin{itemize}
+\item 
+\item   Graphical Units\\
+ A Lot Of Performance And Even More Hype\\
+ Memory Bound Often\\
+ Single Instruction Multiple Thread\\
+ Imagine mapping each loop iteration to threads\\
+ for i  = threadID,N,numThreads:  X(i) = aY(i)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{  Computational Chemistry}
+\begin{itemize}
+\item Electron Integrals $(ab|cd)$\\
+  Domain Specific\\
+  Define rest of computations
+\item Lots of Computations, Lots of Memory
+\item Data Screening, Symmetry
+\item  Linear Algebra, BLAS
+\item Legacy Code
+\item MPQC, libint
+\end{itemize}
+\end{frame}
+
+\begin{frame}{   Integral  evaluation}
+\begin{itemize}
+\item $(ab|cd) = \sum C_i \sum C_j \sum C_k \sum C_l [ij|kl] $
+\item $(ab|cd) = (ba|cd) = (cd|ab)...$
+\item many different combinations and permutations
+\item SP functions
+\item high angular momentum versus high confection order\\
+$(fsp | fsp)$
+\item gaussian basis, $e ^{-r^2}$ separable in Cartesian coordinates
+\item  Most Integral schemes use recursive nature of gaussian integration/differentiation
+\item Numerical error - loss of significant figures, etc.\\
+Recursion implies using a slightly incorrect value to compute next\\
+Especially severe when two values are close in magnitude but different in sign (difference)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{   Integral  evaluation}
+\begin{itemize}
+\item 
+\item OS integral scheme, auxiliary integrals. \\
+Very general - applicable to almost any operator\\
+R12 linear integrals\\
+Memory Hungry
+\item Rys quadrature\\
+  Gaussian quadrature using Rys orthogonal polynomials\\
+  $I = \sum_a Ix(a)Iy(a)Iz(a)$\\
+  Compute Roots\\
+  Compute two-dimensional x, y, z intermediate integrals\\
+  Assemble final integral
+\item Horizontal recurrence\\
+$(pp | = q*(ps |  + (ds |$\\
+Simplifies Contracted Integrals\\
+High Numerical Error
+\end{itemize}
+\end{frame}
+
+\begin{frame}{  Integral Implementation}
+\begin{itemize}
+\item C++ object-oriented library
+\item Fortran And Gamess bindings
+\item  Simple Interface:\\
+Create quadrature object for given shell quartet\\
+Call Object operator for a given center quartet
+call object operator for a list of Center quartets
+
+\item Two Internal Implementations:\\
+  Fully Unrolled And Simplified kernels for smaller  integral, 
+  which is likely to be contracted\\
+  Partially Unrolled (bra only) general quadrature\\
+\item Internals make heavy use of  C++ templates and automatically generated code
+\item Human Serviceable Code is small - around 2000 lines of code
+\item Final Library Size his small - around 5 megabytes fully optimized
+\item the code is kept small due to objects and genetic templates
+\end{itemize}
+\end{frame}
+
+\begin{frame}{  Fock Matrix}
+\begin{itemize}
+\item $F = (ab |cd)D $
+\item Part of the Library
+\item Requires Matrix to be in block form through an adapter
+\item Simple Interface:\\
+Create fock object for given shell quartet\\
+Call Object operator for a given center quartet\\
+Call Object operator for a list of Center quartets
+\item Two Internal Implementations - parallel to those of integral program
+\item Basis Set organization and higher-level logic is handled by another library
+\end{itemize}
+\end{frame}
+
+\begin{frame}{  GPU implementation}
+\begin{itemize}
+\item Implementations are driven by integral size and contraction order
+\item Large integrals are parallel over individual elements\\
+every thread gets a unique internal element to compute
+\item highly contracted small integrals are parallel over contractions\\
+every thread gets the unique contraction to compute\\
+contractions are  reduced in the end
+\item Basis  must be ordered to guarantee execution of the kernel on multiple centers
+\item Thanks to objects and genetic templates, the entire kernel code is about 300 lines
+\end{itemize}
+\end{frame}
+
+\begin{frame}{   Performance}
+\begin{itemize}
+\item GPU implementation not yet complete
+\item CPU implementation:\\
+  benchmark several cases from hundred to a thousand basis functions\\
+  largest test is loperamide 6-31G(pdf)
+  numerical agreement to 8 decimal places\\
+  30-40\% improvement in speed\\
+  Fine grain contraction screening was not enabled\\
+  Intel compiler generates vector instructions\\
+  still working on full optimization
+\item GPU implementation not yet complete\\
+  basic integrals, up to the 1500 quartet size are working\\
+  50\% improvement over CPU\\
+  numbers essentially agree
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{Aknowledge}
+\begin{itemize}
+\item Funding From Dr. Gordon
+\item  Help From Jacob and Allada
+\end{itemize}
+\end{frame}
+
+\end{document}

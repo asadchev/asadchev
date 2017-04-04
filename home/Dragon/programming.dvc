@@ -1,0 +1,426 @@
+MENU "programming.dvc" {
+        STATE "" {
+
+                LIST "scope" {
+                        "public"
+                        "private"
+                        "protected"
+                }
+
+                COMMAND "<scope>" {
+                        SCRIPT {
+                                SendKeys _arg1 + ":"
+                        }
+                }
+
+                LIST "tparam" {
+                        "class"
+                        "typename"
+                        "size_t"
+                }
+
+                COMMAND "template <tparam>" {
+                        SCRIPT  {
+                                SendKeys "template<" + _arg1 + " >" + "{Left}"
+                        }
+                }
+
+                COMMAND "template" {
+                        SCRIPT  {
+                                SendKeys "template<>" + "{Left}"
+                        }
+                }
+
+                LIST "operators" {
+                        "star"
+                        "member pointer"
+                        "scope"
+                        "plus"
+                        "equal"
+                        "equal equal"
+                        "not equal"
+                        "less than"
+                        "less equal"
+                        "greater than"
+                        "greater equal"
+                        "plus equal"
+                        "minus equal"
+                        "times equal"
+                        "minus minus"
+                        "logical and"
+                        "logical or"
+                        "minus"
+                        "left shift"
+                        "right shift"
+                        "bar equal"
+                        "and equal"
+                }
+
+                COMMAND "<operators>" {
+                        SCRIPT {
+                                if _arg1 = "star" then SendKeys "*"
+                                if _arg1 = "member pointer" then SendKeys "->"
+                                if _arg1 = "scope" then SendKeys "::"
+                                if _arg1 = "plus" then SendKeys " + "
+                                if _arg1 = "equal" then SendKeys " = "
+                                if _arg1 = "equal equal" then SendKeys " == "
+                                if _arg1 = "not equal" then SendKeys " != "
+                                if _arg1 = "less than" then SendKeys " < "
+                                if _arg1 = "less equal" then SendKeys " <= "
+                                if _arg1 = "greater than" then SendKeys " > "
+                                if _arg1 = "greater equal" then SendKeys " >= "
+                                if _arg1 = "plus equal" then SendKeys " += "
+                                if _arg1 = "minus equal" then SendKeys " -= "
+                                if _arg1 = "times equal" then SendKeys " *= "
+                                if _arg1 = "minus minus" then SendKeys " -- "
+                                if _arg1 = "logical and" then SendKeys " && "
+                                if _arg1 = "logical or" then SendKeys " || "
+                                if _arg1 = "minus" then SendKeys " - "
+                                if _arg1 = "left shift" then SendKeys " << "
+                                if _arg1 = "right shift" then SendKeys " >> "
+                                If _arg1 = "bar equal" Then SendKeys " |= "
+                                If _arg1 = "and equal" Then SendKeys " |= "
+                        }
+
+                }
+
+                COMMAND "operator <type>" {
+                        SCRIPT {
+                                SendKeys "operator " + _arg1
+                        }
+                }
+
+                COMMAND "operator <operators>" {
+                        SCRIPT {
+                                SendKeys "operator"
+                                if _arg1 = "star" then SendKeys "*"
+                                if _arg1 = "member pointer" then SendKeys "->"
+                                if _arg1 = "plus" then SendKeys "+"
+                                if _arg1 = "equal" then SendKeys "="
+                                if _arg1 = "equal equal" then SendKeys "=="
+                                if _arg1 = "not equal" then SendKeys "!="
+                                if _arg1 = "less than" then SendKeys "<"
+                                if _arg1 = "less equal" then SendKeys "<="
+                                if _arg1 = "greater than" then SendKeys ">"
+                                if _arg1 = "greater equal" then SendKeys ">="
+                                if _arg1 = "plus equal" then SendKeys "+="
+                                if _arg1 = "minus equal" then SendKeys "-="
+                                if _arg1 = "times equal" then SendKeys "*="
+                                if _arg1 = "minus minus" then SendKeys "--"
+                                if _arg1 = "logical and" then SendKeys "&&"
+                                if _arg1 = "logical or" then SendKeys "||"
+                                if _arg1 = "minus" then SendKeys "-"
+                                if _arg1 = "left shift" then SendKeys "<<"
+                                if _arg1 = "right shift" then SendKeys ">>"
+                        }
+                }
+
+                COMMAND "star this" {
+                        KEYS {
+                                *this
+                        }
+                }
+
+                COMMAND "this pointer" {
+                        KEYS {
+                                this->
+                        }
+                }
+
+
+                LIST "types" {
+                        "int"
+                        "float"
+                        "double"
+                        "bool"
+                        "size_t"
+                }
+
+                COMMAND "<types> <alnum>" {
+                        SCRIPT {
+                                SendKeys _arg1 + " " + _arg2
+                        }
+                }
+
+                COMMAND "<types>" {
+                        SCRIPT {
+                                SendKeys _arg1
+                        }
+                }
+
+
+                COMMAND "constant <types>" {
+                        SCRIPT {
+                                SendKeys "const " + _arg1
+                        }
+                }                                   
+
+                COMMAND "<types> pointer" {
+                        SCRIPT {
+                                SendKeys _arg1 + " *"
+                        }
+                }                                   
+
+                COMMAND "constant <types> pointer" {
+                        SCRIPT {
+                                SendKeys "const " + _arg1 + " *"
+                        }
+                }                                   
+
+                COMMAND "<types> array" {
+                        SCRIPT {
+                                SendKeys "new " + _arg1 + "[]" + "{LEFT}"
+                        }
+                }
+
+                LIST "headers" {
+                        "stdio.h"
+                        "algorithm"
+                        "iostream"
+                        "vector"
+                        "string"
+                        "iterator"
+                }
+
+                LIST "hash-statement" {
+                        "if"
+                        "ifdef"
+                        "else"
+                        "define"
+                        "ifndef"
+                        "endif"
+                        "undef"
+                }
+
+                COMMAND "hash <hash-statement>" {
+                        SCRIPT {
+                                SendKeys "#" + _arg1
+                        }
+                }
+
+                COMMAND "hash include" {
+                        SCRIPT {
+                                SendKeys "#include "
+                                SendKeys "{shift+'}" + "{shift+'}" + "{LEFT}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+
+                COMMAND "include <headers>" {
+                        SCRIPT {
+                                header = _arg1
+                                SendKeys "#include <" + header + ">"
+                        }
+                }
+
+                LIST "control-statement" {
+                        "if"
+                        "for"
+                        "while"
+                        "foreach"
+                }
+
+                LIST "cast-template" {
+                        "const"
+                        "static"
+                        "reinterpret"
+                }
+
+                COMMAND "<cast-template> cast" {
+                        SCRIPT {
+                                SendKeys _arg1 + "_cast<>()" + "{Left}{Left}{Left}"
+                        }
+                }
+
+                LIST "member-function" {
+                        "begin"
+                        "end"
+                        "size"
+                        "front"
+                        "back"
+                        "start"
+                        "stop"
+                        "clear"
+                        "empty"
+                }
+
+                COMMAND  "dot <member-function>" {
+                        SCRIPT {
+                                SendKeys "." + _arg1 + "()"
+                        }
+                }               
+
+                COMMAND  "<control-statement> statement" {
+                        SCRIPT {
+                                SendKeys _arg1 + " ()" + "{Left}"
+                        }
+                }
+
+                LIST "keywords" {
+                        "const"
+                        "typedef"
+                        "inline"
+                        "struct"
+                        "namespace"
+                        "typename"
+                        "static"
+                        "void"
+                        "return"
+                        "operator"
+                }
+                COMMAND "<keywords>" {
+                        SCRIPT {
+                                SendKeys _arg1 + " "
+                        }
+                }
+                
+                LIST "std-keywords"{
+                        "cout"
+                }
+
+                LIST "std-container" {
+                        "vector"
+                        "map"
+                        "pair"
+                }
+
+                LIST "std-functions"{
+                        "max"
+                        "fill"
+                        "find"
+                        "copy"
+                        "min"
+                }
+
+                COMMAND "STD <std-keywords>" {
+                        SCRIPT {
+                                if _arg1 = "cout" Then  SendKeys "std::cout << std::endl;"
+                        }
+                }                                   
+
+                COMMAND "STD <std-container>" {
+                        SCRIPT {
+                                SendKeys "std::" + _arg1 + "<>" + "{Left}"
+                        }
+                }                                   
+
+                COMMAND "STD <std-functions>" {
+                        SCRIPT {
+                                SendKeys "std::" + _arg1+ "()" + "{Left}"
+                        }
+                }                                   
+
+                COMMAND "template brackets" {
+                        SCRIPT {
+                                SendKeys "<>" + "{Left}"
+                        }
+                }                                   
+
+                COMMAND "type define" {
+                        SCRIPT {
+                                SendKeys "typedef "
+                        }
+                }                                   
+
+                COMMAND "<scopes> scope" {
+                        SCRIPT {
+                                SendKeys _arg1 + "::"
+                        }
+                }
+
+                LIST "scopes" {
+                        "std"
+                        "boost"
+                }
+
+                COMMAND "parens <alnum>" {
+                        SCRIPT {
+                                SendKeys "(" + _arg1 + ")"
+                        }
+                }
+
+                COMMAND "brackets <alnum>" {
+                        SCRIPT {
+                                SendKeys "[" + _arg1 + "]"
+                        }
+                }
+
+                LIST "class" {
+                        "class"
+                        "typename"
+                }
+
+                COMMAND "<class> <alnum>" {
+                        SCRIPT {
+                                SendKeys _arg1 + " " + UCase$(_arg2)
+                        }
+                }
+                
+                COMMAND "template <alnum>" {
+                        SCRIPT {
+                                SendKeys "<" + UCase$(_arg1) + ">"
+                        }
+                }
+                
+                COMMAND "equal <alnum>" {
+                        SCRIPT {
+                                SendKeys " = " + _arg1
+                        }
+                }
+
+                LIST "yasnippet" {
+                        "if"
+                        "for"
+                        "class"
+                        "once"
+                        "def"
+                        "include"
+                }
+                COMMAND "<yasnippet> Tab" {
+                        SCRIPT {
+                                SendKeys _arg1 + "{tab}"
+                        }
+                }
+
+                LIST "alnum" {
+                        "0"
+                        "1"
+                        "2"
+                        "3"
+                        "4"
+                        "5"
+                        "6"
+                        "7"
+                        "8"
+                        "9"
+                        "a"
+                        "b"
+                        "c"
+                        "d"
+                        "e"
+                        "f"
+                        "g"
+                        "h"
+                        "i"
+                        "j"
+                        "k"
+                        "l"
+                        "m"
+                        "n"
+                        "o"
+                        "p"
+                        "q"
+                        "r"
+                        "s"
+                        "t"
+                        "u"
+                        "v"
+                        "w"
+                        "x"
+                        "y"
+                        "z"
+                }
+
+        }
+}

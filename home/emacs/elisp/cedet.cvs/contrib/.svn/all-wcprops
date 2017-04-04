@@ -1,0 +1,101 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib
+END
+wisent-csharp.wy
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-csharp.wy
+END
+wisent-ruby.wy
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-ruby.wy
+END
+wisent-csharp.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-csharp.el
+END
+wisent-ruby.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-ruby.el
+END
+semantic-tag-folding.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/semantic-tag-folding.el
+END
+wisent-php.wy
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-php.wy
+END
+wisent-php.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/wisent-php.el
+END
+cedet-contrib-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/cedet-contrib-load.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/Project.ede
+END
+semantic-ectag-scala.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/semantic-ectag-scala.el
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/INSTALL
+END
+eassist.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/eassist.el
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/.cvsignore
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/Makefile
+END
+ede-gnustep.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/ede-gnustep.el
+END
+cedet-contrib.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/contrib/cedet-contrib.el
+END

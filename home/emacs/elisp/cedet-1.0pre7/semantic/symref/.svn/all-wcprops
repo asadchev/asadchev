@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref
+END
+semantic-symref-cscope.el
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-cscope.el
+END
+semantic-symref-grep.el
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-grep.el
+END
+semantic-symref-idutils.el
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-idutils.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/Project.ede
+END
+semantic-symref-global.el
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-global.el
+END
+semantic-symref.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref.el
+END
+semantic-symref-filter.el
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-filter.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/Makefile
+END
+semantic-symref-list.el
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/symref/semantic-symref-list.el
+END

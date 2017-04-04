@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+#name : result_of
+#key : result_of
+# --
+result_of::${1:$$(yas/choose-value '(""
+"begin"
+"end"
+"empty"
+"front"
+"back"
+"size"
+"at"
+"at_c"
+"value_at"
+"value_at_c"
+"has_key"
+"at_key"
+"value_at_key"
+"swap"))}

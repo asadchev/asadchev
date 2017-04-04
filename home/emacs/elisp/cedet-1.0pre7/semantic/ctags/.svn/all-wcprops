@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags
+END
+semanticdb-ectag.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/semanticdb-ectag.el
+END
+semantic-ectag-parse.el
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/semantic-ectag-parse.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/Makefile
+END
+semantic-ectag-util.el
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/semantic-ectag-util.el
+END
+semantic-ectag-lang.el
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/semantic-ectag-lang.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/Project.ede
+END
+semantic-ectag-lang2.el
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ctags/semantic-ectag-lang2.el
+END

@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/Project.ede
+END
+bovine-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/bovine-debug.el
+END
+bovine-grammar.el
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/bovine-grammar.el
+END
+semantic-erlang.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-erlang.el
+END
+semantic-make.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-make.el
+END
+scheme.by
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/scheme.by
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/Makefile
+END
+semantic-erlang-by.el
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-erlang-by.el
+END
+semantic-java.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-java.el
+END
+erlang.by
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/erlang.by
+END
+semantic-scm.el
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-scm.el
+END
+semantic-bovine.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-bovine.el
+END
+semantic-c.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-c.el
+END
+semantic-make-by.el
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-make-by.el
+END
+make.by
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/make.by
+END
+bovine-grammar-macros.el
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/bovine-grammar-macros.el
+END
+semantic-scm-by.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-scm-by.el
+END
+semantic-c-by.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-c-by.el
+END
+c.by
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/c.by
+END
+semantic-gcc.el
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-gcc.el
+END
+skeleton.by
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/skeleton.by
+END
+semantic-skel.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-skel.el
+END
+semantic-el.el
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/bovine/semantic-el.el
+END

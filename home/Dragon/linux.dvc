@@ -1,0 +1,294 @@
+MENU "linux.dvc" {
+STATE "" {
+
+LIST "alnum" {
+    "a"
+    "b"
+    "c"
+    "d"
+    "e"
+    "f"
+    "g"
+    "h"
+    "i"
+    "j"
+    "k"
+    "l"
+    "m"
+    "n"
+    "o"
+    "p"
+    "q"
+    "r"
+    "s"
+    "t"
+    "u"
+    "v"
+    "w"
+    "x"
+    "y"
+    "z"
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+LIST "digits" {
+    "0"
+    "1"
+    "2"
+    "3"
+    "4"
+    "5"
+    "6"
+    "7"
+    "8"
+    "9"
+}
+
+COMMAND "R. M." {
+    SCRIPT {
+        SendKeys "rm "
+    }
+}
+
+
+COMMAND "G. F." {
+    SCRIPT {
+        SendKeys "fg {Enter}"
+    }
+}
+
+
+COMMAND "git " {
+    SCRIPT {
+        SendKeys "git "
+    }
+}
+
+
+COMMAND "apt cache" {
+    SCRIPT {
+        SendKeys "apt-cache "
+    }
+}
+
+
+COMMAND "apt get" {
+    SCRIPT {
+        SendKeys "apt-get "
+    }
+}
+
+
+COMMAND "sudo " {
+    SCRIPT {
+        SendKeys "sudo "
+    }
+}
+
+
+COMMAND "tar X. F." {
+    SCRIPT {
+        SendKeys "tar xf "
+    }
+}
+
+
+COMMAND "S. V. N." {
+    SCRIPT {
+        SendKeys "svn "
+    }
+}
+
+
+COMMAND "make " {
+    SCRIPT {
+        SendKeys "make "
+    }
+}
+
+
+COMMAND "diff " {
+    SCRIPT {
+        SendKeys "diff "
+    }
+}
+
+
+COMMAND "emacs" {
+    SCRIPT {
+        SendKeys "emacs"
+    }
+}
+
+
+COMMAND "S. S. H." {
+    SCRIPT {
+        SendKeys "ssh"
+    }
+}
+
+
+COMMAND "grep R." {
+    SCRIPT {
+        SendKeys "grep -r "
+    }
+}
+
+
+COMMAND "tail F." {
+    SCRIPT {
+        SendKeys "tail -f "
+    }
+}
+
+
+COMMAND "C. D." {
+    SCRIPT {
+        SendKeys "cd "
+    }
+}
+
+
+COMMAND "killall " {
+    SCRIPT {
+        SendKeys "killall "
+    }
+}
+
+
+COMMAND "cd minus" {
+    SCRIPT {
+        SendKeys "cd -"
+    }
+}
+
+
+COMMAND "L. N. S." {
+    SCRIPT {
+        SendKeys "ln -s "
+    }
+}
+
+
+LIST "svn" {
+    "add"
+    "move"
+    "remove"
+    "commit"
+    "checkout"
+    "update"
+    "updiff"
+    "status"
+    "log"
+}
+
+COMMAND "S. V. N. <svn>" {
+    SCRIPT {
+        SendKeys "svn " + _arg1 + " "
+    }
+}
+
+
+LIST "apt-get" {
+    "remove"
+    "install"
+    "update"
+    "upgrade"
+}
+
+COMMAND "apt get <apt-get>" {
+    SCRIPT {
+        SendKeys "apt-get " + _arg1 + " "
+    }
+}
+
+
+LIST "make" {
+    "clean"
+    "install"
+    "upload"
+}
+
+COMMAND "make <make>" {
+    SCRIPT {
+        SendKeys "make " + _arg1 + " "
+    }
+}
+
+
+LIST "git" {
+    "clone"
+    "branch"
+    "commit"
+    "add"
+    "push"
+    "pull"
+}
+
+COMMAND "git <git>" {
+    SCRIPT {
+        SendKeys "git " + _arg1 + " "
+    }
+}
+
+
+LIST "dir" {
+    "change"
+    "make"
+    "list"
+}
+
+COMMAND "<dir> dir" {
+    SCRIPT {
+        cmd = _arg1
+        if cmd = "change" then cmd = "cd "
+        if cmd = "make" then cmd = "mkdir "
+        if cmd = "list" then cmd = "ls "
+        SendKeys cmd
+    }
+}
+
+
+LIST "pipe" {
+    "grep"
+    "less"
+    "head"
+    "xargs"
+    "cat"
+    "tail"
+    "awk"
+}
+
+COMMAND "pipe <pipe>" {
+    SCRIPT {
+        SendKeys "| " + _arg1
+    }
+}
+
+
+COMMAND "equal quotes" {
+    SCRIPT {
+        SendKeys "=""" + "{Left}"
+    }
+}
+
+
+COMMAND "dollar parens" {
+    SCRIPT {
+        SendKeys "$()" + "{Left}"
+    }
+}
+
+
+}
+}
+

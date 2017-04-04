@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests
+END
+scopetest.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/scopetest.cpp
+END
+test.make
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/test.make
+END
+testdoublens.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testdoublens.cpp
+END
+testvarnames.c
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testvarnames.c
+END
+test.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/test.cpp
+END
+test.c
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/test.c
+END
+testsubclass.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsubclass.cpp
+END
+testdoublens.hpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testdoublens.hpp
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/Project.ede
+END
+testtypedefs.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testtypedefs.cpp
+END
+teststruct.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/teststruct.cpp
+END
+testusing.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testusing.cpp
+END
+test.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/test.py
+END
+testpolymorph.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testpolymorph.cpp
+END
+testfriends.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testfriends.cpp
+END
+testsppcomplete.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsppcomplete.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/Makefile
+END
+testsubclass.hh
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsubclass.hh
+END
+test.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/test.el
+END
+testtemplates.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testtemplates.cpp
+END
+testsppreplace.c
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsppreplace.c
+END
+templates.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/templates.cpp
+END
+testjavacomp.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testjavacomp.java
+END
+testnsp.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testnsp.cpp
+END
+testsppreplaced.c
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsppreplaced.c
+END
+testspp.c
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testspp.c
+END
+testusing.hh
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testusing.hh
+END
+gr-test.wy
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/gr-test.wy
+END
+testsppcond.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/testsppcond.cpp
+END
+scopetest.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/semantic/tests/scopetest.java
+END

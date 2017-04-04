@@ -1,0 +1,169 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+\usetheme{Warsaw}
+\title[Coupled-Cluster]{Coupled-Cluster}
+\author{ Andrey Asadchev}
+\institute{Iowa State University}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \begin{itemize}
+  \item Tensor Contraction
+  \item Coupled Cluster
+  \item Programming
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Tensor Contraction}
+  \begin{itemize}
+  \item tensor ``is a'' multidimensional array, $G^{ij}_{kl}$ eg $G(i,j,k,l)$
+  \item vectors and matrixes are tensors
+  \item  contraction  is a multiplication: rank can be lower, same,
+    higher after contraction
+  \end{itemize}
+  Einstein notation is a compact way to represent contractions:\\
+  inner product: $a = x^i y_i$ \\
+  outer product: $t^i_j = x^i y_j$ \\
+  matrix product: $t^i_j = a^i_k b^k_j$ \\
+  transpose: $t^i_j = a^j_i$ \\
+  integral transformation: $v^{ij}_{kl} = C^i_p C^j_r C^q_k C^s_l G^{pr}_{qs}$ \\
+\end{frame}
+
+
+\begin{frame}{Integrals and Amplitudes}
+  Let $i,j,k,l,...$  refer to \#OCCUPIED indices, $a,b,c,d,...$ to
+  active, $ p,q,r,s,...$ to atomic indices
+  \begin{itemize}
+  \item AO tensor, $G^{pr}_{qs}$, has 8-fold symmetry, eg one of them
+    $G^{rp}_{sq}$  which is $G(p,r,q,s) = G(r,p,s,q)$
+  \item MO integral $V^{ab}_{cd}$ has likewise 8-fold symmetry.
+  \item MO integral $V^{ab}_{ci}$ has 2-fold symmetry: $V^{cb}_{ai}$
+  \item MO integral $V^{ij}_{ab}$ has 2-fold symmetry: $V^{ji}_{ba}$
+  \item  MP2 $t^{ij}_{ab} = V^{ij}_{ab}/(\epsilon_i + \epsilon_j -
+    \epsilon_a - \epsilon_b)$, same symmetry as the integral
+  \item General MBPT amplitudes  follow the same symmetry:
+    $t^{..i..j..}_{..a..b..} = t^{..j..i..}_{..b..a..}$
+  \item in general, contractions do not preserve symmetry
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Contracting Tensors}
+\begin{itemize}
+  \item Factorize: \\
+    $g^{ij}_{qs} = C^i_p C^j_r G^{pr}_{qs}$ is $N^6$ \\
+    $g^{ij}_{qs} = C^i_p (C^j_r G^{pr}_{qs})$ is $N^5$
+  \item Use BLAS: \\
+  $g^{ir}_{qs} = C^i_p G^{pr}_{qs}$ stored as
+  $g(i,r,q,s) = C(i,p) G(p,r,q,s)$ \\
+  gemm($C(i,p)$, $G(p,rqs)$, $g(i,rqs)$)
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Coupled-Cluster}
+
+For clarity only terms in question are shown explicitly:
+
+\begin{itemize}
+\item $u^{ij}_{ab} = V^{ij}_{ab} + P(ia/jb)[ ...
+    0.5 v^{ab}_{ef} t'^{ef}_{ij} ...
+- t^{ae}_{mj} I^{mb}_{ie} + I^{ma}_{ie} t^{eb}_{mj} ... ]$
+\item  $P(ia/jb)(u^{ij}_{ab}) = u^{ij}_{ab} + u^{ji}_{ba}$ - symmetrizer \\
+  \item $0.5 v^{ab}_{ef} t'^{ef}_{ij}$ is direct
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Memory Considerations}
+  Assume \#VIRTUAL to \#OCCUPIED ratio is 10:1
+  \begin{itemize}
+  \item $o(ijab)$: $N^2 N^2/100$ \\
+    V=1000 $80G$ \\
+    V=2000 $1.3T$
+  \item $o(iabc)$: $N^3 N/10$ \\
+    V=500 $50G$ \\
+    V=1000 $800G$
+  \item $o(abc)$: $N^3$ \\
+    V=500 $1G$ \\
+    V=1000 $8G$
+    V=2000 $64G$
+  \item $o(iab)$: $N^3/10$ \\
+    V=1000 $0.8G$ \\
+    V=2000 $6.4G$
+`\item $o(ijkl)$: $N^4/10^4$ \\
+    V=1000 $0.8G$ \\
+    V=2000 $12.8G$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Tricks}
+  \begin{itemize}
+  \item $u(i,j,a,b) = t(a,e,m,j) I(m,b,i,e)$ \\
+    $u(i,j,a,b) = t(m,j,a,e) I(m,b,i,e)$
+  \item $u(i,j,a,b) = t(e,b,m,j) I(m,a,i,e)$ \\
+    $u(i,j,a,b) = t(m,j,e,b) I(m,a,i,e)$ \\
+    $u(j,i,b,a) = t(j,m,b,e) I(m,a,i,e)$
+  \item $u(i,j,a,b)$ and $u(j,i,b,a)$ can be added as is since they
+    will be symmetrized
+  \item Result - all operations are local to a single virtual index, \\
+     memory requirements relative to index are $o(ija)$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{CC implementation}
+  \begin{itemize}
+  \item All $O(4)$  storage, except $O(ijkl)$ is out-of-core
+  \item out-of-core storage can be disk, distributed memory, local memory
+  \item all get/put operations are $O(3)$ and contiguous
+  \item in-core requirements are $O(iab)$ 
+  \item Multithreaded
+  \item GPU/CUBLAS enabled
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Performance}
+  \begin{itemize}
+  \item Memory - improvements by magnitude \\
+    Calculation which takes 24GB distributed and 8GB per node memory
+    only requires ~500MB (according to top)
+  \item CCSD takes longer than DDI - smaller matrix size and disk overhead
+    are most likely the culprits, decrease on the order of 20\%-30\%.
+    \item (T) is faster by \~\%25.
+  \item CUBLAS suffers from memory transfer overhead and smaller matrix
+    sizes, only gives a  moderate improvement
+  \item Plenty of room for improvement and parallel implementations
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Programming }
+  \begin{itemize}
+  \item  HDF5 - data storage model, allowing for multidimensional data
+    sets and attributes \\
+    for example: {\tt read(buffer, start(0,5,7,7),  finish(n,n,9,8)) }\\
+    groups/dataset: {\tt openDataset(``/cc/diis/t2'') } \\
+    surprisingly, writes can be more efficient than reads due to buffering
+  \item Functionality for manipulating tensors: multiplication,
+     permutation, symmetry operations
+  \item C++/C/Fortran integration,
+    for example: {\tt call cchem\_runtime\_set\_double(``/cc/convergence'',
+    1e-10) }
+  \item Optional ublas library usage instead of BLAS for debugging purposes
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Aknowledgements}
+  \begin{itemize}
+  \item Dr. M.S.Gordon
+  \item Dr. R.Olson 
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

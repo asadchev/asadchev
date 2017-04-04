@@ -1,0 +1,4 @@
+#name static_assert
+# key: sa
+# --
+static_assert($1, "$2")

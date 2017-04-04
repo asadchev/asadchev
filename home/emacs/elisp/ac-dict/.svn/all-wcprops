@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ac-dict
+END
+cpp
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ac-dict/cpp
+END
+arduino-mode
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ac-dict/arduino-mode
+END
+boost
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ac-dict/boost
+END
+cuda
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ac-dict/cuda
+END

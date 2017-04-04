@@ -1,0 +1,2950 @@
+# Emacs.dvc
+#       Version 1.0, Date: 10/25/99
+#
+# author: Uday Reddy
+#
+# This file defines voice commands for all Emacs commands listed in
+#       the Emacs manual (roughly 1000 commands).  The file is
+#       uptodate for V 19.34. 
+# Included are commands for general editing, and major modes like RMAIL
+#       and C programming.
+# Status: stable.
+
+MENU "emacs.dvc" {
+        STATE "" {
+
+                LIST "go-to-line" {
+                        "go to line"
+                        "line"
+                }
+
+                COMMAND "<go-to-line>" {
+                        KEYS {
+                                {Alt+g}
+                        }
+                }
+
+                COMMAND "<go-to-line> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + _arg2
+                                SendKeys "{Alt+g}"
+                        }
+                }
+
+                COMMAND "<go-to-line> <0to9> <0to9>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + _arg2 + _arg3
+                                SendKeys "{Alt+g}"
+                        }
+                }
+
+                COMMAND "<go-to-line> <0to9> <0to9> <0to9>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + _arg2 + _arg3 + _arg4
+                                SendKeys "{Alt+g}"
+                        }
+                }
+
+                COMMAND "repeat <1to20>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + _arg1
+                                SendKeys "{Ctrl+x}z"
+                        }
+                }
+                
+                LIST "Backward" {
+                        "Backward"
+                        "Go Back"
+                        "Move Back"
+                        "Previous"
+                        "Go to Previous"
+                }
+                LIST "Forward" {
+                        "Forward"
+                        "Go Forward"
+                        "Move Forward"
+                        "Next"
+                        "Go to Next"
+                }
+
+                LIST "Delete" {
+                        "Delete"
+                        "Delete Next"
+                        "Kill"
+                        "Kill Next"
+                }
+                LIST "DeleteLast" {
+                        "Backward Delete"
+                        "Backward Kill"
+                        "Delete Last"
+                        "Delete Previous"
+                        "Kill Last"
+                        "Kill Previous"
+                }
+                LIST "Capitalize" {
+                        "Cap"
+                        "Cap Next"
+                        "Capitalize"
+                        "Capitalize Next"
+                }
+                LIST "CapitalizeLast" {
+                        "Backward Capitalize"
+                        "Cap Last"
+                        "Cap Previous"
+                        "Capitalize Last"
+                        "Capitalize Previous"
+                }
+                LIST "UpCase" {
+                        "All Caps"
+                        "All Caps Next"
+                        "Up Case"
+                        "Up Case Next"
+                }
+                LIST "UpCaseLast" {
+                        "All Caps Last"
+                        "All Caps Previous"
+                        "Backward up Case"
+                        "Up Case Last"
+                        "Up Case Previous"
+                }
+                LIST "DownCase" {
+                        "Down Case"
+                        "Down Case Next"
+                        "No Caps"
+                        "No Caps Next"
+                }
+                LIST "DownCaseLast" {
+                        "Backward down Case"
+                        "Down Case Last"
+                        "Down Case Previous"
+                        "No Caps Last"
+                        "No Caps Previous"
+                }
+                LIST "BeginningOf" {
+                        "Backward"
+                        "Beginning of"
+                        "Go Back 1"
+                        "Go to Beginning of"
+                        "Move Back 1"
+                        "Move to Beginning of"
+                }
+                LIST "EndOf" {
+                        "End of"
+                        "Forward"
+                        "Go Forward 1"
+                        "Go to End of"
+                        "Move Forward 1"
+                        "Move to End of"
+                }
+                LIST "Defun" {
+                        "Defun"
+                        "Function"
+                }
+                LIST "Defuns" {
+                        "Defuns"
+                        "Functions"
+                }
+                LIST "Reverse" {
+                        "Backward"
+                        "Reverse"
+                }
+                LIST "Mark" {
+                        "Mark"
+                        "Mark Next"
+                        "Select"
+                        "Select Next"
+                }
+                LIST "MarkLast" {
+                        "Backward Mark"
+                        "Backward Select"
+                        "Mark Last"
+                        "Mark Previous"
+                        "Select Last"
+                        "Select Previous"
+                }
+                LIST "Region" {
+                        "Region"
+                        "Selection"
+                        "That"
+                }
+                LIST "Expression" {
+                        "Expression"
+                        "Sexp"
+                }
+                LIST "Expressions" {
+                        "Expressions"
+                        "Sexps"
+                }
+                LIST "Spell" {
+                        "Ispell"
+                        "Spell"
+                }
+                LIST "DeleteFlag" {
+                        "Delete"
+                        "Flag"
+                }
+                LIST "Evaluate" {
+                        "Eval"
+                        "Evaluate"
+                }
+                LIST "Describe" {
+                        "Describe"
+                        "Help"
+                }
+
+                # asadchev
+                
+                COMMAND "<emacs-commands>" {
+                        SCRIPT {
+                                x1 = ""
+                                
+                                SendKeys "{Alt+x}" + x1 + _arg1 + "{Enter}"
+                        }
+                }
+
+                COMMAND "<emacs-commands> <0to9>" {
+                        SCRIPT {
+                                x1 = ""
+                                SendKeys "{Ctrl+u}" + _arg2 + "{Alt+x}" + x1 + _arg1 + "{Enter}"
+                        }
+                }
+
+                
+                LIST "doxymacs-commands" {
+                        "blank multiline comment"
+                        "blank singleline comment"
+                        "file comment"
+                        "function comment"
+                        "grouping comments"
+                        "member comment"
+                }
+                COMMAND "<doxymacs-commands>" {
+                        SCRIPT {
+                                SendKeys "{Alt+x}doxymacs-insert-" + _arg1 + "{Enter}"
+                        }
+                }
+
+                LIST "emacs-commands" {
+                        "doxymacs find next func"
+                        "doxymacs font lock"
+                        "doxymacs insert blank multiline comment"
+                        "doxymacs insert blank singleline comment"
+                        "doxymacs insert file comment"
+                        "doxymacs insert function comment"
+                        "doxymacs insert grouping comments"
+                        "doxymacs insert member comment"
+                        "doxymacs lookup"
+                        "doxymacs mode"
+                        "doxymacs rescan tags"
+                        "doxymacs version"
+
+                        "hippie expand"
+                        "join line"
+
+                        "eval buffer"
+                        "eval expression"
+                        "load library"
+
+                        "kill whole line"
+                        "kill this buffer"
+
+                        "recover this file"
+
+                        "replace buffer in windows"
+                        "replace rectangle"
+
+                        "server edit"
+
+                        "shell command"
+                        "shell command on region"
+                        "shell script mode"
+
+                        "scroll up"
+                        "scroll down"
+
+                        "linum mode"
+                        "snippet mode"
+                }
+
+                COMMAND "<Evaluate> <Defun>" {
+                        KEYS {
+                                {Esc}{Ctrl+x}
+                        }
+                }
+                
+                COMMAND "<Backward> <1to100> <Defuns>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+a}"
+                        }
+                }
+                COMMAND "<Backward> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+b}"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Characters" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+b}"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Lines" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+p}"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Lists" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+p}"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Pages" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+x}["
+                        }
+                }
+                COMMAND "<Backward> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}a"
+                        }
+                }
+                COMMAND "<Backward> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}b"
+                        }
+                }
+
+                COMMAND "<Backward> <Defun>" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+a}"
+                        }
+                }
+                COMMAND "<Backward> <Expression>" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+b}"
+                        }
+                }
+                COMMAND "<Backward> Line" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+p}"
+                        }
+                }
+                COMMAND "<Backward> Page" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}["
+                        }
+                }
+                COMMAND "<Backward> Paragraph" {
+                        SCRIPT {
+                                SendKeys "{Esc}{"
+                        }
+                }
+                COMMAND "<Backward> Sentence" {
+                        SCRIPT {
+                                SendKeys "{Esc}a"
+                        }
+                }
+                COMMAND "<Backward> Word" {
+                        SCRIPT {
+                                SendKeys "{Esc}b"
+                        }
+                }
+                COMMAND "<Backward> Character" {
+                        SCRIPT {
+                                SendSystemKeys "{ExtLeft}"
+                        }
+                }
+                COMMAND "<Backward> List" {
+                        KEYS {
+                                {Esc}{Ctrl+p}
+                        }
+                }
+
+                COMMAND "<BeginningOf> <Defun>" {
+                        KEYS {
+                                {Esc}{Ctrl+a}
+                        }
+                }
+                COMMAND "<BeginningOf> <Expression>" {
+                        KEYS {
+                                {Esc}{Ctrl+b}
+                        }
+                }
+                COMMAND "<BeginningOf> Line" {
+                        KEYS {
+                                {Ctrl+a}
+                        }
+                }
+                COMMAND "<BeginningOf> Page" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}["
+                        }
+                }
+                COMMAND "<BeginningOf> Paragraph" {
+                        SCRIPT {
+                                SendSystemKeys "{Ctrl+ExtUp}"
+                        }
+                }
+                COMMAND "<BeginningOf> Sentence" {
+                        KEYS {
+                                {Esc}a
+                        }
+                }
+                COMMAND "<BeginningOf> Word" {
+                        KEYS {
+                                {Esc}b
+                        }
+                }
+                COMMAND "<Capitalize> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}c"
+                        }
+                }
+                COMMAND "<Capitalize> Word" {
+                        KEYS {
+                                {Esc}c
+                        }
+                }
+                COMMAND "<CapitalizeLast> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}c"
+                        }
+                }
+                COMMAND "<CapitalizeLast> Word" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}c
+                        }
+                }
+                COMMAND "<Delete> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+k}"
+                        }
+                }
+                COMMAND "<Delete> <1to100> Characters" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+d}"
+                        }
+                }
+                COMMAND "<Delete> <1to100> Lines" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+k}"
+                        }
+                }
+                COMMAND "<Delete> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + _arg2 + "{Esc}xkill-paragraph{Enter}"
+                        }
+                }
+                COMMAND "<Delete> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}k"
+                        }
+                }
+                COMMAND "<Delete> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}d"
+                        }
+                }
+                COMMAND "<Delete> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+d}"
+                        }
+                }
+                COMMAND "<Delete> <Expression>" {
+                        KEYS {
+                                {Esc}{Ctrl+k}
+                        }
+                }
+                COMMAND "<Delete> Character" {
+                        KEYS {
+                                {Ctrl+d}
+                        }
+                }
+                COMMAND "<Delete> Comment" {
+                        KEYS {
+                                {Ctrl+u}-{Ctrl+x};
+                        }
+                }
+                COMMAND "<Delete> Current Line" {
+                        KEYS {
+                                {Ctrl+a}{Esc}1{Ctrl+k}
+                        }
+                }
+                COMMAND "<Delete> Horizontal Space" {
+                        KEYS {
+                                {Esc}\\
+                        }
+                }
+                COMMAND "<Delete> Indentation" {
+                        KEYS {
+                                {Esc}^
+                        }
+                }
+
+                COMMAND "<Delete> Line" {
+                        KEYS {
+                                {Ctrl+k}
+                        }
+                }
+                COMMAND "<Delete> Other Windows" {
+                        KEYS {
+                                {Ctrl+x}1
+                        }
+                }
+                COMMAND "<Delete> Paragraph" {
+                        KEYS {
+                                {Esc}xkill-paragraph{Enter}
+                        }
+                }
+                COMMAND "<Delete> Rectangle" {
+                        KEYS {
+                                {Ctrl+x}rd
+                        }
+                }
+                COMMAND "<Delete> <Region>" {
+                        KEYS {
+                                {Ctrl+w}
+                        }
+                }
+                COMMAND "<Delete> Sentence" {
+                        KEYS {
+                                {Esc}k
+                        }
+                }
+                COMMAND "<Delete> Window" {
+                        KEYS {
+                                {Ctrl+x}0
+                        }
+                }
+                COMMAND "<Delete> Word" {
+                        KEYS {
+                                {Esc}d
+                        }
+                }
+                COMMAND "<Delete> Frame" {
+                        KEYS {
+                                {Ctrl+x}50
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}{Ctrl+k}"
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> Characters" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Backspace}"
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> Lines" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Ctrl+k}"
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}xkill-paragraph{Enter}"
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+x}{Del}"
+                        }
+                }
+                COMMAND "<DeleteLast> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Backspace}"
+                        }
+                }
+                COMMAND "<DeleteLast> <Expression>" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}{Ctrl+k}
+                        }
+                }
+                COMMAND "<DeleteLast> Character" {
+                        KEYS {
+                                {Backspace}
+                        }
+                }
+                COMMAND "<DeleteLast> Line" {
+                        KEYS {
+                                {Ctrl+u}-1{Ctrl+k}
+                        }
+                }
+                COMMAND "<DeleteLast> Paragraph" {
+                        KEYS {
+                                {Ctrl+u}-1{Right+x}kill-paragraph{Enter}
+                        }
+                }
+                COMMAND "<DeleteLast> Sentence" {
+                        KEYS {
+                                {Ctrl+x}{Backspace}
+                        }
+                }
+                COMMAND "<DeleteLast> Word" {
+                        KEYS {
+                                {Esc}{Backspace}
+                        }
+                }
+                COMMAND "<DownCase> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}l"
+                        }
+                }
+                COMMAND "<DownCase> <Region>" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+l}
+                        }
+                }
+                COMMAND "<DownCase> Word" {
+                        KEYS {
+                                {Esc}l
+                        }
+                }
+                COMMAND "<DownCaseLast> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}l"
+                        }
+                }
+                COMMAND "<DownCaseLast> Word" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}l
+                        }
+                }
+                COMMAND "<EndOf> <Defun>" {
+                        KEYS {
+                                {Esc}{Ctrl+e}
+                        }
+                }
+                COMMAND "<EndOf> <Expression>" {
+                        KEYS {
+                                {Esc}{Ctrl+f}
+                        }
+                }
+                COMMAND "<EndOf> Buffer" {
+                        KEYS {
+                                {Esc}>
+                        }
+                }
+
+                COMMAND "<EndOf> other" {
+                        KEYS {
+                                {Esc}xend-of-buffer-other-window{Enter}
+                        }
+                }
+                COMMAND "<EndOf> Line" {
+                        KEYS {
+                                {Ctrl+e}
+                        }
+                }
+                COMMAND "<EndOf> Page" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}]"
+                        }
+                }
+                COMMAND "<EndOf> Paragraph" {
+                        SCRIPT {
+                                SendSystemKeys "{Ctrl+ExtDown}"
+                        }
+                }
+                COMMAND "<EndOf> Sentence" {
+                        KEYS {
+                                {Esc}e
+                        }
+                }
+                COMMAND "<EndOf> Word" {
+                        KEYS {
+                                {Esc}f
+                        }
+                }
+                COMMAND "<Evaluate> <Expression>" {
+                        KEYS {
+                                {Esc}{Shift+;}
+                        }
+                }
+
+                COMMAND "<Forward> <1to100> <Defuns>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+e}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+f}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Characters" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+f}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Lines" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+n}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Lists" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+n}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Pages" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+x}]"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}}"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}e"
+                        }
+                }
+                COMMAND "<Forward> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}f"
+                        }
+                }
+
+                COMMAND "<Forward> <Defun>" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+e}"
+                        }
+                }
+                COMMAND "<Forward> <Expression>" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+f}"
+                        }
+                }
+                COMMAND "<Forward> Line" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+n}"
+                        }
+                }
+                COMMAND "<Forward> Page" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}]"
+                        }
+                }
+                COMMAND "<Forward> Paragraph" {
+                        SCRIPT {
+                                SendKeys "{Esc}}"
+                        }
+                }
+                COMMAND "<Forward> Sentence" {
+                        SCRIPT {
+                                SendKeys "{Esc}e"
+                        }
+                }
+                COMMAND "<Forward> Word" {
+                        SCRIPT {
+                                SendKeys "{Esc}f"
+                        }
+                }
+                COMMAND "<Forward> Character" {
+                        KEYS {
+                                {ExtRight}
+                        }
+                }
+                COMMAND "<Forward> List" {
+                        KEYS {
+                                {Esc}{Ctrl+n}
+                        }
+                }
+
+                COMMAND "<Mark> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}{Ctrl+@}"
+                        }
+                }
+                COMMAND "<Mark> <1to100> Pages" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Ctrl+x}{Ctrl+p}"
+                        }
+                }
+                COMMAND "<Mark> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+Space}"
+                                SendKeys "{Ctrl+u}" + Str$(_arg2)
+                                SendSystemKeys "{Ctrl+ExtDown}"
+                                SendKeys "{Ctrl+x}{Ctrl+x}"
+                        }
+                }
+                COMMAND "<Mark> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}xmark-end-of-sentence{Enter}"
+                        }
+                }
+                COMMAND "<Mark> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}@"
+                        }
+                }
+                COMMAND "<Mark> <Defun>" {
+                        KEYS {
+                                {Esc}{Ctrl+h}
+                        }
+                }
+                COMMAND "<Mark> <Expression>" {
+                        KEYS {
+                                {Esc}{Ctrl+@}
+                        }
+                }
+                COMMAND "<Mark> Buffer" {
+                        KEYS {
+                                {Ctrl+x}h
+                        }
+                }
+                COMMAND "<Mark> Line" {
+                        KEYS {
+                                {Ctrl+e}{Ctrl+Space}{Ctrl+a}
+                        }
+                }
+                COMMAND "<Mark> Page" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+p}
+                        }
+                }
+                COMMAND "<Mark> Paragraph" {
+                        KEYS {
+                                {Esc}h
+                        }
+                }
+                COMMAND "<Mark> Sentence" {
+                        KEYS {
+                                {Esc}xmark-end-of-sentence{Enter}
+                        }
+                }
+                COMMAND "<Mark> Whole Buffer" {
+                        KEYS {
+                                {Ctrl+x}h
+                        }
+                }
+                COMMAND "<Mark> Word" {
+                        KEYS {
+                                {Esc}@
+                        }
+                }
+                COMMAND "<MarkLast> <1to100> <Expressions>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}{Ctrl+@}"
+                        }
+                }
+                COMMAND "<MarkLast> <1to100> Pages" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Ctrl+x}{Ctrl+p}"
+                        }
+                }
+                COMMAND "<MarkLast> <1to100> Paragraphs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+Space}"
+                                SendKeys "{Ctrl+u}" + Str$(_arg2)
+                                SendSystemKeys "{Ctrl+ExtUp}"
+                                SendKeys "{Ctrl+x}{Ctrl+x}"
+                        }
+                }
+                COMMAND "<MarkLast> <1to100> Sentences" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}xmark-end-of-sentence{Enter}"
+                        }
+                }
+                COMMAND "<MarkLast> <1to100> Words" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}@"
+                        }
+                }
+                COMMAND "<MarkLast> <Expression>" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}{Ctrl+@}
+                        }
+                }
+                COMMAND "<MarkLast> Page" {
+                        KEYS {
+                                {Ctrl+u}-1{Ctrl+x}{Ctrl+p}
+                        }
+                }
+                COMMAND "<MarkLast> Sentence" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}xmark-end-of-sentence{Enter}
+                        }
+                }
+                COMMAND "<MarkLast> Word" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}@
+                        }
+                }
+                COMMAND "<UpCase> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg2) + "{Esc}u"
+                        }
+                }
+                COMMAND "<UpCase> <Region>" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+u}
+                        }
+                }
+                COMMAND "<UpCase> Word" {
+                        KEYS {
+                                {Esc}u
+                        }
+                }
+                
+                COMMAND "<UpCaseLast> <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg2) + "{Esc}u"
+                        }
+                }
+                COMMAND "<UpCaseLast> Word" {
+                        KEYS {
+                                {Ctrl+u}-1{Esc}u
+                        }
+                }
+
+                COMMAND "Center at Line <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}"+Str$(_arg1)+"{Ctrl+l}"
+                        }
+                }
+
+                COMMAND "Control Meta <Character>" {
+                        SCRIPT {
+                                SendKeys "{Esc}" + "{Ctrl+"+_arg1+"}"
+                        }
+                }
+                COMMAND "Indent <Defun>" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+q}
+                        }
+                }
+                COMMAND "Indent <Expression>" {
+                        KEYS {
+                                {Esc}{Ctrl+q}
+                        }
+                }
+                COMMAND "Indent <Region> by <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Esc}{Ctrl+\}"
+                        }
+                }
+                COMMAND "Indent Rigidly by <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Ctrl+u}{Tab}"
+                        }
+                }
+                COMMAND "Meta <Character>" {
+                        SCRIPT {
+                                SendKeys "{Esc}" + "{"+_arg1+"}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "Move up <1to100> Lines" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Ctrl+p}"
+                        }
+                }
+                COMMAND "Next Error <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Ctrl+x}`"
+                        }
+                }
+                COMMAND "Numeric <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1)
+                        }
+                }
+                COMMAND "Numeric Minus <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}-" + Str$(_arg1)
+                        }
+                }
+                COMMAND "Scroll Left <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}"+ Str$(_arg1) +"{Ctrl+x}<"
+                        }
+                }
+                COMMAND "Scroll Right <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}"+ Str$(_arg1) +"{Ctrl+x}>"
+                        }
+                }
+                COMMAND "Transpose <Expressions>" {
+                        KEYS {
+                                {Esc}{Ctrl+t}
+                        }
+                }
+                COMMAND "Abbrev Completion" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+/}"
+                        }
+                }
+                COMMAND "Abbrev Expand" {
+                        SCRIPT {
+                                SendKeys "{Esc}/"
+                        }
+                }
+                COMMAND "Abbrev Mode" {
+                        KEYS {
+                                {Esc}xabbrev-mode{Enter}
+                        }
+                }
+                COMMAND "Abbrev Prefix Mark" {
+                        KEYS {
+                                {Esc}-
+                        }
+                }
+                COMMAND "Abort Recursive Edit" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+]}"
+                        }
+                }
+                COMMAND "Add Change Log Entry Other Window" {
+                        KEYS {
+                                {Ctrl+x}4a
+                        }
+                }
+                COMMAND "Add Global Abbrev" {
+                        KEYS {
+                                {Ctrl+x}ag
+                        }
+                }
+                COMMAND "Add Mode Abbrev" {
+                        KEYS {
+                                {Ctrl+x}al
+                        }
+                }
+                COMMAND "Append Next Kill" {
+                        KEYS {
+                                {Esc}{Ctrl+w}
+                        }
+                }
+                COMMAND "Append to Buffer" {
+                        KEYS {
+                                {Esc}xappend-to-buffer{Enter}
+                        }
+                }
+                COMMAND "Append to File" {
+                        KEYS {
+                                {Esc}xappend-to-file{Enter}
+                        }
+                }
+                COMMAND "Apropos Command" {
+                        KEYS {
+                                {Ctrl+h}a
+                        }
+                }
+                COMMAND "Auto Compression Mode" {
+                        KEYS {
+                                {Esc}xauto-compression-mode{Enter}
+                        }
+                }
+                COMMAND "Auto Save Mode" {
+                        KEYS {
+                                {Esc}{x}auto-save-mode{Enter}
+                        }
+                }
+                COMMAND "Do Auto Save" {
+                        KEYS {
+                                {Esc}{x}do-auto-save{Enter}
+                        }
+                }
+                COMMAND "Set Visited File Name" {
+                        KEYS {
+                                {Esc}{x}set-visited-file-name{Enter}
+                        }
+                }
+                COMMAND "Not Modified" {
+                        KEYS {
+                                {Esc}~
+                        }
+                }
+                COMMAND "Back to Indentation" {
+                        KEYS {
+                                {Esc}m
+                        }
+                }
+                COMMAND "Backslash <Region>" {
+                        KEYS {
+                                "{Ctrl+c}{Ctrl+\\}"
+                        }
+                }
+                COMMAND "Backspace" {
+                        KEYS {
+                                {BackSpace}
+                        }
+                }
+                COMMAND "Backward Up List" {
+                        KEYS {
+                                {Esc}{Ctrl+u}
+                        }
+                }
+                COMMAND "Up List" {
+                        KEYS {
+                                {Esc}xup-list{Enter}
+                        }
+                }
+                COMMAND "<BeginningOf> Buffer" {
+                        KEYS {
+                                {Esc}<
+                        }
+                }
+                COMMAND "Bookmark Jump" {
+                        KEYS {
+                                {Ctrl+x}rb
+                        }
+                }
+                COMMAND "Bookmark Save" {
+                        KEYS {
+                                {Esc}xbookmark-save{Enter}
+                        }
+                }
+                COMMAND "Bookmark Set" {
+                        KEYS {
+                                {Ctrl+x}rm
+                        }
+                }
+                COMMAND "Buffer Menu" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}{Ctrl+b}"
+                        }
+                }
+                COMMAND "Bury Buffer" {
+                        KEYS {
+                                {Esc}xbury-buffer{Enter}
+                        }
+                }
+                COMMAND "Byte Compile Directory" {
+                        KEYS {
+                                {Right+x}byte-compile-directory{Enter}
+                        }
+                }
+                COMMAND "Byte Compile File" {
+                        KEYS {
+                                {Esc}xbyte-compile-file{Enter}
+                        }
+                }
+                COMMAND "Cancel Goal Column" {
+                        KEYS {
+                                {Ctrl+u}{Ctrl+x}{Ctrl+n}
+                        }
+                }
+                COMMAND "Cancel" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+g}"
+                        }
+                }
+                COMMAND "Center Line" {
+                        KEYS {
+                                {Esc}s
+                        }
+                }
+                COMMAND "Recenter" {
+                        KEYS {
+                                {Ctrl+l}
+                        }
+                }
+                COMMAND "Clear Rectangle" {
+                        KEYS {
+                                {Esc}xclear-rectangle{Enter}
+                        }
+                }
+                COMMAND "Comment <Region>" {
+                        KEYS {
+                                {Esc}xcomment-region{Enter}
+                        }
+                }
+                COMMAND "Uncomment <Region>" {
+                        KEYS {
+                                {Ctrl+u}{Esc}xcomment-region{Enter}
+                        }
+                }
+                COMMAND "Compare Windows" {
+                        KEYS {
+                                {Esc}xcompare-windows{Enter}
+                        }
+                }
+                COMMAND "Compile" {
+                        KEYS {
+                                {Esc}xcompile{Enter}
+                        }
+                }
+                COMMAND "Complete Tag" {
+                        KEYS {
+                                {Esc}{Ctrl+i}
+                        }
+                }
+                COMMAND "Complete Word" {
+                        KEYS {
+                                {Esc}{Ctrl+i}
+                        }
+                }
+                COMMAND "Continue Replace" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+c}"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Query Loop","EMACS",1
+                        }
+                }
+                COMMAND "Copy File" {
+                        KEYS {
+                                {Esc}xcopy-file{Enter}
+                        }
+                }
+                COMMAND "Copy <Region>" {
+                        KEYS {
+                                {Esc}w
+                        }
+                }
+                COMMAND "Copy to Buffer" {
+                        KEYS {
+                                {Esc}xcopy-to-buffer{Enter}
+                        }
+                }
+                COMMAND "Copy to Register" {
+                        KEYS {
+                                {Ctrl+x}rs
+                        }
+                }
+                COMMAND "Count Lines page" {
+                        KEYS {
+                                {Ctrl+x}l
+                        }
+                }
+                COMMAND "Count Lines <Region>" {
+                        KEYS {
+                                {Esc}=
+                        }
+                }
+                COMMAND "Count Matches" {
+                        KEYS {
+                                {Esc}xcount-matches{Enter}
+                        }
+                }
+                COMMAND "Define Abbrevs" {
+                        KEYS {
+                                {Esc}xdefine-abbrevs{Enter}
+                        }
+                }
+                COMMAND "Delete Blank Lines" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+o}
+                        }
+                }
+                COMMAND "Delete File" {
+                        KEYS {
+                                {Esc}xdelete-file{Enter}
+                        }
+                }
+
+                COMMAND "find function" {
+                        KEYS {
+                                {Esc}xfind-function{Enter}
+                        }
+                }
+                
+                COMMAND "<Describe> Bindings" {
+                        KEYS {
+                                {Ctrl+h}b
+                        }
+                }
+                COMMAND "<Describe> Function" {
+                        KEYS {
+                                {Ctrl+h}f
+                        }
+                }
+                COMMAND "<Describe> Key Briefly" {
+                        KEYS {
+                                {Ctrl+h}c
+                        }
+                }
+                COMMAND "<Describe> Key" {
+                        KEYS {
+                                {Ctrl+h}k
+                        }
+                }
+                COMMAND "<Describe> Mode" {
+                        KEYS {
+                                {Ctrl+h}m
+                        }
+                }
+                COMMAND "<Describe> Syntax" {
+                        KEYS {
+                                {Ctrl+h}s
+                        }
+                }
+                COMMAND "<Describe> Variable" {
+                        KEYS {
+                                {Ctrl+h}v
+                        }
+                }
+                COMMAND "Desktop Read" {
+                        KEYS {
+                                {Esc}xdesktop-read{Enter}
+                        }
+                }
+                COMMAND "Desktop Save" {
+                        KEYS {
+                                {Esc}xdesktop-save{Enter}
+                        }
+                }
+                COMMAND "Diff Backup" {
+                        KEYS {
+                                {Esc}xdiff-backup{Enter}
+                        }
+                }
+                COMMAND "Diff Files" {
+                        KEYS {
+                                {Esc}xdiff{Enter}
+                        }
+                }
+                COMMAND "Dired Other Window" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}4d"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Dired","EMACS",1
+                        }
+                }
+                COMMAND "Run Dired" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}d"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Dired","EMACS",1
+                        }
+                }
+                COMMAND "Display Buffer" {
+                        KEYS {
+                                {Ctrl+x}4{Ctrl+o}
+                        }
+                }
+                COMMAND "Down List" {
+                        KEYS {
+                                {Esc}{Ctrl+d}
+                        }
+                }
+                COMMAND "Edit Abbrevs" {
+                        KEYS {
+                                {Esc}xedit-abbrevs{Enter}
+                        }
+                }
+                COMMAND "Edit Picture" {
+                        KEYS {
+                                {Esc}xedit-picture{Enter}
+                        }
+                }
+                COMMAND "Edit Tab Stops" {
+                        KEYS {
+                                {Esc}xedit-tab-stops{Enter}
+                        }
+                }
+                COMMAND "Emerge Buffers with Ancestor" {
+                        KEYS {
+                                {Esc}xemerge-buffers-with-ancestor{Enter}
+                        }
+                }
+                COMMAND "Emerge Buffers" {
+                        KEYS {
+                                {Esc}xemerge-buffers{Enter}
+                        }
+                }
+                COMMAND "Emerge Files with Ancestor" {
+                        KEYS {
+                                {Esc}xemerge-files-with-ancestor{Enter}
+                        }
+                }
+                COMMAND "Emerge Files" {
+                        KEYS {
+                                {Esc}xemerge-files{Enter}
+                        }
+                }
+                COMMAND "enlarge window horizontally" {
+                        KEYS {
+                                "{Ctrl+x}}"
+                        }
+                }
+                COMMAND "enlarge window" {
+                        KEYS {
+                                {Ctrl+x}^
+                        }
+                }
+                COMMAND "Enriched Mode" {
+                        KEYS {
+                                {Esc}xenriched-mode{Enter}
+                        }
+                }
+                COMMAND "Exchange Mark" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+x}
+                        }
+                }
+                COMMAND "kill emacs" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}{Ctrl+c}"
+                        }
+                }
+                COMMAND "Exit Recursive Edit" {
+                        KEYS {
+                                {Esc}{Ctrl+c}
+                        }
+                }
+                COMMAND "Expand Abbrev" {
+                        KEYS {
+                                {Ctrl+x}ae
+                        }
+                }
+                COMMAND "Expand Region Abbrevs" {
+                        KEYS {
+                                {Esc}xexpand-region-abbrevs{Enter}
+                        }
+                }
+
+                
+
+                 LIST "FindOpen" {
+                        "Find"
+                        "Open"
+                }
+
+                COMMAND "<FindOpen> Alternate File" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+v}
+                        }
+                }
+                COMMAND "<FindOpen> File Other Frame" {
+                        KEYS {
+                                {Ctrl+x}5{Ctrl+f}
+                        }
+                }
+                COMMAND "<FindOpen> File Other Window" {
+                        KEYS {
+                                {Ctrl+x}4{Ctrl+f}
+                        }
+                }
+                COMMAND "<FindOpen> File" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}{Ctrl+f}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "Find Grep Dired" {
+                        SCRIPT {
+                                SendKeys "{Esc}xfind-grep-dired{Enter}"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Dired","EMACS",1
+                        }
+                }
+                COMMAND "Find Name Dired" {
+                        SCRIPT {
+                                SendKeys "{Esc}xfind-name-dired{Enter}"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Dired","EMACS",1
+                        }
+                }
+                COMMAND "<ReadFile>" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+r}
+                        }
+                }
+                COMMAND "<ReadFile> Other Frame" {
+                        KEYS {
+                                {Ctrl+x}5r
+                        }
+                }
+                LIST "ReadFile" {
+                        "Read File"
+                        "Find File Read Only"
+                        "Open File Read Only"
+                }
+                COMMAND "Find Next Tag" {
+                        KEYS {
+                                {Ctrl+u}{Esc}.
+                        }
+                }
+                COMMAND "Find Tag Other Window" {
+                        KEYS {
+                                {Ctrl+x}4.
+                        }
+                }
+                COMMAND "Find Tag Other Frame" {
+                        KEYS {
+                                {Ctrl+x}5.
+                        }
+                }
+                COMMAND "Find Tag" {
+                        KEYS {
+                                {Esc}.
+                        }
+                }
+                COMMAND "Finder by Keyword" {
+                        KEYS {
+                                {Ctrl+h}p
+                        }
+                }
+                COMMAND "First Error" {
+                        KEYS {
+                                {Ctrl+x}`
+                        }
+                }
+                COMMAND "First File" {
+                        KEYS {
+                                {Ctrl+u}{Esc}xnext-file{Enter}
+                        }
+                }
+                COMMAND "Flush Lines" {
+                        KEYS {
+                                {Esc}xflush-lines{Enter}
+                        }
+                }
+                COMMAND "Font Lock Mode" {
+                        KEYS {
+                                {Esc}xfont-lock-mode{Enter}
+                        }
+                }
+                COMMAND "Font Lock Fontify Buffer" {
+                        KEYS {
+                                {Esc}{g}{Esc}{g}
+                        }
+                }
+                COMMAND "Font Lock Fontify Block" {
+                        KEYS {
+                                {Esc}{Ctrl+g}
+                        }
+                }
+                COMMAND "Make Frame" {
+                        KEYS {
+                                {Ctrl+x}52
+                        }
+                }
+
+                COMMAND "run grep" {
+                        KEYS {
+                                {Esc}xgrep{Enter}
+                        }
+                }
+                
+                COMMAND "Go Replace" {
+                        SCRIPT {
+                                SendKeys "{Enter}"
+                                'SetHomeGroup "EMACS","Emacs", "Emacs Query Loop", "EMACS"
+                        }
+                }
+                COMMAND "Go to Character" {
+                        KEYS {
+                                {Esc}xgoto-char{Enter}
+                        }
+                }
+
+                COMMAND "Indent for Comment" {
+                        KEYS {
+                                {Esc};
+                        }
+                }
+                COMMAND "Indent New Comment Line" {
+                        KEYS {
+                                {Esc}{Ctrl+j}
+                        }
+                }
+                COMMAND "Indent <Region>" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+\}"
+                        }
+                }
+                COMMAND "Indent Relative" {
+                        KEYS {
+                                {Esc}xindent-relative{Enter}
+                        }
+                }
+                COMMAND "Indent Rigidly" {
+                        KEYS {
+                                {Ctrl+x}{Tab}
+                        }
+                }
+                COMMAND "Indented Text Mode" {
+                        KEYS {
+                                {Esc}xindented-text-mode{Enter}
+                        }
+                }
+                COMMAND "Info Emacs Command" {
+                        KEYS {
+                                {Ctrl+h}{Ctrl+f}
+                        }
+                }
+                COMMAND "Info Emacs Key" {
+                        KEYS {
+                                {Ctrl+h}{Ctrl+k}
+                        }
+                }
+                COMMAND "Insert Abbrevs" {
+                        KEYS {
+                                {Esc}xinsert-abbrevs{Enter}
+                        }
+                }
+                COMMAND "Insert Buffer" {
+                        KEYS {
+                                {Esc}xinsert-buffer{Enter}
+                        }
+                }
+                COMMAND "Insert File" {
+                        KEYS {
+                                {Esc}xinsert-file{Enter}
+                        }
+                }
+                COMMAND "Insert Parentheses" {
+                        KEYS {
+                                {Esc}(
+                        }
+                }
+                COMMAND "Insert Register" {
+                        KEYS {
+                                {Ctrl+x}ri
+                        }
+                }
+                COMMAND "Inverse Add Global Abbrev" {
+                        KEYS {
+                                {Ctrl+x}aig
+                        }
+                }
+                COMMAND "Inverse Add Mode Abbrev" {
+                        KEYS {
+                                {Ctrl+x}ail
+                        }
+                }
+                
+                COMMAND "search backward regexp" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+r}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "search backward" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+r}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "search backward again" {
+                        KEYS {
+                                {Ctrl+r}{Ctrl+r}
+                        }
+                }
+                COMMAND "search forward regexp" {
+                        SCRIPT {
+                                SendKeys "{Esc}{Ctrl+s}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "search forward" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+s}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "search forward again" {
+                        KEYS {
+                                {Ctrl+s}{Ctrl+s}
+                        }
+                }
+                COMMAND "search again" {
+                        KEYS {
+                                {Ctrl+s}{Esc}g
+                        }
+                }
+                
+                COMMAND "Jump to Mark" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}{Ctrl+@}"
+                        }
+                }
+                COMMAND "Jump to Register" {
+                        KEYS {
+                                {Ctrl+x}rj
+                        }
+                }
+                COMMAND "meta space" {
+                        KEYS {
+                                {Esc}{Space}
+                        }
+                }
+                COMMAND "Just One Window" {
+                        KEYS {
+                                {Ctrl+x}1
+                        }
+                }
+                COMMAND "Keep Lines" {
+                        KEYS {
+                                {Esc}xkeep-lines{Enter}
+                        }
+                }
+                COMMAND "Keyboard Quit" {
+                        KEYS {
+                                {Ctrl+g}
+                        }
+                }
+                COMMAND "Kill All Abbrevs" {
+                        KEYS {
+                                {Esc}xkill-all-abbrevs{Enter}
+                        }
+                }
+                COMMAND "Kill Buffer" {
+                        KEYS {
+                                {Ctrl+x}k
+                        }
+                }
+                COMMAND "Kill This Buffer" {
+                        KEYS {
+                                {Esc}{x}kill-this-buffer{Enter}
+                        }
+                }
+                COMMAND "Kill Compilation" {
+                        KEYS {
+                                {Esc}xkill-compilation{Enter}
+                        }
+                }
+                COMMAND "Kill Emacs" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+c}
+                        }
+                }
+                COMMAND "Kill Grep" {
+                        KEYS {
+                                {Esc}xkill-grep{Enter}
+                        }
+                }
+                COMMAND "Kill Some Buffers" {
+                        KEYS {
+                                {Esc}xkill-some-buffers{Enter}
+                        }
+                }
+                COMMAND "Line Feed" {
+                        SCRIPT {
+                                SendKeys  "{Ctrl+j}"
+                                HeardWord "\No-Space"
+                        }
+                }
+                COMMAND "Line Number Mode" {
+                        KEYS {
+                                {Esc}xline-number-mode{Enter}
+                        }
+                }
+                COMMAND "List Abbrevs" {
+                        KEYS {
+                                {Esc}xlist-abbrevs{Enter}
+                        }
+                }
+                COMMAND "List Bookmarks" {
+                        KEYS {
+                                {Ctrl+x}rl
+                        }
+                }
+                COMMAND "List Buffers" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+b}
+                        }
+                }
+                COMMAND "List Colors Display" {
+                        KEYS {
+                                {Esc}xlist-colors-display{Enter}
+                        }
+                }
+                COMMAND "List Command History" {
+                        KEYS {
+                                {Esc}xlist-command-history{Enter}
+                        }
+                }
+                COMMAND "List Directory" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+d}
+                        }
+                }
+                COMMAND "List Faces Display" {
+                        KEYS {
+                                {Esc}xlist-faces-display{Enter}
+                        }
+                }
+                COMMAND "List Faces" {
+                        KEYS {
+                                {Esc}xlist-faces{Enter}
+                        }
+                }
+                COMMAND "List Matching Lines" {
+                        KEYS {
+                                {Esc}xlist-matching-lines{Enter}
+                        }
+                }
+                COMMAND "List Tags" {
+                        KEYS {
+                                {Esc}xlist-tags{Enter}
+                        }
+                }
+                COMMAND "Load File" {
+                        KEYS {
+                                {Esc}xload-file{Enter}
+                        }
+                }
+                COMMAND "Load Library" {
+                        KEYS {
+                                {Esc}xload-library{Enter}
+                        }
+                }
+                COMMAND "Make Directory" {
+                        KEYS {
+                                {Esc}xmake-directory{Enter}
+                        }
+                }
+                COMMAND "Make Symbolic Link" {
+                        KEYS {
+                                {Esc}xmake-symbolic-link{Enter}
+                        }
+                }
+                COMMAND "Manual Entry" {
+                        KEYS {
+                                {Esc}xmanual-entry{Enter}
+                        }
+                }
+                COMMAND "Mark End of Sentence" {
+                        KEYS {
+                                {Esc}xmark-end-of-sentence{Enter}
+                        }
+                }
+                COMMAND "Mode Test" {
+                        SCRIPT {
+                                'SetHomeGroup "EMACS", "Emacs", "Emacs", "EMACS", 3
+                        }
+                }
+                COMMAND "Move Past Close and Reindent" {
+                        KEYS {
+                                {Esc})
+                        }
+                }
+                COMMAND "Move to Window Line" {
+                        KEYS {
+                                {Esc}r
+                        }
+                }
+                COMMAND "Narrow to Page" {
+                        KEYS {
+                                {Ctrl+x}np
+                        }
+                }
+                COMMAND "Narrow to Region" {
+                        KEYS {
+                                {Ctrl+x}nn
+                        }
+                }
+                COMMAND "New Line and Indent" {
+                        KEYS {
+                                {Ctrl+j}
+                        }
+                }
+                COMMAND "Next Error" {
+                        KEYS {
+                                {Ctrl+x}`
+                        }
+                }
+                COMMAND "Next File" {
+                        KEYS {
+                                {Esc}xnext-file{Enter}
+                        }
+                }
+                COMMAND "Next Line" {
+                        SCRIPT {
+                                SendSystemKeys "{ExtDown}"
+                        }
+                }
+                COMMAND "Next Window" {
+                        KEYS {
+                                {Ctrl+x}o
+                        }
+                }
+                COMMAND "open line" {
+                        KEYS {
+                                {Ctrl+o}
+                        }
+                }
+                COMMAND "Open Rectangle" {
+                        KEYS {
+                                {Ctrl+x}ro
+                        }
+                }
+                COMMAND "other window" {
+                        KEYS {
+                                {Ctrl+x}o
+                        }
+                }
+
+                COMMAND "Other Frame" {
+                        KEYS {
+                                {Ctrl+x}5o
+                        }
+                }
+                COMMAND "Outline Minor Mode" {
+                        KEYS {
+                                {Esc}xoutline-minor-mode{Enter}
+                        }
+                }
+                COMMAND "Picture Mode" {
+                        KEYS {
+                                {Esc}xpicture-mode{Enter}
+                        }
+                }
+                COMMAND "Point to Register" {
+                        KEYS {
+                                {Ctrl+x}r{Spacebar}
+                        }
+                }
+                COMMAND "Pop Mark" {
+                        KEYS {
+                                {Ctrl+u}{Ctrl+Space}
+                        }
+                }
+                COMMAND "PostScript Print Buffer with Faces" {
+                        KEYS {
+                                {Esc}xps-print-buffer-with-faces{Enter}
+                        }
+                }
+                COMMAND "PostScript Print Buffer" {
+                        KEYS {
+                                {Esc}xps-print-buffer{Enter}
+                        }
+                }
+                COMMAND "PostScript Print <Region> with Faces" {
+                        KEYS {
+                                {Esc}xps-print-region-with-faces{Enter}
+                        }
+                }
+                COMMAND "PostScript Print <Region>" {
+                        KEYS {
+                                {Esc}xps-print-region{Enter}
+                        }
+                }
+                COMMAND "PostScript Spool Buffer with Faces" {
+                        KEYS {
+                                {Esc}xps-spool-buffer-with-faces{Enter}
+                        }
+                }
+                COMMAND "PostScript Spool Buffer" {
+                        KEYS {
+                                {Esc}xps-spool-buffer{Enter}
+                        }
+                }
+                COMMAND "PostScript Spool <Region> with Faces" {
+                        KEYS {
+                                {Esc}xps-spool-region-with-faces{Enter}
+                        }
+                }
+                COMMAND "PostScript Spool <Region>" {
+                        KEYS {
+                                {Esc}xps-spool-region{Enter}
+                        }
+                }
+                COMMAND "Prepend to Buffer" {
+                        KEYS {
+                                {Esc}xprepend-to-buffer{Enter}
+                        }
+                }
+                COMMAND "Previous Line" {
+                        SCRIPT {
+                                SendSystemKeys "{ExtUp}"
+                        }
+                }
+                COMMAND "Previous Window" {
+                        KEYS {
+                                {Ctrl+u}-1{Ctrl+x}o
+                        }
+                }
+                COMMAND "Print Buffer" {
+                        KEYS {
+                                {Esc}xprint-buffer{Enter}
+                        }
+                }
+                COMMAND "Print <Region>" {
+                        KEYS {
+                                {Esc}xprint-region{Enter}
+                        }
+                }
+                COMMAND "Print Working Directory" {
+                        KEYS {
+                                {Esc}xpwd{Enter}
+                        }
+                }
+                COMMAND "Query Replace Regexp" {
+                        KEYS {
+                                {Esc}xquery-replace-regexp{Enter}
+                        }
+                }
+                COMMAND "Query Replace" {
+                        KEYS {
+                                {Esc}{%}
+                        }
+                }
+                COMMAND "Quietly Read Abbrev File" {
+                        KEYS {
+                                {Esc}xquietly-read-abbrev-file{Enter}
+                        }
+                }
+                COMMAND "Quote Character" {
+                        KEYS {
+                                {Ctrl+q}
+                        }
+                }
+                COMMAND "Quoted Insert" {
+                        KEYS {
+                                {Ctrl+q}
+                        }
+                }
+                COMMAND "Read Abbrev File" {
+                        KEYS {
+                                {Esc}xread-abbrev-file
+                        }
+                }
+                COMMAND "Read File Other Window" {
+                        KEYS {
+                                {Ctrl+x}4r
+                        }
+                }
+                COMMAND "Read File" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+r}
+                        }
+                }
+                COMMAND "Rename File" {
+                        KEYS {
+                                {Esc}xrename-file{Enter}
+                        }
+                }
+                COMMAND "Rename Uniquely" {
+                        KEYS {
+                                {Esc}xrename-uniquely{Enter}
+                        }
+                }
+                COMMAND "Repeat" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}z"
+                        }
+                }
+                COMMAND "Repeat Complex Command" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}{Esc}{Esc}"
+                                'SetHomeGroup "EMACS", "Emacs","Minibuf", "EMACS",1
+                        }
+                }
+                COMMAND "replace regexp" {
+                        KEYS {
+                                {Esc}xreplace-regexp{Enter}
+                        }
+                }
+                COMMAND "replace string" {
+                        KEYS {
+                                {Esc}xreplace-string{Enter}
+                        }
+                }
+                
+                COMMAND "Reverse <Region>" {
+                        KEYS {
+                                {Esc}xreverse-region{Enter}
+                        }
+                }
+                COMMAND "Revert Buffer" {
+                        SCRIPT {
+                                SendKeys "{Esc}xrevert-buffer{Enter}"
+                                'ListenFromGroup 1, "Minibuf", "EMACS"
+                        }
+                }
+                COMMAND "Rlogin" {
+                        SCRIPT {
+                                SendKeys "{Esc}xrlogin{Enter}"
+                        }
+                }
+                COMMAND "Run Shell" {
+                        SCRIPT {
+                                SendKeys "{Esc}xshell{Enter}"
+                        }
+                }
+                COMMAND "Recover File" {
+                        KEYS {
+                                {Esc}{x}recover-file{Enter}
+                        }
+                }
+                COMMAND "Recover Session" {
+                        KEYS {
+                                {Esc}{x}recover-session{Enter}
+                        }
+                }
+                COMMAND "save buffer" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}{Ctrl+s}"
+                        }
+                }
+                COMMAND "Save Some Buffers" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}s"
+                                'SetHomeGroup "EMACS","Emacs","Emacs Query Loop","EMACS",1
+                        }
+                }
+                COMMAND "Say No" {
+                        KEYS {
+                                no{Enter}
+                        }
+                }
+                COMMAND "Say Yes" {
+                        KEYS {
+                                yes{Enter}
+                        }
+                }
+                COMMAND "Scroll Bar Mode" {
+                        KEYS {
+                                {Esc}{x}scroll-bar-mode{Enter}
+                        }
+                }
+                COMMAND "Toggle Scroll Bar" {
+                        KEYS {
+                                {Esc}{x}toggle-scroll-bar{Enter}
+                        }
+                }
+                COMMAND "Scroll Backward" {
+                        KEYS {
+                                {Esc}v
+                        }
+                }
+                COMMAND "Scroll Forward" {
+                        KEYS {
+                                {Ctrl+v}
+                        }
+                }
+                COMMAND "scroll other" {
+                        KEYS {
+                                {Esc}{Ctrl+v}
+                        }
+                }
+                COMMAND "scroll up other" {
+                        KEYS {
+                                {Esc}{Ctrl+v}
+                        }
+                }
+                COMMAND "scroll down other" {
+                        KEYS {
+                                {Ctrl+u}-{Esc}{Ctrl+v}
+                        }
+                }
+                COMMAND "Search Backward" {
+                        SCRIPT {
+                                HeardWord "Word", "Search", "Backward"
+                        }
+                }
+                COMMAND "Search Forward" {
+                        SCRIPT {
+                                HeardWord "Word", "Search", "Forward"
+                        }
+                }
+                COMMAND "Search Backward Again" {
+                        SCRIPT {
+                                HeardWord "Word", "Search", "Backward", "Again"
+                        }
+                }
+                COMMAND "Search Forward Again" {
+                        SCRIPT {
+                                HeardWord "Word", "Search", "Forward", "Again"
+                        }
+                }
+                COMMAND "Send Mail Other Frame" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}5m"
+                        }
+                }
+                COMMAND "Send Mail Other Window" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}4m"
+                        }
+                }
+                COMMAND "Send Mail" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}m"
+                        }
+                }
+                COMMAND "Global Set Key" {
+                        KEYS {
+                                {Esc}{x}global-set-key{Enter}
+                        }
+                }
+                COMMAND "Local Set Key" {
+                        KEYS {
+                                {Esc}{x}local-set-key{Enter}
+                        }
+                }
+                COMMAND "Global Unset Key" {
+                        KEYS {
+                                {Esc}{x}global-unset-key{Enter}
+                        }
+                }
+                COMMAND "Local Unset Key" {
+                        KEYS {
+                                {Esc}{x}local-unset-key{Enter}
+                        }
+                }
+                COMMAND "Set Background Color" {
+                        KEYS {
+                                {Esc}xset-background-color{Enter}
+                        }
+                }
+                COMMAND "Set Comment Column" {
+                        KEYS {
+                                {Ctrl+x};
+                        }
+                }
+                COMMAND "Set Cursor Color" {
+                        KEYS {
+                                {Esc}xset-cursor-color{Enter}
+                        }
+                }
+                COMMAND "Set Default Font" {
+                        KEYS {
+                                {Esc}xset-default-font{Enter}
+                        }
+                }
+                COMMAND "Set Face Background" {
+                        KEYS {
+                                {Esc}xset-face-background{Enter}
+                        }
+                }
+                COMMAND "Set Face Foreground" {
+                        KEYS {
+                                {Esc}xset-face-foreground{Enter}
+                        }
+                }
+                COMMAND "Set Face Font" {
+                        KEYS {
+                                {Esc}{x}set-face-font{Enter}
+                        }
+                }
+                COMMAND "Make Face Bold" {
+                        KEYS {
+                                {Esc}{x}make-face-bold{Enter}
+                        }
+                }
+                COMMAND "Make Face Italic" {
+                        KEYS {
+                                {Esc}{x}make-face-italic{Enter}
+                        }
+                }
+                COMMAND "Make Face Bold Italic" {
+                        KEYS {
+                                {Esc}{x}make-face-bold-italic{Enter}
+                        }
+                }
+                COMMAND "Make Face Unbold" {
+                        KEYS {
+                                {Esc}{x}make-face-unbold{Enter}
+                        }
+                }
+                COMMAND "Make Face Unitalic" {
+                        KEYS {
+                                {Esc}{x}make-face-unitalic{Enter}
+                        }
+                }
+                COMMAND "Set Face Stipple" {
+                        KEYS {
+                                {Esc}{x}set-face-stipple{Enter}
+                        }
+                }
+                COMMAND "Set Face Underlined" {
+                        KEYS {
+                                {Esc}{x}set-face-underlined{Enter}
+                        }
+                }
+                COMMAND "Invert Face" {
+                        KEYS {
+                                {Esc}{x}invert-face{Enter}
+                        }
+                }
+                COMMAND "Modify Face" {
+                        KEYS {
+                                {Esc}{x}modify-face{Enter}
+                        }
+                }
+                COMMAND "Set Fill Column" {
+                        KEYS {
+                                {Ctrl+x}f
+                        }
+                }
+                COMMAND "Set Fill Prefix" {
+                        KEYS {
+                                {Ctrl+x}.
+                        }
+                }
+                COMMAND "Set Foreground Color" {
+                        KEYS {
+                                {Esc}xset-foreground-color{Enter}
+                        }
+                }
+                COMMAND "Set Goal Column" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+n}
+                        }
+                }
+                COMMAND "Set Mark" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+@}"
+                        }
+                }
+                COMMAND "Set Offset" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+o}
+                        }
+                }
+                COMMAND "Set Selective Display" {
+                        KEYS {
+                                {Ctrl+x}$
+                        }
+                }
+                COMMAND "Set Variable" {
+                        KEYS {
+                                {Esc}xset-variable{Enter}
+                        }
+                }
+                COMMAND "Shell Command on <Region>" {
+                        KEYS {
+                                {Esc}|
+                        }
+                }
+                COMMAND "Shell Command" {
+                        KEYS {
+                                {Esc}!
+                        }
+                }
+                COMMAND "Show Syntactic Informaton" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+s}
+                        }
+                }
+                COMMAND "Sort Columns" {
+                        KEYS {
+                                {Esc}xsort-columns{Enter}
+                        }
+                }
+                COMMAND "Sort Fields" {
+                        KEYS {
+                                {Esc}xsort-fields{Enter}
+                        }
+                }
+                COMMAND "Sort Lines" {
+                        KEYS {
+                                {Esc}xsort-lines{Enter}
+                        }
+                }
+                COMMAND "Sort Numeric Fields" {
+                        KEYS {
+                                {Esc}xsort-numeric-fields{Enter}
+                        }
+                }
+                COMMAND "Sort Pages" {
+                        KEYS {
+                                {Esc}xsort-pages{Enter}
+                        }
+                }
+                COMMAND "Sort Paragraphs" {
+                        KEYS {
+                                {Esc}xsort-paragraphs{Enter}
+                        }
+                }
+                COMMAND "Spell Buffer" {
+                        KEYS {
+                                {Esc}xispell-buffer{Enter}
+                        }
+                }
+                COMMAND "Spell Complete Word" {
+                        KEYS {
+                                {Esc}{Tab}
+                        }
+                }
+                COMMAND "Spell Complete" {
+                        KEYS {
+                                {Esc}{Ctrl+i}
+                        }
+                }
+                COMMAND "Spell <Region>" {
+                        KEYS {
+                                {Esc}xispell-region{Enter}
+                        }
+                }
+                COMMAND "Spell Word" {
+                        KEYS {
+                                {Esc}$
+                        }
+                }
+                COMMAND "Split Line" {
+                        KEYS {
+                                {Esc}{Ctrl+o}
+                        }
+                }
+                COMMAND "Split Window Horizontally" {
+                        KEYS {
+                                {Ctrl+x}3
+                        }
+                }
+                COMMAND "Split Window" {
+                        KEYS {
+                                {Ctrl+x}2
+                        }
+                }
+                COMMAND "String Rectangle" {
+                        KEYS {
+                                {Esc}xstring-rectangle{Enter}
+                        }
+                }
+                COMMAND "Suspend Emacs" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+z}
+                        }
+                }
+                COMMAND "Switch to Buffer Other Frame" {
+                        KEYS {
+                                {Ctrl+x}5b
+                        }
+                }
+                COMMAND "Switch to Buffer Other Window" {
+                        KEYS {
+                                {Ctrl+x}4b
+                        }
+                }
+                COMMAND "switch to buffer" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+x}" + "b"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "Tab to Tab Stop" {
+                        KEYS {
+                                {Esc}{Ctrl+i}
+                        }
+                }
+                COMMAND "Tags Apropos" {
+                        KEYS {
+                                {Esc}xtags-apropos{Enter}
+                        }
+                }
+                COMMAND "Tags Loop Continue" {
+                        KEYS {
+                                {Esc},
+                        }
+                }
+                COMMAND "Tags Query Replace" {
+                        KEYS {
+                                {Esc}xtags-query-replace{Enter}
+                        }
+                }
+                COMMAND "Tags Search" {
+                        SCRIPT {
+                                SendKeys "{Esc}xtags-search{Enter}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "run telnet" {
+                        SCRIPT {
+                                SendKeys "{Esc}xtelnet{Enter}"
+                        }
+                }
+                COMMAND "Toggle Auto Hungry State" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+t}
+                        }
+                }
+                COMMAND "Toggle Auto State" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+a}
+                        }
+                }
+                COMMAND "Toggle Hungry State" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+d}
+                        }
+                }
+                COMMAND "Toggle Read-only" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "Top-level" {
+                        KEYS {
+                                {Esc}xtop-level{Enter}
+                        }
+                }
+                COMMAND "Transient Mark Mode" {
+                        KEYS {
+                                {Esc}{x}transient-mark-mode{Enter}
+                        }
+                }
+                COMMAND "Transpose Characters" {
+                        KEYS {
+                                {Ctrl+t}
+                        }
+                }
+                COMMAND "Transpose Lines" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+t}
+                        }
+                }
+                COMMAND "Transpose Words" {
+                        KEYS {
+                                {Esc}t
+                        }
+                }
+                COMMAND "Undo Last <1to100> Actions" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Ctrl+/}"
+                        }
+                }
+                COMMAND "Undo <1to100>" {
+                        SCRIPT {
+                                SendKeys "{Ctrl+u}" + Str$(_arg1) + "{Ctrl+/}"
+                        }
+                }
+                COMMAND "Undo That" {
+                        KEYS {
+                                {Ctrl+/}
+                        }
+                }
+                COMMAND "Undo Last Action" {
+                        KEYS {
+                                {Ctrl+/}
+                        }
+                }
+                COMMAND "Undo" {
+                        KEYS {
+                                {Ctrl+/}
+                        }
+                }
+                COMMAND "Up Conditional" {
+                        KEYS {
+                                {Ctrl+c}{Ctrl+u}
+                        }
+                }
+                COMMAND "vc cancel version" {
+                        KEYS {
+                                {Ctrl+x}vc
+                        }
+                }
+                COMMAND "vc change log" {
+                        KEYS {
+                                {Ctrl+x}va
+                        }
+                }
+                COMMAND "VC check-in version" {
+                        KEYS {
+                                {Ctrl+u}{Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "vc check-in" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "vc check-out version" {
+                        KEYS {
+                                {Ctrl+u}{Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "vc check-out" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "vc create snapshot" {
+                        KEYS {
+                                {Ctrl+x}vs
+                        }
+                }
+                COMMAND "VC diff" {
+                        KEYS {
+                                {Ctrl+x}v=
+                        }
+                }
+                COMMAND "vc directory" {
+                        KEYS {
+                                {Ctrl+x}vd
+                        }
+                }
+                COMMAND "vc insert headers" {
+                        KEYS {
+                                {Ctrl+x}vh
+                        }
+                }
+                COMMAND "VC next action" {
+                        KEYS {
+                                {Ctrl+x}vv
+                        }
+                }
+                COMMAND "vc print log" {
+                        KEYS {
+                                {Ctrl+x}vl
+                        }
+                }
+                COMMAND "vc register" {
+                        KEYS {
+                                {Ctrl+x}vi
+                        }
+                }
+                COMMAND "vc rename file" {
+                        KEYS {
+                                {Esc}xvc-rename-file{Enter}
+                        }
+                }
+                COMMAND "VC Retrieve Snapshot" {
+                        KEYS {
+                                {Ctrl+x}vr
+                        }
+                }
+                COMMAND "VC revert buffer" {
+                        KEYS {
+                                {Ctrl+x}vu
+                        }
+                }
+                COMMAND "vc toggle read-only" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+q}
+                        }
+                }
+                COMMAND "vc version other window" {
+                        KEYS {
+                                {Ctrl+x}v~
+                        }
+                }
+                COMMAND "View Buffer" {
+                        KEYS {
+                                {Esc}xview-buffer{Enter}
+                        }
+                }
+                COMMAND "View File" {
+                        KEYS {
+                                {Esc}xview-file{Enter}
+                        }
+                }
+                COMMAND "View Lossage" {
+                        KEYS {
+                                {Ctrl+h}l
+                        }
+                }
+                COMMAND "Visit Tags Table" {
+                        KEYS {
+                                {Esc}xvisit-tags-table{Enter}
+                        }
+                }
+                COMMAND "What Cursor Position" {
+                        KEYS {
+                                {Ctrl+x}=
+                        }
+                }
+                COMMAND "What Line" {
+                        KEYS {
+                                {Esc}xwhat-Line{Enter}
+                        }
+                }
+                COMMAND "What Page" {
+                        KEYS {
+                                {Esc}xwhat-page{Enter}
+                        }
+                }
+                COMMAND "Where Is" {
+                        KEYS {
+                                {Ctrl+h}w
+                        }
+                }
+                COMMAND "Widen" {
+                        KEYS {
+                                {Ctrl+x}nw
+                        }
+                }
+                COMMAND "Word Search Backward" {
+                        SCRIPT {
+                                SendKeys "{Esc}{x}word-search-backward{Enter}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "Word Search Forward" {
+                        SCRIPT {
+                                SendKeys "{Esc}{x}word-search-forward{Enter}"
+                                HeardWord "\No-Space"
+                                HeardWord "\No-Caps"
+                        }
+                }
+                COMMAND "Word Search Backward Again" {
+                        SCRIPT {
+                                SendKeys "{Esc}{x}word-search-backward{Enter}"
+                                SendKeys "{Ctrl+r}"
+                        }
+                }
+                COMMAND "Word Search Forward Again" {
+                        SCRIPT {
+                                SendKeys "{Esc}{x}word-search-forward{Enter}"
+                                SendKeys "{Ctrl+s}"
+                        }
+                }
+                COMMAND "Write Abbrev File" {
+                        KEYS {
+                                {Esc}xwrite-abbrev-file{Enter}
+                        }
+                }
+                COMMAND "Write File" {
+                        KEYS {
+                                {Ctrl+x}{Ctrl+w}
+                        }
+                }
+                COMMAND "Write <Region>" {
+                        KEYS {
+                                {Esc}xwrite-region{Enter}
+                        }
+                }
+                COMMAND "Yank Pop" {
+                        KEYS {
+                                {Esc}y
+                        }
+                }
+                COMMAND "Yank Rectangle" {
+                        KEYS {
+                                {Ctrl+x}ry
+                        }
+                }
+                COMMAND "Yank" {
+                        KEYS {
+                                {Ctrl+y}
+                        }
+                }
+
+                LIST "1to100" {
+                        "1"
+                        "10"
+                        "100"
+                        "11"
+                        "12"
+                        "13"
+                        "14"
+                        "15"
+                        "16"
+                        "17"
+                        "18"
+                        "19"
+                        "2"
+                        "20"
+                        "21"
+                        "22"
+                        "23"
+                        "24"
+                        "25"
+                        "26"
+                        "27"
+                        "28"
+                        "29"
+                        "3"
+                        "30"
+                        "31"
+                        "32"
+                        "33"
+                        "34"
+                        "35"
+                        "36"
+                        "37"
+                        "38"
+                        "39"
+                        "4"
+                        "40"
+                        "41"
+                        "42"
+                        "43"
+                        "44"
+                        "45"
+                        "46"
+                        "47"
+                        "48"
+                        "49"
+                        "5"
+                        "50"
+                        "51"
+                        "52"
+                        "53"
+                        "54"
+                        "55"
+                        "56"
+                        "57"
+                        "58"
+                        "59"
+                        "6"
+                        "60"
+                        "61"
+                        "62"
+                        "63"
+                        "64"
+                        "65"
+                        "66"
+                        "67"
+                        "68"
+                        "69"
+                        "7"
+                        "70"
+                        "71"
+                        "72"
+                        "73"
+                        "74"
+                        "75"
+                        "76"
+                        "77"
+                        "78"
+                        "79"
+                        "8"
+                        "80"
+                        "81"
+                        "82"
+                        "83"
+                        "84"
+                        "85"
+                        "86"
+                        "87"
+                        "88"
+                        "89"
+                        "9"
+                        "90"
+                        "91"
+                        "92"
+                        "93"
+                        "94"
+                        "95"
+                        "96"
+                        "97"
+                        "98"
+                        "99"
+                }
+
+                LIST "0to9" {
+                        "0"
+                        "1"
+                        "2"
+                        "3"
+                        "4"
+                        "5"
+                        "6"
+                        "7"
+                        "8"
+                        "9"
+                }
+
+                LIST "1to20" {
+                        "1"
+                        "2"
+                        "3"
+                        "4"
+                        "5"
+                        "6"
+                        "7"
+                        "8"
+                        "9"
+                        "10"
+                        "11"
+                        "12"
+                        "13"
+                        "14"
+                        "15"
+                        "16"
+                        "17"
+                        "18"
+                        "19"
+                        "20"
+                }
+
+                LIST "Character" {
+                        "!"
+                        "#"
+                        "$"
+                        "&"
+                        "'"
+                        "("
+                        ")"
+                        "*"
+                        "+"
+                        ","
+                        "-"
+                        "."
+                        "/"
+                        ":"
+                        ";"
+                        "<"
+                        "="
+                        ">"
+                        "?"
+                        "@"
+                        "0"
+                        "1"
+                        "2"
+                        "3"
+                        "4"
+                        "5"
+                        "6"
+                        "7"
+                        "8"
+                        "9"
+                        "a"
+                        "b"
+                        "c"
+                        "d"
+                        "e"
+                        "f"
+                        "g"
+                        "h"
+                        "i"
+                        "j"
+                        "k"
+                        "l"
+                        "m"
+                        "n"
+                        "o"
+                        "p"
+                        "q"
+                        "r"
+                        "s"
+                        "t"
+                        "u"
+                        "v"
+                        "w"
+                        "x"
+                        "y"
+                        "z"
+                }
+
+                LIST "Letter" {
+                        "a"
+                        "b"
+                        "c"
+                        "d"
+                        "e"
+                        "f"
+                        "g"
+                        "h"
+                        "i"
+                        "j"
+                        "k"
+                        "l"
+                        "m"
+                        "n"
+                        "o"
+                        "p"
+                        "q"
+                        "r"
+                        "s"
+                        "t"
+                        "u"
+                        "v"
+                        "w"
+                        "x"
+                        "y"
+                        "z"
+                }
+
+        }
+}
+

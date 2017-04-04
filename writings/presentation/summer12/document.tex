@@ -1,0 +1,249 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usetheme{Warsaw}
+\title[VT Summer 2013]{VT Summer 2013}
+\author{ Andrey Asadchev}
+\institute{VT}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+\begin{itemize}
+\item Accelerators overview
+\item OpenMP, OpenAcc, OpenCL, CUDA
+\item NVidia CUDA overview
+\item Setting up shell
+\item Discovering CUDA devices
+\item Device resources and occupancy
+\item CUBLAS DGEMM vs MKL
+\item CUDA hash function
+\item Debugging
+\item CUDA memory
+\item CUDA reduction kernel
+\item Profiling
+\item CUDA/CUBLAS streams
+\item Simple tensor contraction
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Accelerators overview}
+Intel MIC/Xeon Phi:
+\begin{itemize}
+\item X86 compatible
+\item 512-bit SIMD
+\item Around 1TFlops DP
+\item Can be programmed using OpenMP
+\item Linux OS - a headless ``node''
+\end{itemize}
+NVidia CUDA (Tesla, {\em Fermi}, Kepler)
+\begin{itemize}
+\item PTX - specialized ISA
+\item 16 32-core processors
+\item Over 1TFlops DP for Kepler
+\item No {\it viable} OpenMP support
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{OpenMP, OpenAcc, OpenCL}
+\begin{itemize}
+
+\item OpenMP
+  \begin{itemize}
+  \item Widely used for parallelizing programs
+  \item Parallel code annotated using {\tt \#pragma omp}
+v  \item Virtually supported by every compiler
+  \item Supported on MIC but not on GPUs
+  \item Doesn't require code rewrite but may need code restructuring
+  \end{itemize}
+
+\item
+  OpenAcc
+  \begin{itemize}
+  \item OpenMP-like set of {\tt \#pragma openacc}
+  \item Limited support (Cray and PGI)
+  \item In principle doesn't require code rewrite but ...
+  \end{itemize}
+
+\item
+  OpenCL
+  \begin{itemize}
+  \item C-like language for writing and executing kernels in heterogenous environments
+  \item Kernel compilation is handled by runtime library
+  \item JIT-like - can generate kernels on the fly
+  \item Requires extensive code rewrite
+  \end{itemize}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{CUDA}
+  \begin{itemize}
+  \item Parallel programming and runtime platform from NVidia
+  \item Most often associated with CUDA C/C++ (C++ like language)
+  \item Support for templates and objects
+  \item Needs NVCC compiler
+  \item Requires extensive code rewrite
+  \item Also CUDA Fortran from PGI
+  \end{itemize}
+  Majority of time will be spent in CUDA C++
+\end{frame}
+
+\begin{frame}[fragile]{CUDA Terminology}
+  \begin{itemize}
+    \item Thread - the smallest grain of work, e.g. a single loop iteration.
+      NOTHING like CPU thread.
+    \item Warp - a set of (32) consecutive threads, think 32-wide SIMD vector.
+      The actual hardware is 2x16-wide SIMD but from programmer viewpoint it looks like 
+      warp-wide SIMD.
+    \item Thread Block - group of threads executed together, a larger grain of work.\\
+      Threads in block can be syncronized and communicate via shared memory
+    \item Grid - a group of blocks, constitutes the entire work.
+      Limited syncronization among blocks.
+  \end{itemize}
+  Thread and block have unique x,y,z index: {\tt threadIdx, blockIdx } \\
+  Blocks and grids have x,y,z dimensions: {\tt blockDim, gridDim } \\
+\end{frame}
+
+\begin{frame}[fragile]{Setting up shell}
+  First, set up head node shell
+  \begin{verbatim}
+hpc05@hs162:~# tar -xzf /home/hpc05/gpu.tar.gz
+hpc05@hs162:~# source gpu/source.me
+hpc05@hs162:~# cd gpu
+hpc05@hs162:~/gpu#
+hpc05@hslogin1:~/gpu# make devices
+g++ -g -std=c++0x ... devices.cpp -o devices ... -lcudart
+
+\end{verbatim}
+   Next, set up compute node shell in another terminal
+  \begin{verbatim}
+hpc05@hslogin1:~/gpu# qsub -I
+qsub: waiting for job 13368.master.cluster to start
+qsub: job 13368.master.cluster ready
+hpc05@hs162:~# source gpu/source.me
+hpc05@hs162:~# cd gpu
+hpc05@hs162:~/gpu# ./devices
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Discovering CUDA devices}
+\begin{itemize}
+  \item CUDA API is available online
+    \url{http://docs.nvidia.com/cuda/cuda-runtime-api/}
+  \item Navigate to Device Management
+  \item On head node, open \url{./devices.cpp} with your favorite Emacs editor
+  \item On compute node, see the output of {\tt ./devices} command
+\end{itemize}
+
+Some important properties are:
+\begin{itemize}
+  \item totalGlobablMem - slow device/global memory size
+  \item sharedMemPerBlock - fast shared memory per SM \\
+    Limits how many blocks can be active at a time.  Current max is 8
+  \item regsPerBlock - fast private 32-bit registers per SM \\
+    Limits how many threads  can be active at a time. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Device resources and occupancy}
+\begin{itemize}
+  \item Access to global memory is very slow - high latency
+  \item While warp is waiting for memory transfer to complete, another warp can execute
+  \item Provided enough warps can execute (so called active warps), latency can be hidden
+  \item If maxThreadsPerMultiProcessor is 1536 and warpSize is 32: \\
+    the maximum number of active warps is 48 \\
+    the maximum number of active blocks is 8
+  \item If each thread needs 32 registers,
+    then max occupancy is $(32768/32)/1536 = 0.666$
+  \item If each block needs 8KB of shared memory,
+    then max occupancy is $(49152/8192)/8 = 0.75$
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{DGEMM example}
+Goals:
+\begin{itemize}
+  \item Mix C++ and calls to CUDA {\em runtime}.
+  \item CUDA error checking
+  \item Performance API (PAPI)
+  \item CUDA profiler
+\begin{verbatim}
+make dgemm
+export CUDA_PROFILE=1
+export COMPUTE_PROFILE_CONFIG=cuda-profile.config
+./dgemm
+less cuda_profile_0.log
+unset CUDA_PROFILE
+nvprof ./dgemm
+\end{verbatim}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]{Hash function example}
+Goals:
+\begin{itemize}
+  \item Mix C++ and CUDA.
+  \item Simple CUDA coding
+  \item Atomic ops
+  \item CUDA debugging
+    \begin{itemize}
+      \item cuda-gdb
+      \item cuda-memcheck
+      \item printf
+      \item assert
+    \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Thrust}
+\url{http://docs.nvidia.com/cuda/thrust/}
+\begin{verbatim}
+#include <thrust/device_ptr.h>
+#include <thrust/device_malloc.h>
+#include <thrust/device_free.h>
+#include <thrust/copy.h>
+...
+thrust::device_ptr<int> dev_ptr = thrust::device_malloc<int>(N);
+thrust::copy(host.data(), host.data()+N, dev_ptr);
+thrust::device_free(dev_ptr);
+...
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]{Tensor Contraction}
+Assume $i,j,k$ are occupied orbitals and $a,b,e$ are virtual \\
+Compute $t(i,j,a,b) -= u(j,k,e,a)*v(i,k,e,b)$ \\
+with constraint that memory scales as $O^2V$
+\begin{verbatim}
+// Pseudocode
+for b in V {
+    v(i,ke) = v(i,k,e,b); // load v tile
+    // compute t(i,j,a)
+    for a in V {
+        u(j,ke) = u(j,k,e,a); // load u tile
+        t(i,j,a) = dgemm(v, u');
+    }
+    store t(i,j,a);
+}
+\end{verbatim}
+Try to implement in {\tt tensor.cpp}
+\end{frame}
+
+\begin{frame}[fragile]{Resources}
+\begin{itemize}
+\item \url{http://docs.nvidia.com/cuda/cuda-c-programming-guide/}
+\item \url{http://stackoverflow.com/questions}
+\item \url{http://www.drdobbs.com/parallel}
+\item \url{http://google.com}
+\end{itemize}
+\end{frame}
+
+
+\end{document}

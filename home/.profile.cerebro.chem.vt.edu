@@ -1,0 +1,29 @@
+
+# If this is an xterm set the title to user@host:dir
+export PS1="\u@\h:\w\$ "
+
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    eval "`dircolors -b`"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    #alias grep='grep --color=auto'
+    #alias fgrep='fgrep --color=auto'
+    #alias egrep='egrep --color=auto'
+fi
+
+export LD_LIBRARY_PATH=~software/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~software/lib64:$LD_LIBRARY_PATH
+
+export PATH=~software/gnu/gcc/4.5.1/bin:$PATH
+export LD_LIBRARY_PATH=~software/gnu/gcc/4.5.1/lib:$LD_LIBRARY_PATH
+export LD_LIBRARY_PATH=~software/gnu/gcc/4.5.1/lib64:$LD_LIBRARY_PATH
+
+export PATH=~software/mpich2/gnu/bin:$PATH
+
+# # export LD_LIBRARY_PATH=~software/gnu/gcc/4.5.1/lib:$LD_LIBRARY_PATH
+# # export LD_LIBRARY_PATH=~software/gnu/gcc/4.5.1/lib64:$LD_LIBRARY_PATH
+
+source ~software/intel/bin/iccvars.sh intel64

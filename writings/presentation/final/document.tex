@@ -1,0 +1,107 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+
+\usepackage{graphicx}
+\usepackage{listings}
+\lstset{basicstyle=\tiny}
+
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\braket}[2]{\langle #1|#2\rangle}
+
+\setlength{\parskip}{\baselineskip}
+
+\usetheme{Warsaw}
+\title[Group Meeting]{Final Defense Practice}
+\author{ Andrey Asadchev}
+\institute{VT.edu}
+
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{About Me}
+You know me already
+\begin{figure}[here]
+\begin{center}
+\includegraphics[scale=0.5]{dog.pdf}
+\end{center}
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{Previous Research}
+\begin{itemize}
+\item GAMESS (*vomit)
+\item GPU (*vomit)
+\item Rys Quadrature:  C++ with Mathematica optimized, Python generated expressions
+\item Hartree-Fock
+\item MP2:  can handle large systems, few thousand basis
+\item CCSD(T):  runs on large and small machines, good I/O, disk as fallback
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{Interests}
+\begin{itemize}
+\item C++
+\item Python
+\item Beautiful code and Domain specific languages
+\item Hardware-level optimization and Parallel computing
+\end{itemize}
+CI - current project
+\end{frame}
+
+
+\begin{frame}{C++}
+\item My evolution:  F77, F90, C, C++
+\item General purpose language, aged well (C++11)
+\item Templates and preprocessor
+\item Domain specific language - eg Eigen
+\item Access to hardware instructions
+\item Not an easy language to master
+\end{frame}
+
+
+\begin{frame}{Python}
+\item Very versatile, rapid prototyping language
+\item Interacts with C/C++
+\item Plethora of math and graphics packages
+\item Mathematica-like shell for Quantum
+\end{frame}
+
+
+\begin{frame}{Beautiful code}
+\item Code as expression of oneself, a bit artistic pursuit
+\item Concise code lends itself to comprehension and easier manipulation
+\item Easy manipulation leads to better algorithm
+\item Domain specific languages (C++ or Python) allow expressing formulas concisely
+\item Lower bar for beginners and more power to advanced folk.
+\end{frame}
+
+
+\begin{frame}{Optimization}
+\item Few tricks: blocking, loop unrolling
+\item Templates help a lot
+\item Requires a little background in computer arch.
+\item Parallel computing is usually data-driven in my approach (data storage determines the algorithm)
+\item Some construct to transform loop to parallel would be nice (Rose)
+\item In the end, {\it my} idea is to parallelize on algorithm level (rapid prototyping is handy)
+\item Which leads to C++/Python alliance: C++ handles heavy lifting, Python ties the things together
+\end{frame}
+
+
+\begin{frame}{CI}
+\item Large matrices (that need be stored for several cycles)
+\item Some fun bit manipulation
+\item Optimized to hide I/O (blocking)
+\item Does ok atm, but needs more optimization
+\item (16,16) Full CI in 6-40 mins (single thread)
+\end{frame}
+
+\end{document}

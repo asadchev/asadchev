@@ -1,0 +1,181 @@
+\documentclass[10pt,oneside]{article}
+\usepackage{geometry}
+
+\pagestyle{empty}
+\geometry{letterpaper,tmargin=.5in,bmargin=.5in,lmargin=.5in,rmargin=.5in,headheight=0in,headsep=0in,footskip=.3in}
+
+\setlength{\parindent}{0in}
+\setlength{\parskip}{0in}
+\setlength{\itemsep}{0in}
+\setlength{\topsep}{0in}
+\setlength{\tabcolsep}{0in}
+
+% Name and contact information
+\newcommand{\name}{Andrey Asadchev}
+\newcommand{\addr}{201 Spedding Hall, Ames, IA, 50011}
+\newcommand{\phone}{(515) 294-4604}
+\newcommand{\email}{asadchev@gmail.com}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+  \fontfamily{ppl} \selectfont
+  % Name
+  \large \textbf{\name}
+  
+  \vspace{4pt}
+
+  % Address, phone, email
+  \small \addr \\ \phone \\ \email
+
+  \rule{\textwidth}{0.5pt}
+
+  \vspace{6pt}
+  % Education ojbective
+  \normalsize{
+  \textbf{Education objective}
+  \small
+  \begin{itemize}
+  \item{
+    \begin{tabular*}{6in}{l@{\extracolsep{\fill}}r}
+      Ph.D. in Chemistry with emphasis on Computational Chemistry
+    \end{tabular*}
+  }
+  \end{itemize}
+
+  \vspace{6pt}
+
+  % Education
+  \normalsize \textbf{Education}
+  \small
+  \begin{itemize}
+  \item{
+    \begin{tabular*}{6in}{l@{\extracolsep{\fill}}r}
+      \textbf{Valdosta State University (VSU)} & Valdosta, GA
+    \end{tabular*} \\
+    \begin{tabular*}{6in}{l@{\extracolsep{\fill}}r}
+      B.S., Computer Science Major & May 2005 \\
+      B.S., Mathematics Minor & May 2005
+    \end{tabular*} \\
+  }
+  \item{
+    \begin{tabular*}{6in}{l@{\extracolsep{\fill}}r}
+      \textbf{Iowa State University (ISU)} & Ames, IA
+    \end{tabular*} \\
+    \begin{tabular*}{6in}{l@{\extracolsep{\fill}}r}
+      Ph.D., Physical Chemistry & expected Dec 2011 \\
+    \end{tabular*} \\
+  }
+
+  \end{itemize}
+
+  \normalsize
+  \textbf{Research interests}\\
+  \small
+  \begin {itemize}
+    \item CPU and memory efficient algorithms.
+    \item Chemistry and Linear Algebra algorithms on GPU accelerators.
+    \item Distributed memory algorithms and communication. 
+    \item Two electron integral methods, many-body methods, e.g. MP2, CC.
+    \item Domain specific embedded languages, e.g tensor expressions.
+    \item Higher-order programming and template  meta-programming.
+    \item Symbolic computations and automatic code generation.
+  \end {itemize}
+
+  \normalsize
+  \textbf{Teaching interests}
+  \small
+  \begin{itemize}
+  \item{Applied Mathematics and Computer Science for Science students}
+  \item{Advanced C++ and template meta-programming}
+  \end{itemize}
+  
+  \normalsize
+  \textbf{Research experience}
+  \small
+  \begin{itemize}
+  \item{\textbf{Dr. Thomas Manning, Valdosta State Univeristy, 2004-2005}} \\
+    Linux Beowulf Cluster \\
+    Modeling of C8, C10, C12, and C14 cyclic systems
+  \item{\textbf{Dr. Mark Gordon, Iowa State University/Ames Lab, 2005-present}} \\
+    Parallel CI methods \\
+    GAMESS on IBM Blue Gene and Cray XT4 \\
+    Massively parallel MP2 program, Supercomputing 08 \\
+    Uncontracted Rysq quadrature on GPU, NCSA 09 \\
+    Uncontracted Rys Quadrature Implementation of up to G Functions on Graphical Processing Units, JCTC 10
+  \end{itemize}
+
+  \normalsize
+  \textbf{Related Work Experience}
+  \small
+  \begin{itemize}
+  \item{
+    \textbf{Research Assistant, Valdosta State University, Chemistry Dept, 2003-2004} \\
+    Chemistry projects with Dr. Thomas Manning.
+  }
+  \item{
+    \textbf{Teaching Assistant, Valdosta State University, Chemistry Dept, 2004} \\
+    General Chemistry.
+  }
+  \item{
+    \textbf{Teaching Assistant, Iowa State University, 2005-2006} \\
+    General Chemistry recitations and labs.
+  }
+  \item
+    \textbf{Research Assistant, Iowa State University/Ames Lab, 2006-present} \\
+    Quantum Chemistry codes and applications.
+  \end{itemize}
+
+  \normalsize
+  \textbf{Current projects}
+  \small
+  \begin{itemize}
+  \item C++ implementation of HF, MP2, DFT, CC methods in CPU/GPU environment
+  \item CC algorithms with $N^3$ memory overhead
+  \item Tensor/matrix expressions
+  \item CUDA/Boost interfacing, e.g ublas/CUBLAS bindings.
+  \end{itemize}
+  
+  \normalsize
+  \textbf{Relevant computer experience}
+  \small
+  \begin{itemize}
+  \item{C++, C, Python, Fortran, Java}
+  \item{Standard Template Library and Boost}
+  \item{MPI, ARMCI, OpenMP, CUDA}
+  \item{POSIX system programming}
+  \item{Mathematica, Matlab/Octave}
+  \item{UNIX administration}
+  \end{itemize}
+ 
+\newpage
+
+  \normalsize
+  \textbf{Presentations and Publications}
+  \small
+  \begin{itemize}
+     \item \textbf{Performance of Electronic Structure Calculations on Blue
+       Gene/L and Cray XT4 Computers}\\
+       A.Asadchev, Poster, 
+       \textit{IEEE/ACM Supercomputing 2008}
+    \item \textbf{Performance of Electronic Structure Calculations
+      on BG/L and XT4 Computers}\\
+       A.Asadchev, B.M.Bode, M.S.Gordon,
+       \textit{Journal of Computational and Theoretical Nanoscience,
+         2009 6(6)}
+    \item \textbf{Uncontracted Rys Quadrature on GPU}\\
+      A.Asadchev,
+      \textit{Path to Petascale, NCSA, 2009}
+    \item \textbf{Accelerating Quantum Chemistry Research using GPUs}\\
+      A.Asadchev, J.Felder,
+      \textit{GPU Technology Conference, NVIDIA, San Jose, 2009}
+     \item \textbf{Uncontracted Rys Quadrature Implementation of up to G
+       Functions on Graphical Processing Units}\\
+       A.Asadchev, V.Allada, J.Felder, B.M.Bode, M.S.Gordon,
+       T.L.Windus,
+       \textit{Journal of Chemical Theory and Computation 2010 6(3) }
+  \end{itemize}
+
+ 
+\end{document}
+

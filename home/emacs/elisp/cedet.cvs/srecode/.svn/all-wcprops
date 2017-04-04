@@ -1,0 +1,203 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode
+END
+srecode.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode.el
+END
+srecode-semantic.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-semantic.el
+END
+srecode-expandproto.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-expandproto.el
+END
+srecode-insert.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-insert.el
+END
+srecode-dictionary.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-dictionary.el
+END
+srecode-fields.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-fields.el
+END
+srecode-texi.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-texi.el
+END
+srecode-template.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-template.el
+END
+srecode.texi
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode.texi
+END
+srecode-map.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-map.el
+END
+srecode-document.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-document.el
+END
+srecode-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-load.el
+END
+srecode-find.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-find.el
+END
+srecode-ctxt.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-ctxt.el
+END
+srecode-cpp.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-cpp.el
+END
+srecode-table.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-table.el
+END
+srecode-document-vars.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-document-vars.el
+END
+srecode-compile.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-compile.el
+END
+srecode-getset.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-getset.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/Makefile
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/.cvsignore
+END
+srecode-args.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-args.el
+END
+srecode-template-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-template-mode.el
+END
+srecode-el.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-el.el
+END
+srecode-srt.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-srt.el
+END
+srecode-filters.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-filters.el
+END
+srecode-test-getset.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-test-getset.el
+END
+srecode-extract.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-extract.el
+END
+srecode-template.wy
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-template.wy
+END
+srecode-test.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-test.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/Project.ede
+END
+srecode-java.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-java.el
+END
+srecode-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/srecode/srecode-mode.el
+END

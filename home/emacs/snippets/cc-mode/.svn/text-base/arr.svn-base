@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: boost::array
+# key: arr
+# --
+boost::array<$0,$1>

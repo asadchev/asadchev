@@ -1,0 +1,113 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/README
+END
+cit-cpp.el
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-cpp.el
+END
+cit-gnustep.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-gnustep.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/Project.ede
+END
+cit-externaldb.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-externaldb.el
+END
+cedet-integ-test.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cedet-integ-test.el
+END
+cit-test.sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-test.sh
+END
+cit-srec.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-srec.el
+END
+cit-uml.el
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-uml.el
+END
+cit-el.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-el.el
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/.cvsignore
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/Makefile
+END
+cit-dist.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-dist.el
+END
+cit-symref.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-symref.el
+END
+cit-uml.cgr
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-uml.cgr
+END
+cit-texi.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-texi.el
+END
+cit-extra-cpp.srt
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-extra-cpp.srt
+END
+cit-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/tests/cit-load.el
+END

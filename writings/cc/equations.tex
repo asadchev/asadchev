@@ -1,0 +1,71 @@
+% \documentclass[12pt]{article}
+
+% \usepackage[margin=1in]{geometry}
+% \usepackage{amsmath}
+
+% %% \usepackage{amsmath}
+% \usepackage{color}
+% \usepackage{listings}
+% \usepackage{graphicx}
+
+% \begin{document}
+
+% \lstloadlanguages{C++}
+% \lstset{
+%   language=C++, 
+%   breaklines=true,
+%   keywordstyle=\color{blue},
+%   commentstyle=\color{red}
+% }
+
+% %\maketitle 
+
+\begin{align}
+  \begin{split}
+    D^a_i t^a_i &=
+    f^a_i + I^a_e t^e_i - I{'}^m_i t^a_m + I^m_e (2 t^{ea}_{mi} - t^{ea}_{im}) + t^e_m (2 v^{ma}_{ei} - v^{am}_{ei}) \\
+    & v^{mn}_{ei} (2 t^{ea}_{mn} - t^{ae}_{mn}) + v^{ma}_{ef}(2 t^{ef}_{mi} - t^{ef}_{im})
+  \end{split}
+  \label{t1}
+\end{align}
+
+\begin{align}
+  \begin{split}
+    D^{ab}_{ij} t^{ab}_{ij} &=
+    v_{ij} + P (ia/j b) [ t^{ae}_{ij} I^b_e - t^{ab}_{im} I^m_j + \frac{1}{2} v^{ab}_{ef} c^{ef}_{ij} +  \frac{1}{2} c^{ab}_{mn} I^{mn}_{ij} \\
+      & - t_{mj}^{ae} I_{ie}^{mb} - I_{ie}^{ma} t_{mj}^{eb} + (2t^{ea}_{mi} - t_{im}^{ea}) I_{ej}^{mb} + t_i^e I{'}_{ej}^{ab} - t_m^a I{'}_{ij}^{mb}] 
+  \end{split}
+  \label{t2}
+\end{align}
+
+\rule{\linewidth}{0.1mm}
+
+\begin{align}
+%
+I^i_a &= f^i_a + 2 v^{im}_{ae} t^{e}_{m} - v^{im}_{ea} t^{e}_{m} \\
+%
+I^a_b &= (1 - \lambda^b_a) f^a_b +
+         (2v^{am}_{be} t^e_m - v^{ma}_{be} t^e_m) -
+         (2v^{mn}_{eb} c^{ea}_{mn} - v^{mn}_{be} c^{ea}_{mn}) -
+         t^a_m f^m_b \\
+%
+I^i_j &= I'^i_j + I^i_e t^{e}_{j} \\
+%
+I'^i_j &= (1 - \lambda^i_j)f^i_j +
+          (2v^{im}_{je} t^e_m - v^{im}_{ej} t^e_m) +
+          (2v^{mi}_{ef} t^{ef}_{mj} - v^{im}_{ef} t^{ef}_{mj}) \\
+%
+I_{kl}^{ij} &= v^{ij}_{kl} + v^{ij}_{ef} c^{ef}_{kl} + P(ik/jl)t^e_k v^{ij}_{el} \\
+%
+I_{jb}^{ia} &= v^{ia}_{jb} - \frac{1}{2} v^{im}_{eb} c^{ea}_{jm} - v^{im}_{jb}t^a_m + v^{ia}_{eb}t^e_j \\
+%
+I{'}^{ab}_{ci} &= v^{ab}_{ci} - v^{am}_{ci} t^b_m - t^a_m v^{mb}_{ci} \\
+I{'}^{ia}_{jk} &= v^{ia}_{jk} + v^{ia}_{ef} t^{ef}_{jk} + t^e_j t^f_k v^{ia}_{ef}
+\end{align}
+
+
+%\end{document}
+
+
+
+% LocalWords:  Fock un def Multithreaded mutex ERI Submatrix bst

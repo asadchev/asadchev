@@ -1,0 +1,185 @@
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre
+END
+cogre.texi
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre.texi
+END
+cogre-layout.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-layout.el
+END
+cogre-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-load.el
+END
+cogre-hasa.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-hasa.xpm
+END
+cogre-isa.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-isa.xpm
+END
+cogre-convert.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-convert.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/Makefile
+END
+.cvsignore
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/.cvsignore
+END
+picture-hack.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/picture-hack.el
+END
+cogre-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-mode.el
+END
+cogre-srecode.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-srecode.el
+END
+cogre-ascii.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-ascii.el
+END
+cogre-node.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-node.xpm
+END
+cogre-uml.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-uml.el
+END
+cogre-periodic.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-periodic.el
+END
+cogre-arrow.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-arrow.xpm
+END
+wisent-dot.wy
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/wisent-dot.wy
+END
+cogre-package.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-package.xpm
+END
+wisent-dot.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/wisent-dot.el
+END
+cogre-link.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-link.xpm
+END
+cogre.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre.el
+END
+cogre-semantic.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-semantic.el
+END
+cogre-utest.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-utest.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/Project.ede
+END
+test.dot
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/test.dot
+END
+cogre-dot-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-dot-mode.el
+END
+cogre-instance.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-instance.xpm
+END
+cogre-note.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-note.xpm
+END
+cogre-class.xpm
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/cogre-class.xpm
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet.cvs/cogre/INSTALL
+END

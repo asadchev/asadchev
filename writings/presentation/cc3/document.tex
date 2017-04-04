@@ -1,0 +1,206 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+\usetheme{Warsaw}
+\title[MP2/CC]{Many Body Algorithms}
+\author{ Andrey Asadchev}
+\institute{Iowa State University}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \begin{itemize}
+  \item MP2
+  \item CC
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Basic facts}
+  \begin{itemize}
+  \item Cartesian shells $((L+1)^2+L+1)/2$
+  \item Spherical shells $2(L+1) + 1$
+  \item Occupied/Active: 20-200
+  \item Virtual: 200-5000
+  \item Cartesian vs Spherical:  25\% difference is 50\% in storage/computations
+  \item AO basis size alone doesn't determine complexity
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{ Scalable/ flexible algorithm}
+  \begin{itemize}
+  \item small memory footprint, few hundred MB per core
+  \item flexible storage transparent to an algorithm, memory/FS
+  \item large number of cores, multilevel parallelism
+  \item ability to utilize extra memory
+  \item $NO^2$ cap
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Hardware}
+`\begin{itemize}
+  \item Cray: \\
+    Many cores (2k), 2GB per core, 32 cores per node \\
+    Parallel FS (Lustre) \\
+  \item BG: \\
+    Many cores, 500MB per core, 4 cores per node \\
+    Parallel FS (GPFS) \\
+  \item Parallel FS: \\
+    File split over multiple storage nodes in chunks of N bytes \\
+    high-bandwidth, large space 10s of TB
+  \end{itemize}
+\end{frame}
+
+\scriptsize 
+
+\begin{frame}[fragile]{Small MP2, 6 cores}
+\begin{verbatim}
+active: 76
+virtual: 1653
+atomic: 1995
+Array::HDF5: mp2.v(qsij) { 2902458368, 5 }, 116098 MB parallel=0
+OpenMP threads: 6
+memory (per thread):581.742 MB
+
+eri, transformations 1+2 (master thread):
+    eri: 03:22:32.518858
+    trans 1: 04:00:22.352548
+    trans 2: 00:28:23.818739
+    I/O: 00:00:15.049650, 1213 MB/s
+    time: 07:56:42.380269
+    memory: 3328.75 MB
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]{Large MP2, 512 cores}
+\begin{verbatim}
+active: 222
+virtual: 3300
+atomic: 4080
+
+Array::HDF5: mp2.v(qsij) { 3229614080, 128 }, 3.30712e+06 MB parallel=1
+OpenMP threads: 32
+eri, transformations 1+2 (master thread):
+    eri: 00:45:06.848040
+    trans 1: 00:47:48.136083
+    trans 2: 01:11:31.128841
+    I/O: 00:14:37.070417, 15.2066 MB/s
+    time: 03:31:12.340953
+    memory: 24638 MB
+
+transformations 3+4 (master thread):
+    trans 3+4: 01:59:18.939502
+    I/O: 01:05:44.724088, 104.808 MB/s
+    memory: 32766.5 MB
+\end{verbatim}
+\end{frame}
+
+
+\begin{frame}[fragile]{Last 2 Transformations}
+\begin{lstlisting}[numbers=left]
+V(i,j,q,s)
+for s in S {
+    t <- V(:,:,:,s)
+    transform t
+    t -> V(:,:,:,s)
+}
+
+// naive
+for q in Q {
+    t <- V(:,:,q,:) // noncontiguous, extremely slow
+}
+
+// smarter
+for q,s in Q,S {
+    transpose V(:,:,q,s)
+}
+
+better to generate the data to avoid the above patterns
+\end{lstlisting}
+\end{frame}
+
+\normalsize
+
+\begin{frame}{Small CCSD(T), 6 cores}
+Cafe: 37 active, 195 virtual, 260 AO \\
+CCSD(T):\\
+SD: 3 h per iteration \\
+SD: 2 h per iteration with GPU \\
+(T): 66 h
+\end{frame}
+
+
+\begin{frame}{Larger CCSD(T), 512 cores}
+Nose candy: \\
+ NUMBER OF CARTESIAN GAUSSIAN BASIS FUNCTIONS =  430 \\
+ TOTAL NUMBER OF MOS          =   409 \\
+ NUMBER OF OCCUPIED MOS       =    78 \\
+ NUMBER OF FROZEN CORE MOS    =    21 \\
+ NUMBER OF FROZEN VIRTUAL MOS =     0 \\
+SD: 8 mins \\
+(T): 1:09 h
+ \end{frame}
+
+\begin{frame}{Larger CCSD(T), 1024 cores}
+PCC-15: \\
+ NUMBER OF CARTESIAN GAUSSIAN BASIS FUNCTIONS =  975  \\
+ TOTAL NUMBER OF MOS          =   828\\
+ NUMBER OF OCCUPIED MOS       =    45\\
+ NUMBER OF FROZEN CORE MOS    =    15\\
+SD: 14 mins\\
+(T): 2:12 h
+\end{frame}
+
+\begin{frame}{Even larger CCSD(T)}
+PCC-15: \\
+ NUMBER OF CARTESIAN GAUSSIAN BASIS FUNCTIONS =  1260  \\
+ TOTAL NUMBER OF MOS          =   1005\\
+ NUMBER OF OCCUPIED MOS       =    45\\
+ NUMBER OF FROZEN CORE MOS    =    15\\
+SD: 24/40 mins (1024/512)\\
+(T): 4:44 h
+\end{frame}
+
+\begin{frame}{Largest CCSD(T)}
+Taxol: \\
+ NUMBER OF CARTESIAN GAUSSIAN BASIS FUNCTIONS =  660  \\
+ TOTAL NUMBER OF MOS          =   660\\
+ NUMBER OF OCCUPIED MOS       =    226\\
+ NUMBER OF FROZEN CORE MOS    =    62\\
+SD: 2:05/4:13 h (1024/512)\\
+(T): \~ 40 h
+\end{frame}
+
+\scriptsize
+
+\begin{frame}[fragile]{Look Blocking}
+\begin{lstlisting}[numbers=left]
+for k = 0:M,N {
+  for j = 0:M,N {
+    for i = 0:M,N {
+      Load A(*,*,i:i+N) // innermost load
+      ...
+    }
+  }
+}
+\end{lstlisting}
+\begin{itemize}
+  \item $N = 1$: $M*(M*M)$ loads
+  \item $N = 5$: $M*(M*M)/5^2$ loads
+\end{itemize}
+\end{frame}
+
+\normalsize
+ 
+\begin{frame}{Aknowledgements}
+  \begin{itemize}
+  \item Dr. M.\$.Gordon
+  \end{itemize}
+\end{frame}
+
+
+\end{document}

@@ -1,0 +1,12 @@
+[ui]
+username = Andrey Asadchev <asadchev@gmail.com>
+editor = emacs -nw -q
+
+[paths]
+mpqc = https://hg.code.sf.net/p/mpqc/code
+
+[auth]
+mpqc.prefix = https://hg.code.sf.net/p/mpqc/code
+mpqc.username = asadchev
+#mpqc.password = ******
+mpqc.schemes = https

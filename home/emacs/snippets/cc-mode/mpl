@@ -1,0 +1,42 @@
+# -*- mode: snippet -*-
+# name: mpl::
+# key: mpl
+# --
+mpl::${1:$$(yas/choose-value '(
+""
+
+"find"
+"find_if"
+"contains"
+"count"
+"count_if"
+"lower_bound"
+"upper_bound"
+"min_element"
+"max_element"
+"equal"
+
+"at"
+"at_c"
+"back"
+"begin"
+"clear"
+"empty"
+"end"
+"erase"
+"erase_key"
+"front"
+"has_key"
+"insert"
+"insert_range"
+"is_sequence"
+"key_type"
+"order"
+"pop_back"
+"pop_front"
+"push_back"
+"push_front"
+"sequence_tag"
+"size"
+"value_type"
+))}<$0>

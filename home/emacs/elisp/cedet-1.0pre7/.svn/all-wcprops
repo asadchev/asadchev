@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/INSTALL
+END
+cedet-update-version.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/cedet-update-version.el
+END
+USING_CEDET_FROM_CVS
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/USING_CEDET_FROM_CVS
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/Makefile
+END
+PRERELEASE_CHECKLIST
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/PRERELEASE_CHECKLIST
+END
+cedet-build.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/cedet-build.el
+END

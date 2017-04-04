@@ -1,0 +1,327 @@
+\documentclass{beamer}
+\usepackage[latin1]{inputenc}
+\usepackage{listings}
+\usetheme{Warsaw}
+\title[ Programming, Integral Transformations, Gpu]{Programming, Integral Transformations, Gpu}
+\author{ Andrey Asadchev}
+\institute{Iowa State University}
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+
+\begin{frame}{Outline}
+  \begin{itemize}
+  \item Languages
+  \item Functional programming
+  \item Generic programming
+  \item Parallel programming
+  \item C++
+  \item Matrix
+  \item Integral transformation
+  \item Implementation
+  \item Projects
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Languages}
+  \begin{itemize}
+  \item Lots of them: \\
+    C++, Fortran, C\#, Apl, Python, Mathematica, etc.
+  \item General-purpose, special-purpose and in between
+  \item Languages have balance of:
+    \begin {itemize}
+    \item Simplicity: how well you can know language
+    \item Expression: expressing domain algorithms
+    \item Abstraction: expressing domain data
+    \item Standards: portability, interoperability
+    \item Libraries: do not reinvent the wheel
+    \item Tools: compilers, editors, debuggers
+    \item Success: developer investment, know-how
+    \end{itemize}
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{ Functional Programming}
+  \begin{itemize}
+  \item functional as in function, $f(x)$
+  \item immediate evaluation versus lazy evaluation: \\
+    $f(x)$ is an abstract expression \\
+    $f(x)(1)$ is value of expression
+  \item function composition\\
+    $g(f(x))$ is an abstract composition: \\
+    $g(f(x))(0)$  is value of composite expression \\
+    but so is binary expression $f(x) + g(y)$
+  \item function as argument\\
+    $integrate(f(x))$ where $f(x)$ is evaluated inside $integrate$
+  \item function as stateful object: reduce operation like $max$
+  \item returning function: Function is first-class citizen
+  \item  lambda function: anonymous function, $sort(S, (f(x) < g(y)))$
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{generic programming}
+  \begin{itemize}
+  \item Programming general logic.
+  \item Particular type is not important\\
+    $reverse(list)$, $Transpose(A)$
+  \item Partial special cases:    $Transpose(A(N,N))$
+  \item Completely special cases:    $Transpose(bit(4,4))$
+  \item Remove duplicate logic
+  \item Separate functionality
+  \item Reduce software complexity
+  \item Example:\\
+    finding root: Newton and bisection\\
+    functions: $f, g, h, ...$ \\
+    no extra logic when adding new functions
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{parallel programming}
+  \begin{itemize}
+  \item Distributed, Threads, Gpu
+  \item Difficult:\\
+    nonlinear execution,\\
+    essentially random order,\\
+    contention for shared data
+  \item  Multiple memory levels:\\
+    must move data around,\\
+    avoid mixing domains (i.e. GPU/CPU memory)
+  \item Parallel languages are not successful:\\
+    HPF, UPC, difficult to extend
+  \item Library solutions are preferred, MPI:\\
+    unwieldy dealing with complex types
+  \item Unobtrusive extensions are preferred, OpenMP:\\
+    may find features to being insufficient
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{ Programming}
+  \begin{itemize}
+  \item Separate functionality into independent building blocks:\\
+    generic components which can be connected arbitrarily
+  \item Separate algorithm, data, work (iteration):\\
+    more flexibility in switching things around
+  \item Provide for transparent parallelization: \\
+    follows from separation of algorithm, data, and work
+  \item Organize data into logical containers:\\
+    Wavefunction has Orbitals, Basis, Coefficients
+  \item Try new things: \\
+    functional, generic programming
+  \item Make up your own language!!!\\
+    Domain Specific Embedded Language
+  \end{itemize}
+\end{frame}
+
+\tiny {
+  \lstloadlanguages{C++}
+  \lstset{numbers=left,language=C++}
+  \begin{lstlisting}[label=some-code,caption=MP2 Example]
+    BOOST_AUTO(ij, i+(j*j+j)/2);
+    BOOST_AUTO(scale, (2-(i==j)));
+    thread::group(1)
+    ( let(T3 = Transform::Matrix(na, N),
+    T4 = Transform::Matrix(na, C3.size1()),
+    E_ = double(0))
+    [
+      thread::parallel_for((j = range(active.size()),
+      i = range(j+1)))
+      [
+        phoenix::get(T, &phoenix::ublas::data(T3)[0],
+        array(0, ij, 0),
+        array(na, ij+1, N)),
+        T4 = phoenix::ublas::prod(T3, phoenix::ublas::trans(C3)),
+        E_ += scale*energy(T4, -(eo(i)+eo(j)), ev, ev),
+        thread::critical[increment(phoenix::ref(progress))]
+      ],
+      thread::critical[ref(E) += E_] ] );
+  \end{lstlisting}
+}
+%\end{frame}
+
+\normalsize
+\begin{frame}{C++}
+  \begin{itemize}
+  \item does all things mentioned above: multi-paradigm
+  \item many libraries: STL, FreePooma, Boost
+  \item language of choice for new generations of hardware: CUDA
+  \item template meta-programming
+  \item domain specific embedded language:
+    \begin{itemize}
+    \item create your own language within C++
+    \item give meaning to special symbols: $+, *, /, =$
+    \item function composition
+    \item data/dimension constraints
+    \item enforce syntax
+    \item reflect your domain (e.g. mathematics)
+    \end{itemize}
+  \item exceptions
+  \end{itemize}
+\end{frame}
+
+\tiny {
+  \lstloadlanguages{C++}
+  \lstset{numbers=left,language=C++}
+  \begin{lstlisting}[label=some-code,caption=C++ DSL]
+
+    // working with mathematical language
+
+    reduce(_1 /= _2, 1)[(1 <= range(i) < 40)[log(i)] ];
+
+    (range(i) < N, range(j) < i)[swap(A(i,j), A(j,i))];
+
+    (range(i) < N, range(j) < N)
+    [ A(i,j) = sum(range(k) < N)[B(k,i)*C(k,j)/A(k,j)] ];
+
+    // working with cuda
+
+    cublas::init();
+
+    cublas::matrix<double> A, B;
+    B = cublas::matrix<double>(5,5);
+    A = B;
+
+    ublas::matrix<double> h(cublas::host(B));
+    ublas::matrix<double, ublas::column_major> f(5,5);
+    cublas::host(f) = A;
+
+    cublas::matrix<double> C = cublas::gemm(A, cublas::trans(B));
+    B += cublas::gemm(A, C);
+    cublas::gemm(3.0, B, C, 6.0, A);
+    cublas::row(A,0) = cublas::column(B,0);
+
+    range r1(0,5), r2(0,5);
+    cublas::submatrix(A, r1, r2) = cublas::gemm(A, C);
+    cublas::submatrix(A, r1, r2) += cublas::gemm(A, C);
+
+    cublas::shutdown();
+
+  \end{lstlisting}
+}
+
+\normalsize
+
+\begin{frame}{Matrix multiplication}
+  \begin{itemize}
+  \item $N ^3/N ^2 $ compute/communicate ratio 
+  \item $C(M,N) = A(M,K)*B(K,N)$
+  \item $C(1,1) = A(1,K)*B(K,1)$
+  \item $C(M,N) = A(M,1)*B(1,N)$
+  \item $ABC$ is $N^4$, $A(T = BC)$ is $N^3$
+  \item $ABC = A(BC) = (AB)C$
+  \item $50x10, 10x20, 20x60$ \\
+    $A(BC) = 10x20x60 + 50x10x60 = 42000$ \\
+    $(AB)C = 50x10x20 + 50x20x60 = 70000$
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{   Integral transformation}
+  \begin{itemize}
+  \item Transform integral from one basis to another (AO to MO)
+  \item $(ab|cd) = \sum C_{ap} \sum C_{bq} \sum C_{cr} \sum C_{ds} (pq|rs) $
+  \item $N ^5 $, $N ^8 $without factoring
+  \item $(pq|rs)$ is not $(pr|qs)$
+  \item MP2, coupled cluster, etc.
+  \item MP2  energy requires $[vo | vo] $ integrals
+  \item number of virtual orbitals is greater than occupied:
+    $N > V > O $
+  \item Cost of the recomputing is high
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{MP2  energy Integral Transformation}
+  \begin{itemize}
+  \item $(ai|bj)$, $i,j$ are symmetric
+  \item favorable to transform:
+    \begin{itemize}
+    \item $(pq|rs) \mapsto T(i,p,r,s)$
+    \item $T(i,p,r,s) \mapsto T(ij,p,r)$
+    \item $T(ij,p,r) \mapsto T(ij,a,r)$
+    \item $T(ij,a,r) \mapsto T(ij,a,b)$
+    \end{itemize}
+  \item favorable to compute: $T(a,b,ij)$
+  \item first transform: \\
+    $(qp|sr) \mapsto T(r,s,p,q)$ \\
+    $T([r,s,p],q) \mapsto T(i,[r,s,p])$
+  \end{itemize}
+\end{frame}
+
+\tiny {
+  \lstloadlanguages{C++}
+  \lstset{language=C++}
+  \begin{lstlisting}[label=some-code,caption=MP2]
+
+    let T3(V,OO/2,N)
+
+    for R in basis.shells {
+
+      let T2(OO/2,R,N)
+
+      T2(OO/2,R,N) = C2*C4*R // memory(OORX/2), storage(OORN/2)
+
+      T3(V,OO/2,R) = C1*trans(T2) // memory(OORN/2), storage(OOVN/2)
+
+    } 
+
+    for ij in OO/2 {
+
+      let T4(V,V)
+
+      T4(V,V) = T3(V,ij,N)*trans(C3)
+
+      E += E(T4)
+
+    }
+
+  \end{lstlisting}
+}
+\normalsize
+
+\begin{frame}{Implementation}
+  \begin{itemize}
+  \item transformation is separated from MP2
+  \item each transformation is accessible individually
+  \item arbitrary layout order, triangular transformation
+  \item arbitrary coefficient matrix
+  \item all transformations, except one, use blas
+  \item GPU!!! and threads implementation
+  \item works on Fermi
+  \item large arrays reside in HDF5 files(does not have to)
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Projects}
+  \begin{itemize}
+  \item  Gamess/Python integration, interactive program
+  \item Expression templates for Cuda
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Aknowledge}
+  \begin{itemize}
+  \item Funding From Dr. Gordon
+  \item Help from Mike
+  \item stackoverflow.com
+  \end{itemize}
+\end{frame}
+
+\tiny {
+
+  \lstloadlanguages{C++}
+  \lstset{language=C++}
+  \lstinputlisting[label=some-code,caption=Transform]{/home//andrey/libqc//src/core/transform.hpp}
+
+  \lstloadlanguages{C++}
+  \lstset{language=C++}
+  \lstinputlisting[label=some-code,caption=Transformation 1]{/home//andrey/libqc//src/core/transform/apply1.hpp}
+
+}
+
+
+
+\end{document}

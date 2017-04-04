@@ -1,0 +1,227 @@
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/README
+END
+ecb-advice-test.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-advice-test.el
+END
+ecb-common-browser.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-common-browser.el
+END
+ecb-compatibility.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-compatibility.el
+END
+ecb.texi
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb.texi
+END
+ecb-eshell.el
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-eshell.el
+END
+ecb-util.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-util.el
+END
+ecb-create-layout.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-create-layout.el
+END
+ecb-symboldef.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-symboldef.el
+END
+silentcomp.el
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/silentcomp.el
+END
+ecb-upgrade.el
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-upgrade.el
+END
+ecb-help.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-help.el
+END
+ecb-autoloads.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-autoloads.el
+END
+ecb-analyse.el
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-analyse.el
+END
+ecb-face.el
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-face.el
+END
+ecb-navigate.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-navigate.el
+END
+ecb-cycle.el
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-cycle.el
+END
+ecb-file-browser.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-file-browser.el
+END
+ecb-method-browser.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-method-browser.el
+END
+ecb-autogen.el
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-autogen.el
+END
+ecb-winman-support.el
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-winman-support.el
+END
+ecb-mode-line.el
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-mode-line.el
+END
+ecb-layout.el
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-layout.el
+END
+ecb-compilation.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-compilation.el
+END
+ecb-examples.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-examples.el
+END
+tree-buffer.el
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/tree-buffer.el
+END
+ecb-speedbar.el
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-speedbar.el
+END
+ecb-tod.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-tod.el
+END
+NEWS
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/NEWS
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/Makefile
+END
+make.bat
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/make.bat
+END
+ecb-layout-defs.el
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-layout-defs.el
+END
+ecb-cedet-wrapper.el
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-cedet-wrapper.el
+END
+RELEASE_NOTES
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/RELEASE_NOTES
+END
+ecb-jde.el
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-jde.el
+END
+ecb.el
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb.el
+END
+ecb-makedef.mk
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/342/trunk/home/emacs/elisp/ecb-2.40/ecb-makedef.mk
+END

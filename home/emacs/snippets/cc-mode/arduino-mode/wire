@@ -1,0 +1,15 @@
+#name : Wire.
+#key: wire
+# --
+Wire.${1:$$(yas/choose-value '(
+	 "begin()"
+	 "begin(address)"	
+	 "requestFrom(address, count)"
+	 "beginTransmission(address)"
+	 "endTransmission()"
+	 "send()"
+	 "available()"
+	 "receive()"
+	 "onReceive(handler)"
+	 "onRequest(handler)"
+	))}

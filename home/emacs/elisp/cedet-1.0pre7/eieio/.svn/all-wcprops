@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio
+END
+eieio-datadebug.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-datadebug.el
+END
+eieio-loaddefs.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-loaddefs.el
+END
+eieio-speedbar.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-speedbar.el
+END
+NEWS
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/NEWS
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/Makefile
+END
+lmcompile.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/lmcompile.el
+END
+eieio-perftest.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-perftest.el
+END
+eieio.info
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio.info
+END
+eieio-comp.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-comp.el
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/ChangeLog
+END
+eieio-opt.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-opt.el
+END
+eieio.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio.el
+END
+eieio-tests.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-tests.el
+END
+eieio-doc.el
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-doc.el
+END
+chart.el
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/chart.el
+END
+eieio-test-methodinvoke.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-test-methodinvoke.el
+END
+linemark.el
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/linemark.el
+END
+eieio-custom.el
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-custom.el
+END
+eieio-base.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-base.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/Project.ede
+END
+eieio.texi
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio.texi
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/INSTALL
+END
+eieio-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/eieio/eieio-load.el
+END

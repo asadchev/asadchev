@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: <boost/
+# key: <boost/fusion/
+# group: flexSURVEY
+# contributor: Sven Hartenstein <sven@flexsurvey.d>
+# --
+<boost/fusion/${1:$$(yas/choose-value '(
+	 ""
+	 "include/container.hpp"
+	 "include/algorithm.hpp"
+	 "include/mpl.hpp"
+	 "include/intrinsic.hpp"))}

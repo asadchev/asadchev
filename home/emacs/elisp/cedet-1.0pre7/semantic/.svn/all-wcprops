@@ -1,0 +1,461 @@
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic
+END
+semanticdb-skel.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-skel.el
+END
+semantic-decorate-include.el
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-decorate-include.el
+END
+semantic-dep.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-dep.el
+END
+renamelist.txt
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/renamelist.txt
+END
+semanticdb-ref.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-ref.el
+END
+AUTHORS
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/AUTHORS
+END
+semantic-grammar.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-grammar.el
+END
+semantic-lex.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-lex.el
+END
+semantic-html.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-html.el
+END
+semantic-doc.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-doc.el
+END
+semantic-mru-bookmark.el
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-mru-bookmark.el
+END
+semantic-decorate-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-decorate-mode.el
+END
+semantic-texi.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-texi.el
+END
+semanticdb-typecache.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-typecache.el
+END
+semantic-tag.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-tag.el
+END
+semantic-fw.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-fw.el
+END
+semanticdb-ebrowse.el
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-ebrowse.el
+END
+NEWS
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/NEWS
+END
+semantic-idle.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-idle.el
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/Makefile
+END
+semantic-elp.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-elp.el
+END
+semantic-find.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-find.el
+END
+semantic-ede-grammar.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ede-grammar.el
+END
+semantic-util-modes.el
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-util-modes.el
+END
+semanticdb.sh
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb.sh
+END
+semantic-grammar-wy.el
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-grammar-wy.el
+END
+semantic-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-debug.el
+END
+ChangeLog
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ChangeLog
+END
+semantic-ast.el
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ast.el
+END
+semantic-adebug.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-adebug.el
+END
+semantic-lex-spp.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-lex-spp.el
+END
+semanticdb-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-debug.el
+END
+semantic-analyze.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-analyze.el
+END
+semantic-utest.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-utest.el
+END
+semantic-sb.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-sb.el
+END
+semanticdb-el.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-el.el
+END
+semantic-scope.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-scope.el
+END
+semantic-custom.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-custom.el
+END
+senator.el
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/senator.el
+END
+semanticdb-search.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-search.el
+END
+semantic-regtest.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-regtest.el
+END
+semantic-imenu.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-imenu.el
+END
+semantic-loaddefs.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-loaddefs.el
+END
+semantic-edit.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-edit.el
+END
+semanticdb-file.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-file.el
+END
+semantic-sort.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-sort.el
+END
+semantic-tag-ls.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-tag-ls.el
+END
+semantic-analyze-debug.el
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-analyze-debug.el
+END
+semantic-ia.el
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ia.el
+END
+semanticdb-mode.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-mode.el
+END
+semantic-example.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-example.el
+END
+semantic-ia-sb.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ia-sb.el
+END
+semantic-analyze-refs.el
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-analyze-refs.el
+END
+semantic-chart.el
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-chart.el
+END
+Project.ede
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/Project.ede
+END
+semantic.el
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic.el
+END
+semantic-tag-write.el
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-tag-write.el
+END
+semanticdb-global.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-global.el
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/INSTALL
+END
+semantic-analyze-fcn.el
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-analyze-fcn.el
+END
+semantic-complete.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-complete.el
+END
+semanticdb.el
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb.el
+END
+semantic-analyze-complete.el
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-analyze-complete.el
+END
+semanticdb-javascript.el
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-javascript.el
+END
+semanticdb-mk.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-mk.el
+END
+semantic-util.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-util.el
+END
+semantic-load.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-load.el
+END
+semantic-ctxt.el
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ctxt.el
+END
+semantic-utest-c.el
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-utest-c.el
+END
+semantic-grammar.wy
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-grammar.wy
+END
+semantic-decorate.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-decorate.el
+END
+semanticdb-find.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semanticdb-find.el
+END
+semantic-format.el
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-format.el
+END
+semantic-tag-file.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-tag-file.el
+END
+ONEWS
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/ONEWS
+END
+semantic-ia-utest.el
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/342/trunk/home/emacs/elisp/cedet-1.0pre7/semantic/semantic-ia-utest.el
+END

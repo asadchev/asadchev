@@ -1,0 +1,13 @@
+#name : Serial.
+#key: serial
+# --
+Serial.${1:$$(yas/choose-value '(
+	"begin()"
+	"end()"
+	"available()"
+	"read()"
+	"flush()"
+	"print()"
+	"println()"
+	"write()"
+	))}

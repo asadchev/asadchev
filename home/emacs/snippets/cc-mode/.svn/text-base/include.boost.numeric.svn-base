@@ -1,0 +1,9 @@
+#name : #include <boost/numeric/>
+#key: include
+# --
+#include <boost/numeric/${1:$$(yas/choose-value '(
+	 "ublas"
+	 "ublas/vector.hpp"
+	 "ublas/matrix.hpp"
+	 "ublas/matrix_proxy.hpp"
+	 ""))}>

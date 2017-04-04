@@ -1,0 +1,4 @@
+#name move
+# key: mv
+# --
+std::move($0)
